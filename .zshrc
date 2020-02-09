@@ -6,6 +6,9 @@ zstyle :compinstall filename '/home/aaron/.zshrc'
 
 autoload -Uz compinit
 compinit
+
+autoload -Uz promptinit
+promptinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -17,5 +20,9 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 [[ $- != *i* ]] && return
 
+PROMPT='%n@%M $ '
+(cat ~/.cache/wal/sequences &)
+
 alias ls='ls --color=auto'
 alias home='cd ~ && clear'
+alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'

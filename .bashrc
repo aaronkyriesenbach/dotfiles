@@ -9,3 +9,5 @@ alias ls='ls --color=auto'
 alias home='cd ~ && clear'
 
 PS1='[\u@\h \W]\$ '
+
+(cat ~/.cache/wal/sequences &)
