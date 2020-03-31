@@ -201,4 +201,5 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
 
-exec --no-startup-id picom --config ~/.config/picom.conf -b
+exec --no-startup-id xrandr --output DP-2 --right-of HDMI-0 --mode 1920x1080 --rate 60
+exec_always --no-startup-id numlockx on
