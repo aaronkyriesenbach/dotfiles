@@ -116,17 +116,31 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+set $monitor_one "DP-2"
+set $monitor_two "HDMI-0"
+
+workspace $ws1 output $monitor_one
+workspace $ws2 output $monitor_two
+workspace $ws3 output $monitor_one
+workspace $ws4 output $monitor_two
+workspace $ws5 output $monitor_one
+workspace $ws6 output $monitor_two
+workspace $ws7 output $monitor_one
+workspace $ws8 output $monitor_two
+workspace $ws9 output $monitor_one
+workspace $ws10 output $monitor_two
+
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace number $ws2 workspace number $ws1
+bindsym $mod+2 workspace number $ws1 workspace number $ws2
+bindsym $mod+3 workspace number $ws4 workspace number $ws3
+bindsym $mod+4 workspace number $ws3 workspace number $ws4
+bindsym $mod+5 workspace number $ws6 workspace number $ws5
+bindsym $mod+6 workspace number $ws5 workspace number $ws6
+bindsym $mod+7 workspace number $ws8 workspace number $ws7
+bindsym $mod+8 workspace number $ws7 workspace number $ws8
+bindsym $mod+9 workspace number $ws10 workspace number $ws9
+bindsym $mod+0 workspace number $ws9 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
