@@ -26,3 +26,7 @@ PROMPT='%n@%M $ '
 alias ls='ls --color=auto'
 alias home='cd ~ && clear'
 alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/aaron/.sdkman"
+[[ -s "/home/aaron/.sdkman/bin/sdkman-init.sh" ]] && source "/home/aaron/.sdkman/bin/sdkman-init.sh"
