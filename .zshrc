@@ -27,7 +27,7 @@ alias ls='ls --color=auto'
 alias home='cd ~ && clear'
 alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'
 
-export CLARAKM_PARENT=/Users/aaron/dev/teslagov/clarakm
+export CLARAKM_PARENT="/Users/aaron/dev/teslagov/clarakm"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/aaron/.sdkman"
