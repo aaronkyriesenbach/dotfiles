@@ -12,7 +12,6 @@ general {
 }
 
 order += "ethernet _first_"
-order += "memory"
 order += "tztime local"
 
 ethernet _first_ {
@@ -20,12 +19,6 @@ ethernet _first_ {
         format_down = "E: down"
 }
 
-memory {
-        format = "%used | %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
-}
-
 tztime local {
-        format = "%m/%d/%Y %H:%M"
+        format = "%a %m/%d/%Y %H:%M"
 }
