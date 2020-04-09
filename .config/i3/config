@@ -33,7 +33,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -207,5 +207,5 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
 
-exec --no-startup-id xrandr --output DP-2 --right-of HDMI-0
+exec --no-startup-id xrandr --output DP-2 --primary --right-of HDMI-0
 exec_always --no-startup-id numlockx on
