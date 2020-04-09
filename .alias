@@ -1,0 +1,17 @@
+# Color ls
+alias ls='ls --color=auto'
+
+# Move to home folder and clear terminal
+alias home='cd ~ && clear'
+
+# SSH into media server w/ tunnel for Plex web client
+alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'
+
+# Shorten git
+alias g='git'
+
+# Connect to and daemonize VPN (for Tesla) - requires OpenVPN
+alias teslavpn='sudo openvpn --config /etc/openvpn/client/client.ovpn --daemon'
+
+# Shorten ./gradlew bootrun
+alias gbr='./gradlew bootrun'

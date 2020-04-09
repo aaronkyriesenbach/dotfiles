@@ -23,12 +23,7 @@ bindkey -v
 PROMPT='%n@%M %1d$ '
 (cat ~/.cache/wal/sequences &)
 
-alias ls='ls --color=auto'
-alias home='cd ~ && clear'
-alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'
-alias g='git'
-alias teslavpn='sudo openvpn --config /etc/openvpn/client/client.ovpn --daemon'
-alias gbr='./gradlew bootrun'
+source ~/.alias
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/aaron/.sdkman"
