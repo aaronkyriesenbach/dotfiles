@@ -11,7 +11,13 @@ alias mediaserver='ssh aaron@192.168.86.186 -L 8888:localhost:32400'
 alias g='git'
 
 # Connect to and daemonize VPN (for Tesla) - requires OpenVPN
-alias teslavpn='sudo openvpn --config /etc/openvpn/client/client.ovpn --daemon'
+alias teslavpn='sudo openvpn --config /etc/openvpn/client/tesla.ovpn --daemon'
+
+# Connect to and daemonize NordVPN P2P VPN - requires OpenVPN
+alias nordvpn='sudo openvpn --config /etc/openvpn/client/nord.ovpn --daemon'
 
 # Shorten ./gradlew bootrun
 alias gbr='./gradlew bootrun'
+
+# Shorten xdg-open
+alias open='xdg-open'
