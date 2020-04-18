@@ -1,27 +1,30 @@
-# The following lines were added by compinstall
+# Oh-My-Zsh configuration
 
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+r:|[._-]=* r:|=*'
-zstyle :compinstall filename '/home/aaron/.zshrc'
+# Path to your oh-my-zsh installation.
+export ZSH="/home/aaron/.oh-my-zsh"
 
-autoload -Uz compinit
-compinit
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="agnoster"
 
-autoload -Uz promptinit
-promptinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=10000
-setopt autocd beep extendedglob notify
-unsetopt nomatch
-bindkey -v
-# End of lines configured by zsh-newuser-install
-[[ $- != *i* ]] && return
+HYPHEN_INSENSITIVE="true"
 
-PROMPT='%n@%M %1d$ '
-(cat ~/.cache/wal/sequences &)
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+ENABLE_CORRECTION="true"
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Personal configuration
 
 source ~/.alias
 
