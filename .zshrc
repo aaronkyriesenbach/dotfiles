@@ -13,11 +13,6 @@ HYPHEN_INSENSITIVE="true"
 
 DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-ENABLE_CORRECTION="true"
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git)
