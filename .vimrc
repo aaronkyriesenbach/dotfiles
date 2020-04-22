@@ -2,6 +2,7 @@ call plug#begin()
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'mbbill/undotree'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
@@ -29,10 +30,6 @@ set showmatch
 " Enable dynamic searching
 set incsearch
 
-" Highlight search matches and bind space to :nohlsearch (stop highlighting)
-set hlsearch
-nnoremap <leader><space> :nohlsearch<CR>
-
 " Map b to beginning of line and e to end of line, remove default BOL/EOL bindings
 nnoremap b ^
 nnoremap e $
@@ -41,3 +38,6 @@ nnoremap $ <nop>
 
 " Map UndoTree toggle
 nnoremap <F5> :UndotreeToggle<CR>
+
+" Enable automatic colorizing
+:let g:colorizer_auto_color = 1

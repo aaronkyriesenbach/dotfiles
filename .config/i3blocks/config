@@ -1,3 +1,9 @@
+[mediaplayer]
+command=$SCRIPT_DIR/mediaplayer/mediaplayer
+instance=spotifyd
+interval=1
+signal=10
+
 [volume-pulseaudio]
 command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio
 interval=once

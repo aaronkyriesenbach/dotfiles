@@ -1,0 +1,159 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:color6:#222}
+background-alt = ${xrdb:color6:#222}
+foreground = ${xrdb:color0:#222}
+foreground-alt = ${xrdb:color0:#222}
+primary = ${xrdb:color0:#222}
+secondary = ${xrdb:color6:#222}
+alert = #bd2c40
+
+[bar/main]
+monitor = DP-2
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-margin-right = 2
+padding = 1
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = JoyPixels:scale=8;1
+
+modules-left = i3
+modules-center = 
+modules-right = pulseaudio memory eth date
+
+tray-position = right
+tray-padding = 2
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+line-size = 3
+
+[bar/secondary]
+monitor = HDMI-0
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-margin-right = 2
+padding = 1
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = JoyPixels:scale=8;1
+
+modules-left = i3
+modules-center = 
+modules-right = pulseaudio memory eth date
+
+tray-position = right
+tray-padding = 2
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+line-size = 3
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= #aa00cc
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "RAM: "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #ff0000
+label = %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+format-connected-underline = #00aa30
+label-connected = %local_ip%
+
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = disconnected
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%m/%d/%Y"
+date-alt = "%m/%d/%Y"
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-underline = #0a6cf5
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = #ffd900
+interval = 2
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+label-volume = %percentage%%
+label-muted = 🔇 muted
+
+click-right = pavucontrol &
+
+[settings]
+screenchange-reload = true
