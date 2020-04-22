@@ -34,7 +34,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
-modules-center = 
+modules-center = player-mpris-tail spotify
 modules-right = pulseaudio memory eth date
 
 tray-position = right
@@ -64,7 +64,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
-modules-center = 
+modules-center = player-mpris-tail
 modules-right = pulseaudio memory eth date
 
 tray-position = right
@@ -121,7 +121,7 @@ type = internal/network
 interface = eth0
 interval = 3.0
 
-format-connected-underline = #00aa30
+format-connected-underline = #1db954
 label-connected = %local_ip%
 
 format-disconnected-underline = ${self.format-connected-underline}
@@ -153,7 +153,20 @@ ramp-volume-2 = 🔊
 label-volume = %percentage%%
 label-muted = 🔇 muted
 
-click-right = pavucontrol &
+[module/player-mpris-tail]
+type = custom/script
+exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{icon} {artist} - {title}'
+tail = true
+format-underline = #1db954
+interval = 1
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = ~/.config/polybar/scripts/spotify_status.py -f '{artist} - {song}'
+format-underline = #1db954
 
 [settings]
 screenchange-reload = true
