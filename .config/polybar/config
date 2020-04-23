@@ -34,7 +34,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
-modules-center = player-mpris-tail spotify
+modules-center = player-mpris-tail
 modules-right = pulseaudio memory eth date
 
 tray-position = right
@@ -155,18 +155,10 @@ label-muted = 🔇 muted
 
 [module/player-mpris-tail]
 type = custom/script
-exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{icon} {artist} - {title}'
+exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{artist} - {title}'
 tail = true
 format-underline = #1db954
 interval = 1
-
-[module/spotify]
-type = custom/script
-interval = 1
-format-prefix = " "
-format = <label>
-exec = ~/.config/polybar/scripts/spotify_status.py -f '{artist} - {song}'
-format-underline = #1db954
 
 [settings]
 screenchange-reload = true

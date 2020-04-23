@@ -1,14 +1,8 @@
-# Color ls
-alias ls='ls --color=auto'
-
 # Move to home folder and clear terminal
 alias home='cd ~ && clear'
 
 # SSH into media server w/ tunnel for Plex web client
 alias server='ssh user@192.168.86.186'
-
-# Establish tunnel for Plex server configuration via web interface
-alias plextunnel='ssh user@192.168.86.186 -L 32400:192.168.86.186:32400 -N'
 
 # Shorten git
 alias g='git'
