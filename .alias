@@ -18,3 +18,9 @@ alias gbr='./gradlew bootrun'
 
 # Shorten xdg-open
 alias open='xdg-open'
+
+# i can't spell lol
+alias clera='clear'
+alias cleara='clear'
+alias cler='clear'
+alias claer='clear'

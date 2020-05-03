@@ -34,11 +34,8 @@ font-2 = siji:pixelsize=10;1
 font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
-modules-center = player-mpris-tail
-modules-right = pulseaudio memory eth date
-
-tray-position = right
-tray-padding = 2
+modules-center = spotify
+modules-right = memory eth vpn-openvpn-isrunning  date
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -64,8 +61,8 @@ font-2 = siji:pixelsize=10;1
 font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
-modules-center = player-mpris-tail
-modules-right = pulseaudio memory eth date
+modules-center = spotify
+modules-right = memory eth vpn-openvpn-isrunning date
 
 tray-position = right
 tray-padding = 2
@@ -153,12 +150,19 @@ ramp-volume-2 = 🔊
 label-volume = %percentage%%
 label-muted = 🔇 muted
 
-[module/player-mpris-tail]
+[module/spotify]
 type = custom/script
-exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{artist} - {title}'
-tail = true
-format-underline = #1db954
 interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist} - {song}'
+format-underline = #1db954
+
+[module/vpn-openvpn-isrunning]
+type = custom/script
+exec = ~/.config/polybar/scripts/vpn-openvpn-isrunning.sh
+interval = 5
+format-underline = #00aabb
 
 [settings]
 screenchange-reload = true

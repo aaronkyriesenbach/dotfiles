@@ -13,10 +13,10 @@ colorscheme solarized8
 syntax enable
 
 " Set 4 visual spaces per TAB
-set tabstop=4
+set tabstop=2
 
 " Set 4 actual spaces per TAB
-set softtabstop=4
+set softtabstop=2
 
 " Show line numbers
 set number
