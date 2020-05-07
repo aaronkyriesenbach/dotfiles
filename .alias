@@ -24,3 +24,7 @@ alias clera='clear'
 alias cleara='clear'
 alias cler='clear'
 alias claer='clear'
+
+# Frequently used commands
+alias c='clear'
+alias p='git pull'

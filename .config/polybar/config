@@ -35,7 +35,7 @@ font-3 = JoyPixels:scale=8;1
 
 modules-left = i3
 modules-center = spotify
-modules-right = memory eth vpn-openvpn-isrunning  date
+modules-right = pulseaudio memory eth vpn-openvpn-isrunning  date
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
