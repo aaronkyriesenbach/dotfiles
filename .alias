@@ -28,3 +28,6 @@ alias claer='clear'
 # Frequently used commands
 alias c='clear'
 alias p='git pull'
+
+# Created after accidentally deleting my entire videos folder :)
+alias rm='rm -i'
