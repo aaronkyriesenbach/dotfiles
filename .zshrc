@@ -15,7 +15,7 @@ DISABLE_AUTO_UPDATE="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git)
+plugins=(git archlinux)
 
 source $ZSH/oh-my-zsh.sh
 
