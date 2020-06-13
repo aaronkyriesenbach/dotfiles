@@ -1,0 +1,38 @@
+[alias]
+	st = status -sb
+	branch-name = symbolic-ref --short HEAD
+	logdiff = log --reverse --oneline --decorate @{push}...
+	local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
+	co = checkout
+	cob = checkout -b
+	b = branch
+	fp = push -u origin HEAD
+
+[push]
+	default = simple
+
+[pull]
+	rebase = true
+
+[log]
+	decorate = true
+	abbrevCommit = true
+
+[user]
+	email = aaronkyriesenbach@pobox.com
+	name = Aaron Ky-Riesenbach
+[credential]
+	helper = store
+
+[merge]
+    	tool = idea
+[mergetool "idea"]
+	cmd = /home/aaron/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/193.6911.18/bin/idea.sh merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+	trustExitCode = true
+
+[diff]
+    	tool = idea
+[difftool "idea"]
+    	cmd = /home/aaron/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/193.6911.18/bin/idea.sh diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[pager]
+	branch = false

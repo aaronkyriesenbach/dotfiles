@@ -1,13 +1,14 @@
 call plug#begin()
 
 Plug 'lifepillar/vim-solarized8'
+Plug 'dylanaraps/wal.vim'
 Plug 'mbbill/undotree'
 Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
 " Enable solarized dark colorscheme
-colorscheme solarized8
+colorscheme wal " solarized8
 
 " Enable syntax highlighting
 syntax enable

@@ -27,7 +27,10 @@ alias claer='clear'
 
 # Frequently used commands
 alias c='clear'
-alias p='git pull'
+alias e='exit'
 
 # Created after accidentally deleting my entire videos folder :)
 alias rm='rm -i'
+
+# yeet
+alias yeet='pacman -Rns'
