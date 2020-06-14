@@ -1,6 +1,4 @@
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 udiskie &
 wal -R
-exec i3
+exec startplasma-x11
