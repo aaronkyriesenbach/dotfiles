@@ -29,8 +29,5 @@ alias claer='clear'
 alias c='clear'
 alias e='exit'
 
-# Created after accidentally deleting my entire videos folder :)
-alias rm='rm -i'
-
 # yeet
-alias yeet='pacman -Rns'
+alias yeet='sudo pacman -Rns'
