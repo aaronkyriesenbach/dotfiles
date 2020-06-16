@@ -21,6 +21,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
 
+(cat ~/.cache/wal/sequences &)
+
 source ~/.alias
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
