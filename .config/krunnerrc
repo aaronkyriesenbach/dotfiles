@@ -1,0 +1,22 @@
+[General]
+history=ter,volu,soud,kitt,slack,idea,spot,google,wallet,kwalle,nem,code,tele,fire,seaho,mysq,font,system,subli,\\\\slac,ssyste,slac,syste,sound,default,KItt,SYSte,jet,key,screen,papre,pulse,chr,date,zoo,application,kit,ki
+
+[Plugins]
+Kill RunnerEnabled=false
+PowerDevilEnabled=false
+baloosearchEnabled=false
+bookmarksEnabled=false
+calculatorEnabled=true
+desktopsessionsEnabled=false
+krunner_appstreamEnabled=false
+kwinEnabled=false
+locationsEnabled=false
+org.kde.activitiesEnabled=false
+org.kde.windowedwidgetsEnabled=false
+placesEnabled=false
+plasma-desktopEnabled=false
+recentdocumentsEnabled=false
+servicesEnabled=true
+shellEnabled=false
+webshortcutsEnabled=false
+windowsEnabled=false

@@ -1,0 +1,30 @@
+[KFileDialog Settings]
+Recent Files[$e]=retrocity.png,file:$HOME/pictures/wallpapers/retrocity.png
+Recent URLs[$e]=file:$HOME/pictures/wallpapers/
+detailViewIconSize=0
+listViewIconSize=15
+
+[PlasmaRunnerManager]
+pluginWhiteList=desktopsessions,services,places,PowerDevil,calculator,unitconverter,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaTransientsConfig]
+PreloadWeight=0
+
+[PlasmaViews][Panel 17][Defaults]
+thickness=36
+
+[PlasmaViews][Panel 17][Horizontal1920]
+thickness=36
+
+[PlasmaViews][Panel 3][Defaults]
+thickness=36
+
+[PlasmaViews][Panel 3][Horizontal1920]
+thickness=36
+
+[ScreenConnectors]
+0=DP-2
+1=HDMI-0
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js
