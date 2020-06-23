@@ -21,9 +21,6 @@
 [user]
 	email = aaronkyriesenbach@pobox.com
 	name = Aaron Ky-Riesenbach
-[credential]
-	helper = store
-
 [merge]
     	tool = idea
 [mergetool "idea"]

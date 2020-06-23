@@ -116,8 +116,8 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][22][General]
-extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.battery,slack,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,zoom
-hiddenItems=slack,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications
+extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.battery,slack,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,zoom,vlc
+hiddenItems=slack,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications,vlc
 knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.battery
 shownItems=zoom
 
@@ -161,6 +161,7 @@ PreloadWeight=100
 
 [Containments][3][Applets][4][Configuration][General]
 favoritesPortedToKAstats=true
+systemApplications=systemsettings.desktop
 
 [Containments][3][Applets][4][Configuration][Shortcuts]
 global=Alt+F1
@@ -268,8 +269,8 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][8][General]
-extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,slack,TelegramDesktop
-hiddenItems=slack,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications,TelegramDesktop
+extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,slack,TelegramDesktop,vlc
+hiddenItems=slack,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications,TelegramDesktop,vlc
 knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.battery
 
 [ScreenMapping]
