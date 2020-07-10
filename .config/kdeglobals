@@ -105,6 +105,10 @@ ForegroundNormal=239,240,241
 ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
+[DirSelect Dialog]
+DirSelectDialog Size=858,598
+History Items[$e]=file:$HOME/downloads
+
 [General]
 BrowserApplication=google-chrome.desktop
 ColorScheme=BreezeDark
