@@ -16,8 +16,10 @@ alias nordvpn='sudo openvpn --config /etc/openvpn/client/nord.ovpn --daemon'
 # Shorten ./gradlew bootrun
 alias gbr='./gradlew bootrun'
 
+if [ "$(uname)" != "Darwin" ]; then
 # Shorten xdg-open
 alias open='xdg-open'
+fi
 
 # i can't spell lol
 alias clera='clear'
