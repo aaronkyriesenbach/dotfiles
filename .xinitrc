@@ -3,4 +3,4 @@ export SSH_AUTH_SOCK
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 udiskie &
 wal -R
-exec startplasma-x11
+exec i3
