@@ -35,7 +35,7 @@ wmclassmatch=1
 
 [4]
 Description=Application settings for google-chrome
-position=1920,0
+position=1920,62
 positionrule=4
 size=1920,1044
 sizerule=4
