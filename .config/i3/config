@@ -179,7 +179,7 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
 
-focus_follows_mouse no
+focus_follows_mouse yes
 
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --right-of HDMI-0
 exec_always --no-startup-id numlockx on
