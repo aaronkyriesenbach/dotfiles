@@ -19,7 +19,7 @@ secondary = ${xrdb:color6:#222}
 alert = #bd2c40
 
 [bar/main]
-monitor = DP-2
+monitor = DP-1
 bottom = true
 
 background = ${colors.background}
@@ -46,7 +46,7 @@ cursor-scroll = ns-resize
 line-size = 3
 
 [bar/secondary]
-monitor = HDMI-0
+monitor = HDMI-1
 bottom = true
 
 background = ${colors.background}
