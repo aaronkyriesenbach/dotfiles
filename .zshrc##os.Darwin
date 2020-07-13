@@ -20,11 +20,14 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-
-(cat ~/.cache/wal/sequences &)
+if [[ -f "~/.cache/wal/sequences" ]]; then
+	(cat ~/.cache/wal/sequences &)
+fi
 
 source ~/.alias
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/aaron/.sdkman"
-[[ -s "/Users/aaron/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/aaron/.sdkman/bin/sdkman-init.sh"
+if [[ -f "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+	source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
