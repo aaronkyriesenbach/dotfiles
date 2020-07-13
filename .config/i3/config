@@ -181,6 +181,8 @@ client.background       $bg
 
 focus_follows_mouse yes
 
+for_window [class="jetbrains-idea" title="win0"] floating enable;
+
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --right-of HDMI-0
 exec_always --no-startup-id numlockx on
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
