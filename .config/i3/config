@@ -86,8 +86,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-set $monitor_one "DP-2"
-set $monitor_two "HDMI-0"
+set $monitor_one "DP-1"
+set $monitor_two "HDMI-1"
 
 workspace $ws1 output $monitor_two
 workspace $ws2 output $monitor_one
