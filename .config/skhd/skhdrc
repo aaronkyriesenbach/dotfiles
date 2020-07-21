@@ -1,6 +1,0 @@
-cmd - right : yabai -m window --focus east
-cmd - left : yabai -m window --focus west
-cmd - up : yabai -m window --focus north
-cmd - down : yabai -m window --focus south
-
-cmd - return : open -n /Applications/iTerm.app
