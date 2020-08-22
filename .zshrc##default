@@ -21,6 +21,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
 
+vpn () {
+	systemctl $1 openvpn-client@$2.service
+}
+
 if [[ -f "~/.cache/wal/sequences" ]]; then
 	(cat ~/.cache/wal/sequences &)
 fi
