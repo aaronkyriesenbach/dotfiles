@@ -1,0 +1,31 @@
+#window {
+	border-radius: 15px;
+	background-color: --wofi-color0;
+	border: 2px solid --wofi-color6;
+}
+
+#input {
+	border-radius: 15px 15px 0px 0px;
+	background-color: --wofi-color0;
+	color: --wofi-color6;
+	border: 2px solid --wofi-color6;
+	border-bottom: none;
+}
+
+#outer-box {
+	padding-bottom: 10px;
+}
+
+#entry {
+	color: --wofi-color6;
+	padding-left: 10px;
+}
+
+#entry:selected {
+	background-color: --wofi-color6;
+	border: none;
+}
+
+#text:selected {
+	color: --wofi-color0;
+}
