@@ -31,6 +31,9 @@ nnoremap e $
 nnoremap ^ <nop>
 nnoremap $ <nop>
 
+" 4 space tabs
+set tabstop=4
+
 " Map UndoTree toggle
 nnoremap <F5> :UndotreeToggle<CR>
 
