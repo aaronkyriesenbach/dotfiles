@@ -31,8 +31,10 @@ nnoremap e $
 nnoremap ^ <nop>
 nnoremap $ <nop>
 
-" 4 space tabs
+" Tab/indentation config
 set tabstop=4
+set smartindent
+set shiftwidth=4
 
 " Map UndoTree toggle
 nnoremap <F5> :UndotreeToggle<CR>
