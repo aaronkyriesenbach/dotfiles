@@ -31,3 +31,8 @@ export SDKMAN_DIR="/Users/aaron/.sdkman"
 if [[ -f "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
 	source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
+
+export NVM_DIR="/Users/aaron/.nvm"
+if [[ -f "$NVM_DIR/nvm.sh" ]]; then
+	source "$NVM_DIR/nvm.sh"
+fi
