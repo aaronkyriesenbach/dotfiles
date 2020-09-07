@@ -1,0 +1,39 @@
+{
+	"layer": "top",
+    "position": "bottom",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["custom/media"],
+    "modules-right": ["network", "cpu", "memory", "clock", "tray"],
+    "tray": {
+		"icon-size": 18,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip": "false",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "cpu: {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "ram: {}%"
+    },
+    "network": {
+        "format-ethernet": "{ifname}: {ipaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected",
+        "format-alt": "{ifname}: {ipaddr}"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    }
+}

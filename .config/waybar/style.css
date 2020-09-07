@@ -1,0 +1,15 @@
+@import url('/home/aaron/.cache/wal/colors-waybar.css');
+
+window#waybar {
+	background: @background;
+	color: @color6;
+}
+
+#network, #cpu, #memory, #clock, #tray {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#custom-media {
+	color: #1DB954;
+}

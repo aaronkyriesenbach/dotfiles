@@ -212,13 +212,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioMute exec pactl set-sink-mute 2 toggle
 
 bar {
-    status_command while date +'%m-%d-%Y %H:%M'; do sleep 1; done
-
-    colors {
-		statusline $color6
-        background $background
-        inactive_workspace $background $background $foreground
-    }
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*
@@ -230,3 +224,4 @@ input * xkb_numlock enable
 exec wal -R
 exec mako
 exec swaymsg "workspace 1; exec spotify;"
+exec swaymsg "workspace 2; exec firefox -P 'personal'"
