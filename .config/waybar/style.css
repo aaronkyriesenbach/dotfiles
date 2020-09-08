@@ -10,6 +10,12 @@ window#waybar {
 	padding-right: 5px;
 }
 
+#workspaces button {
+	min-width: 0;
+	font-size: 15px;
+	font-weight: bold;
+}
+
 #workspaces button.focused {
 	background: @color6;
 	color: @background;
