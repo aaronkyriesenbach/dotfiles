@@ -10,6 +10,11 @@ window#waybar {
 	padding-right: 5px;
 }
 
+#workspaces button.focused {
+	background: @color6;
+	color: @background;
+}
+
 #custom-media {
 	color: #1DB954;
 }
