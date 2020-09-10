@@ -12,8 +12,8 @@
         "spacing": 10
     },
     "clock": {
+		"format": "{:%D %H:%M}",
         "tooltip": "false",
-        "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": "cpu: {usage}%",
