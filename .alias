@@ -7,19 +7,8 @@ alias server='ssh user@192.168.86.186'
 # Shorten git
 alias g='git'
 
-# Connect to and daemonize VPN (for Tesla) - requires OpenVPN
-alias teslavpn='sudo openvpn --config /etc/openvpn/client/tesla.ovpn --daemon'
-
-# Connect to and daemonize NordVPN P2P VPN - requires OpenVPN
-alias nordvpn='sudo openvpn --config /etc/openvpn/client/nord.ovpn --daemon'
-
 # Shorten ./gradlew bootrun
 alias gbr='./gradlew bootrun'
-
-if [ "$(uname)" != "Darwin" ]; then
-# Shorten xdg-open
-alias open='xdg-open'
-fi
 
 # i can't spell lol
 alias clera='clear'
@@ -33,3 +22,8 @@ alias e='exit'
 
 # yeet
 alias yeet='sudo pacman -Rns'
+
+# OpenVPN shortcut
+vpn () {
+	systemctl $1 openvpn-client@$2.service
+}

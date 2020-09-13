@@ -1,14 +1,14 @@
 call plug#begin()
 
 Plug 'lifepillar/vim-solarized8'
-Plug 'dylanaraps/wal.vim'
+" Plug 'dylanaraps/wal.vim'
 Plug 'mbbill/undotree'
 Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
 " Enable solarized dark colorscheme
-colorscheme wal " solarized8
+colorscheme solarized8 " wal
 
 " Enable syntax highlighting
 syntax enable
@@ -33,8 +33,9 @@ nnoremap $ <nop>
 
 " Tab/indentation config
 set tabstop=4
-set smartindent
+set softtabstop=4
 set shiftwidth=4
+set smartindent
 
 " Map UndoTree toggle
 nnoremap <F5> :UndotreeToggle<CR>

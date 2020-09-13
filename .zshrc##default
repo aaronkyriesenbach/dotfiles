@@ -1,42 +1,16 @@
-# Oh-My-Zsh configuration
-
-# Path to your oh-my-zsh installation.
+# Oh-my-ZSH config
 export ZSH="/home/aaron/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
-
 HYPHEN_INSENSITIVE="true"
-
 DISABLE_AUTO_UPDATE="true"
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 plugins=(git archlinux)
-
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-
-vpn () {
-	systemctl $1 openvpn-client@$2.service
-}
-
-if [[ -f "~/.cache/wal/sequences" ]]; then
-	(cat ~/.cache/wal/sequences &)
-fi
+(cat ~/.cache/wal/sequences 2> /dev/null &)
+source "/usr/share/nvm/init-nvm.sh" 2> /dev/null
+export SDKMAN_DIR="/home/aaron/.sdkman"
+source "$SDKMAN_DIR/bin/sdkman-init.sh" 2> /dev/null
 
 source ~/.alias
-
-if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
-	source "/usr/share/nvm/init-nvm.sh"
-fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/aaron/.sdkman"
-if [[ -f "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-	source "$SDKMAN_DIR/bin/sdkman-init.sh"
-fi

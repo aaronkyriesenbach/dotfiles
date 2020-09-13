@@ -1,5 +1,10 @@
 @import url('/home/aaron/.cache/wal/colors-waybar.css');
 
+* {
+	font-family: Iosevka;
+	font-size: 16px;
+}
+
 window#waybar {
 	background: @background;
 	color: @color6;
@@ -12,7 +17,6 @@ window#waybar {
 
 #workspaces button {
 	min-width: 0;
-	font-size: 17px;
 	font-weight: bold;
 	color: @color6;
 }
