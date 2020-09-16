@@ -8,6 +8,8 @@
 window#waybar {
 	background: @background;
 	color: @color6;
+	border: none;
+	border-radius: 0;
 }
 
 #network, #cpu, #memory, #clock, #tray {
