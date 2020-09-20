@@ -3,13 +3,14 @@
 * {
 	font-family: Iosevka;
 	font-size: 16px;
+	border: none;
+	border-radius: 0;
+	min-height: 0;
 }
 
 window#waybar {
 	background: @background;
 	color: @color6;
-	border: none;
-	border-radius: 0;
 }
 
 #network, #cpu, #memory, #clock, #tray {
@@ -21,6 +22,7 @@ window#waybar {
 	min-width: 0;
 	font-weight: bold;
 	color: @color6;
+	border-radius: 3px;
 }
 
 #workspaces button.focused {
@@ -30,4 +32,5 @@ window#waybar {
 
 #custom-media {
 	color: #1DB954;
+	min-width: 100px;
 }
