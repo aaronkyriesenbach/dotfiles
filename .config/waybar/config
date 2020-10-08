@@ -31,7 +31,7 @@
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
-        "max-length": 40,
+        "max-length": 60,
         "format-icons": {
             "spotify": "",
             "default": "🎜"
