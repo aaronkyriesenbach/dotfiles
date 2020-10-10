@@ -8,7 +8,6 @@ plugins=(git archlinux)
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-(cat ~/.cache/wal/sequences 2> /dev/null &)
 source "/usr/share/nvm/init-nvm.sh" 2> /dev/null
 export SDKMAN_DIR="/home/aaron/.sdkman"
 source "$SDKMAN_DIR/bin/sdkman-init.sh" 2> /dev/null

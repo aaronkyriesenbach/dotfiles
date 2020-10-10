@@ -1,4 +1,4 @@
-@import url('/home/aaron/.cache/wal/colors-waybar.css');
+@import url('/home/aaron/.config/waybar/dracula.css');
 
 * {
 	font-family: Iosevka;
@@ -10,7 +10,7 @@
 
 window#waybar {
 	background: @background;
-	color: @color6;
+	color: @foreground;
 }
 
 #network, #cpu, #memory, #clock, #tray {
@@ -21,16 +21,15 @@ window#waybar {
 #workspaces button {
 	min-width: 0;
 	font-weight: bold;
-	color: @color6;
+	color: @foreground;
 	border-radius: 3px;
 }
 
 #workspaces button.focused {
-	background: @color6;
+	background: @purple;
 	color: @background;
 }
 
 #custom-media {
-	color: #1DB954;
-	min-width: 100px;
+	color: #1db954;
 }

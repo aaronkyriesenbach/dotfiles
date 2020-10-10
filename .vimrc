@@ -7,15 +7,13 @@ endif
 
 call plug#begin()
 
-Plug 'lifepillar/vim-solarized8'
-" Plug 'dylanaraps/wal.vim'
-Plug 'mbbill/undotree'
+Plug 'dracula/vim', { 'as' : 'dracula' }
 Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
-" Enable solarized dark colorscheme
-colorscheme solarized8 " wal
+" Enable Dracula colorscheme
+colorscheme dracula
 
 " Enable syntax highlighting
 syntax enable
@@ -43,9 +41,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-
-" Map UndoTree toggle
-nnoremap <F5> :UndotreeToggle<CR>
 
 " Enable automatic colorizing
 :let g:colorizer_auto_color = 1
