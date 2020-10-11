@@ -27,3 +27,6 @@ alias yeet='sudo pacman -Rns'
 vpn () {
 	systemctl $1 openvpn-client@$2.service
 }
+
+# Use Neovim instead of Vim
+alias vim='nvim'
