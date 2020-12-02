@@ -34,7 +34,7 @@
         "max-length": 60,
         "format-icons": {
             "spotify": "",
-            "default": "🎜"
+            "default": "►"
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
