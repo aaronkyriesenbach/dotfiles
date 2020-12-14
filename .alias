@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Move to home folder and clear terminal
 alias home='cd ~ && clear'
 
@@ -22,11 +24,6 @@ alias e='exit'
 
 # yeet
 alias yeet='sudo pacman -Rns'
-
-# OpenVPN shortcut
-vpn () {
-	systemctl $1 openvpn-client@$2.service
-}
 
 # Use Neovim instead of Vim
 alias vim='nvim'

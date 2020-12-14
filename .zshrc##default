@@ -13,3 +13,4 @@ export SDKMAN_DIR="/home/aaron/.sdkman"
 source "$SDKMAN_DIR/bin/sdkman-init.sh" 2> /dev/null
 
 source ~/.alias
+source ~/.function

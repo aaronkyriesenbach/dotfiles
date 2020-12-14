@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# OpenVPN shortcut
+vpn () {
+	systemctl $1 openvpn-client@$2.service
+}
+
+# Work SSH shortcut
+tssh () {
+	if ! command -v lpass &> /dev/null
+	then
+		echo "lastpass-cli not installed"
+		exit 1
+	fi
+
+	if ! command -v wl-copy &> /dev/null
+	then
+		echo "wl-clipboard not installed"
+		exit 1
+	fi
+
+	env=$1-$2
+
+	case $env in
+		qa-api | qa-mysql)
+			;;
+		*)
+			echo "Enter valid arg"
+			exit 3
+			;;
+	esac
+
+	lpass show --password $env | wl-copy
+	echo "Copied password for environment $env to clipboard"
+	ssh $(lpass show --username $env)@$(lpass show --url $env | cut -f3 -d/)
+}

@@ -5,6 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
+Environment="wallpaper=~/pictures/wallpapers/arch_dracula.png"
 ExecStart=/usr/bin/swayidle -w \
             timeout 600 'swaylock -f -i $wallpaper' \
             timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
