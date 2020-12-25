@@ -34,3 +34,13 @@ tssh () {
 	echo "Copied password for environment $env to clipboard"
 	ssh $(lpass show --username $env)@$(lpass show --url $env | cut -f3 -d/)
 }
+
+push-notify () {
+	if [ -z "$1" ]; then
+		1="Push notification"
+	fi
+	curl -X POST https://api.pushover.net/1/messages.json \
+		-d "token=$PUSHOVER_API_TOKEN" \
+		-d "user=$PUSHOVER_USER_KEY" \
+		-d "message=$1"
+}
