@@ -3,7 +3,7 @@
     "position": "bottom",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/media"],
-    "modules-right": ["network", "cpu", "memory", "clock", "tray"],
+    "modules-right": ["custom/openvpn", "network", "cpu", "memory", "clock", "tray"],
 	"sway/workspaces": {
 		"enable-bar-scroll": true
 	},
@@ -37,6 +37,10 @@
             "default": "►"
         },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
-    }
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
+    },
+	"custom/openvpn": {
+		"exec": "$HOME/.config/waybar/scripts/openvpn.sh",
+		"interval": 1
+	}
 }
