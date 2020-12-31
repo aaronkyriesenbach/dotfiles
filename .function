@@ -44,3 +44,13 @@ push-notify () {
 		-d "user=$PUSHOVER_USER_KEY" \
 		-d "message=$1"
 }
+
+resample () {
+	mkdir resampled
+	for flac in *.flac; do
+		sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"
+	done
+	rm *.flac
+	mv resampled/* .
+	rm -r resampled
+}
