@@ -18,7 +18,5 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-source "$HOME/.sdkman/bin/sdkman-init.sh" 2> /dev/null
-
 source ~/.alias
 source ~/.function
