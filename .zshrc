@@ -6,11 +6,14 @@ export ZSH="$HOME/.oh-my-zsh"
 DISABLED_AUTO_UPDATE=true
 ZSH_THEME="dracula"
 
-if [ "$system_type" = "Darwin" ]; then
-	plugins=(git)
-else
-	plugins=(git archlinux)
-fi
+plugins=(
+	colored-man-pages
+	colorize
+	command-not-found
+	extract
+	git
+	gradle
+)
 
 source $ZSH/oh-my-zsh.sh
 
