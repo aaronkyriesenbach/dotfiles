@@ -3,7 +3,7 @@ system_type=$(uname -s)
 
 # Oh-my-ZSH config
 export ZSH="$HOME/.oh-my-zsh"
-DISABLED_AUTO_UPDATE=true
+DISABLE_AUTO_UPDATE=true
 ZSH_THEME="dracula"
 
 plugins=(

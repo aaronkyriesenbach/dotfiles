@@ -27,3 +27,10 @@ alias yeet='sudo pacman -Rns'
 
 # Use Neovim instead of Vim
 alias vim='nvim'
+
+# CD rip with push notifications
+alias rip='cd ~/downloads && whipper cd rip && push-notify "Rip complete" || push-notify "Rip failed"'
+
+# iPod sync commands
+alias sync_ipod_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control ~/music/ /run/media/aaron/iPod/'
+alias sync_ipod='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control ~/music/ /run/media/aaron/iPod/'
