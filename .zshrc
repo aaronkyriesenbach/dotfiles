@@ -8,6 +8,7 @@ ZSH_THEME="dracula"
 
 plugins=(
 	asdf
+	autojump
 	colored-man-pages
 	colorize
 	command-not-found

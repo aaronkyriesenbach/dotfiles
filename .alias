@@ -3,20 +3,15 @@
 # Move to home folder and clear terminal
 alias home='cd ~ && clear'
 
-# SSH into media server w/ tunnel for Plex web client
-alias server='ssh user@192.168.86.186'
-
-# Shorten git
-alias g='git'
-
 # Shorten ./gradlew bootrun
-alias gbr='./gradlew bootrun'
+alias gbr='gradle bootrun'
 
 # i can't spell lol
 alias clera='clear'
 alias cleara='clear'
 alias cler='clear'
 alias claer='clear'
+alias clar='clear'
 
 # Frequently used commands
 alias c='clear'
@@ -25,12 +20,9 @@ alias e='exit'
 # yeet
 alias yeet='sudo pacman -Rns'
 
-# Use Neovim instead of Vim
-alias vim='nvim'
-
 # CD rip with push notifications
-alias rip='cd ~/downloads && whipper cd rip && push-notify "Rip complete" || push-notify "Rip failed"'
+alias rip='cd $HOME/downloads && whipper cd rip && push-notify "Rip complete" || push-notify "Rip failed"'
 
 # iPod sync commands
-alias sync_ipod_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control ~/music/ /run/media/aaron/iPod/'
-alias sync_ipod='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control ~/music/ /run/media/aaron/iPod/'
+alias sync_ipod_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+alias sync_ipod='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
