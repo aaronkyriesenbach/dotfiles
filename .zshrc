@@ -18,12 +18,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-if [ "$system_type" = "Darwin" ]; then
-	source $HOME/.nvm/nvm.sh 2> /dev/null
-else
-	source "/usr/share/nvm/init-nvm.sh" 2> /dev/null
-fi
-
 source "$HOME/.sdkman/bin/sdkman-init.sh" 2> /dev/null
 
 source ~/.alias
