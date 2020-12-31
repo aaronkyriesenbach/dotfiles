@@ -7,7 +7,7 @@ export ZSH="/Users/aaron/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="dracula"
 
 HYPHEN_INSENSITIVE="true"
 
@@ -20,11 +20,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Personal configuration
-if [[ -f "~/.cache/wal/sequences" ]]; then
-	(cat ~/.cache/wal/sequences &)
-fi
-
 source ~/.alias
+source ~/.function
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/aaron/.sdkman"
