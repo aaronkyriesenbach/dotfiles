@@ -7,6 +7,7 @@ DISABLE_AUTO_UPDATE=true
 ZSH_THEME="dracula"
 
 plugins=(
+	alias-finder
 	asdf
 	autojump
 	colored-man-pages
@@ -15,6 +16,7 @@ plugins=(
 	extract
 	git
 	gradle
+	safe-paste
 )
 
 source $ZSH/oh-my-zsh.sh

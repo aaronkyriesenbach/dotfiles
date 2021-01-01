@@ -13,38 +13,22 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" Enable Dracula colorscheme
 colorscheme dracula
+syntax enable " Syntax highlighting
+set number " Line numbers
+set cursorline " Highlight current line
+set showmatch " Show matching brackets
+set incsearch " Dynamic searching
 
-" Enable syntax highlighting
-syntax enable
+" Map b to beginning of line and e to end of line
+nmap b ^
+nmap e $
 
-" Show line numbers
-set number
-
-" Show highlight on current line
-set cursorline
-
-" Show matching parentheses/equivalent
-set showmatch
-
-" Enable dynamic searching
-set incsearch
-
-" Map b to beginning of line and e to end of line, remove default BOL/EOL bindings
-nnoremap b ^
-nnoremap e $
-nnoremap ^ <nop>
-nnoremap $ <nop>
-
-" Tab/indentation config
+" Tab/indent config
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-
-" Enable automatic colorizing
-:let g:colorizer_auto_color = 1
 
 " Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -56,3 +40,6 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+let mapleader = " "
+nmap <Leader>w :w<CR>
