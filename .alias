@@ -24,5 +24,5 @@ alias yeet='sudo pacman -Rns'
 alias rip='cd $HOME/downloads && whipper cd rip && push-notify "Rip complete" || push-notify "Rip failed"'
 
 # iPod sync commands
-alias sync_ipod_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
-alias sync_ipod='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+alias ipod_sync_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+alias ipod_sync='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
