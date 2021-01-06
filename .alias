@@ -26,3 +26,10 @@ alias rip='cd $HOME/downloads && whipper cd rip && push-notify "Rip complete" ||
 # iPod sync commands
 alias ipod_sync_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
 alias ipod_sync='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+
+# Systemctl shortcuts
+alias sc='systemctl'
+alias scu='systemctl --user'
+
+# Experimental - preserve environment and aliases when sudoing
+alias sudo='sudo -E '

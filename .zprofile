@@ -7,6 +7,9 @@ export MOZ_ENABLE_WAYLAND=1
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
+# Used in scripts to check if macOS (Darwin) or Linux
+export SYSTEM_TYPE=$(uname -s)
+
 [ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
 
 [ -f $HOME/.secret ] && source $HOME/.secret
