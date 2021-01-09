@@ -15,7 +15,7 @@ alias clar='clear'
 
 # Frequently used commands
 alias c='clear'
-alias e='exit'
+alias e='exit 0'
 
 # yeet
 alias yeet='sudo pacman -Rns'
