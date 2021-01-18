@@ -15,3 +15,15 @@ push-notify () {
 		-d "user=$PUSHOVER_USER_KEY" \
 		-d "message=$1"
 }
+
+# Suspend swayidle for X minutes and then re-enable it
+suspend-idle () {
+	if (( $# == 0 )); then
+		echo "No duration specified"
+		return 1
+	fi
+
+	systemctl --user stop swayidle
+	sleep $(($1 * 60))
+	systemctl --user start swayidle
+}
