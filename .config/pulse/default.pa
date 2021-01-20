@@ -1,5 +1,11 @@
 .include /etc/pulse/default.pa
 
+.ifexists module-jackdbus-detect.so
+.nofail
+load-module module-jackdbus-detect channels=2
+.fail
+.endif
+
 .nofail
 unload-module module-role-cork
 .fail
