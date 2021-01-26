@@ -1,0 +1,8 @@
+[Unit]
+Description=udisks2 automounter
+
+[Service]
+ExecStart=/usr/bin/udiskie
+
+[Install]
+WantedBy=default.target
