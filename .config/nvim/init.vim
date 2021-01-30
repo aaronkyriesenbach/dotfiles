@@ -30,6 +30,8 @@ set softtabstop=4
 set shiftwidth=4
 set smartindent
 
+set clipboard=unnamedplus
+
 " Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
