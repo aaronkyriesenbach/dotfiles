@@ -2,7 +2,7 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source $HOME/.config/nvim/init.vim
 endif
 
 call plug#begin()
@@ -23,10 +23,6 @@ set cursorline " Highlight current line
 set showmatch " Show matching brackets
 set incsearch " Dynamic searching
 
-" Map b to beginning of line and e to end of line
-nmap b ^
-nmap e $
-
 " Tab/indent config
 set tabstop=4
 set softtabstop=4
@@ -45,6 +41,3 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-
-let mapleader = " "
-nmap <Leader>w :w<CR>
