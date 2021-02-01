@@ -10,9 +10,12 @@ call plug#begin()
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'chrisbra/Colorizer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 
 call plug#end()
 
+filetype plugin on
 colorscheme dracula
 syntax enable " Syntax highlighting
 set number " Line numbers
