@@ -1063,7 +1063,7 @@ body.video-full-screen .view-player {
 .view-player .player-controls-container .progress-container {
     position: fixed;
     width: calc(100% - var(--sidebar-width) - var(--main-gap));
-    bottom: calc(var(--bar-height) + var(--main-gap));
+    bottom: calc(var(--bar-height) + var(--main-gap) - 5px);
     margin: 0;
     left: var(--sidebar-width);
 }
@@ -1075,6 +1075,12 @@ body.video-full-screen .view-player .player-controls-container .progress-contain
 
 .progress-container .inner {
     background-color: var(--modspotify_main_fg) !important;
+}
+
+#player-text-elapsed,
+#player-text-remaining {
+    position: relative;
+    bottom: -1px;
 }
 
 /* Player Control buttons */
