@@ -961,7 +961,7 @@ select {
 }
 
 .slider.enabled {
-    background: var(--modspotify_sidebar_indicator_and_hover_button_bg);
+    background: var(--modspotify_active_control_fg);
 }
 
 .slider.enabled div {
