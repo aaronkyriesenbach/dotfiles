@@ -10,6 +10,8 @@ export DIFFPROG="nvim -d"
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
 
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+
 [ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
 
 [ -f $HOME/.secret ] && source $HOME/.secret
