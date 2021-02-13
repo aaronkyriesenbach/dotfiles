@@ -1,5 +1,5 @@
 [alias]
-	st = status -sb
+	sb = status -sb
 
 [push]
 	default = simple
