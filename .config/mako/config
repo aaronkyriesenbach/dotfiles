@@ -1,6 +1,6 @@
 anchor=bottom-right
 default-timeout=3000
-background-color=#222532
-text-color=#b4eae7
+background-color=#282a36
+text-color=#f8f8f2
 border-size=6
-border-color=#b4eae7
+border-color=#6272a4
