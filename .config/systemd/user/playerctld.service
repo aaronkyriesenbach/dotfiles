@@ -1,0 +1,9 @@
+[Unit]
+Description=playerctld daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/playerctld daemon
+
+[Install]
+WantedBy=default.target
