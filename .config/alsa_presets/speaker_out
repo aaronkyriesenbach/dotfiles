@@ -1,0 +1,11 @@
+pcm.!default {
+	type asym
+	playback.pcm {
+		type plug
+		slave.pcm "hw:PCH,0"
+	}
+	capture.pcm {
+		type plug
+		slave.pcm "hw:C920,0"
+	}
+}

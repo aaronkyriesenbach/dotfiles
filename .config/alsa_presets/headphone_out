@@ -1,0 +1,35 @@
+pcm.dsp {
+	type plug
+	slave {
+		format FLOAT
+		rate unchanged
+		channels unchanged
+		pcm {
+			type ladspa
+			path "/usr/lib/ladspa"
+			playback_plugins [{
+				label "ladspa_dsp"
+			}]
+			slave.pcm {
+				type plug
+				slave {
+					pcm "iec958:CARD=S3,DEV=0"
+					rate unchanged
+					channels unchanged
+				}
+			}
+		}
+	}
+}
+
+pcm.!default {
+	type asym
+	playback.pcm {
+		type plug
+		slave.pcm "dsp"
+	}
+	capture.pcm {
+		type plug
+		slave.pcm "hw:C920,0"
+	}
+}
