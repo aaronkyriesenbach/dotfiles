@@ -47,6 +47,8 @@ sleep () {
 
 # Suspend swayidle for X minutes and then re-enable it
 suspend-idle () {
+	trap 'systemctl --user start swayidle; kill $$' SIGINT
+
 	systemctl --user stop swayidle
 	sleep $1 $2 || systemctl --user start swayidle
 	systemctl --user start swayidle
