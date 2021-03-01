@@ -33,7 +33,7 @@ sleep () {
 		m | min | mins | minutes)
 			multiplier=60
 			;;
-		h | hr | hrs | hours)
+		h | hr | hrs | hour | hours)
 			multiplier=3600
 			;;
 		*)
