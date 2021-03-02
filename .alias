@@ -38,3 +38,6 @@ alias sudo='sudo -E '
 
 # Always download in FLAC to ~/downloads with deemix
 command -v deemix &> /dev/null && alias deemix='deemix -p $HOME/downloads -b FLAC'
+
+# Check if any albums in directory or subdirectories are 24 bit
+alias find-24-bit='find -type f -name "*01*.flac" -exec file {} \; | grep "24 bit"'
