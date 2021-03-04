@@ -1,5 +1,10 @@
 # Oh-my-ZSH config
 export ZSH="$HOME/.oh-my-zsh"
+
+if [ ! -d "$ZSH" ]; then
+	git clone -b master git@github.com:ohmyzsh/ohmyzsh.git "$ZSH"
+fi
+
 DISABLE_AUTO_UPDATE=true
 ZSH_THEME="dracula"
 
