@@ -41,3 +41,6 @@ command -v deemix &> /dev/null && alias deemix='deemix -p $HOME/downloads -b FLA
 
 # Check if any albums in directory or subdirectories are 24 bit
 alias find-24-bit='find -type f -name "*01*.flac" -exec file {} \; | grep "24 bit"'
+
+# Take a screenshot with grimshot
+command -v grimshot &> /dev/null && alias screenshot='grimshot save area $HOME/downloads/screenshot-$(date +%H:%M:%S).png'
