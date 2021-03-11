@@ -1,0 +1,8 @@
+[Unit]
+Description=Restic backup to Backblaze B2
+
+[Service]
+ExecStart=/usr/bin/restic backup --verbose --files-from %h/.backup/files
+
+[Install]
+WantedBy=default.target
