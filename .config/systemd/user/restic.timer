@@ -2,7 +2,7 @@
 Description=Run restic backup weekly
 
 [Timer]
-OnCalendar=weekly
+OnCalendar=daily
 Persistent=true
 
 [Install]
