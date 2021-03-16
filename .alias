@@ -32,8 +32,10 @@ command -v rsync &> /dev/null && {
 # Systemctl shortcuts
 alias sc='systemctl'
 alias scu='systemctl --user'
-alias jc='journalctl -f'
-alias jcu='journalctl -f --user-unit'
+alias jc='journalctl -eu'
+alias jcf='journalctl -fu'
+alias jcu='journalctl -e --user-unit'
+alias jcuf='journalctl -f --user-unit'
 
 # Experimental - preserve environment and aliases when sudoing
 alias sudo='sudo -E '
