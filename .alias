@@ -48,3 +48,7 @@ alias find-24-bit='find -type f -name "*01*.flac" -exec file {} \; | grep "24 bi
 
 # Take a screenshot with grimshot
 command -v grimshot &> /dev/null && alias screenshot='grimshot save area $HOME/downloads/screenshot-$(date +%H:%M:%S).png'
+
+# Swayidle shortcuts
+alias sks='systemctl --user stop swayidle'
+alias sss='systemctl --user status swayidle'
