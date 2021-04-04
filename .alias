@@ -52,3 +52,6 @@ command -v grimshot &> /dev/null && alias screenshot='grimshot save area $HOME/d
 # Swayidle shortcuts
 alias sks='systemctl --user stop swayidle'
 alias sss='systemctl --user status swayidle'
+
+# Properly copy terminfo files to server during SSH
+alias ssh='kitty +kitten ssh'
