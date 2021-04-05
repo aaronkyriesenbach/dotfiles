@@ -29,22 +29,16 @@
         "format-alt": "{ifname}: {ipaddr}"
     },
     "custom/media": {
-        "format": "{icon} {}",
         "return-type": "json",
         "max-length": 60,
-        "format-icons": {
-            "spotify": "",
-            "default": "►"
-        },
-        "escape": true,
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
 	"custom/idle": {
-		"exec": "$HOME/.config/waybar/scripts/idle.sh",
+		"exec": "pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'",
 		"interval": 1
 	},
 	"custom/openvpn": {
-		"exec": "$HOME/.config/waybar/scripts/openvpn.sh",
+		"exec": "pgrep openvpn &> /dev/null && echo VPN",
 		"interval": 1
 	}
 }
