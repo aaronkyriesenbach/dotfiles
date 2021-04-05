@@ -11,7 +11,7 @@ window#waybar {
 	color: @foreground;
 }
 
-#custom-openvpn, #network, #cpu, #memory, #clock, #tray {
+#custom-idle, #custom-openvpn, #network, #cpu, #memory, #clock, #tray {
 	padding-left: 5px;
 	padding-right: 5px;
 }
