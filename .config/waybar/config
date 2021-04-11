@@ -31,6 +31,7 @@
     "custom/media": {
         "return-type": "json",
         "max-length": 60,
+		"escape": true,
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
 	"custom/idle": {
