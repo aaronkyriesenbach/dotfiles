@@ -13,7 +13,7 @@ pcm.dsp {
 			slave.pcm {
 				type plug
 				slave {
-					pcm "iec958:CARD=S3,DEV=0"
+					pcm "iec958:CARD=Modius,DEV=0"
 					rate unchanged
 					channels unchanged
 				}

@@ -25,7 +25,7 @@ pcm.dsp {
 pcm.dmixer {
 	type dmix
 	ipc_key 1024
-	slave.pcm "iec958:CARD=S3,DEV=0"
+	slave.pcm "iec958:CARD=Modius,DEV=0"
 }
 
 pcm.!default {
