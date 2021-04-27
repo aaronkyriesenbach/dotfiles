@@ -25,8 +25,8 @@ command -v whipper &> /dev/null && alias rip='cd $HOME/downloads && whipper cd r
 
 # iPod sync commands
 command -v rsync &> /dev/null && {
-	alias ipod_sync_dry='rsync -autnv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
-	alias ipod_sync='rsync -autP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+	alias ipod_sync_dry='rsync -aunv --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
+	alias ipod_sync='rsync -auP --modify-window=1 --delete --exclude .rockbox --exclude iPod_Control $HOME/music/ /run/media/aaron/iPod/'
 }
 
 # Systemctl shortcuts
