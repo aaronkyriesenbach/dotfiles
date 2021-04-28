@@ -3,7 +3,7 @@
     "position": "bottom",
     "modules-left": ["sway/workspaces", "sway/mode", "custom/idle"],
     "modules-center": ["custom/media"],
-    "modules-right": ["custom/openvpn", "network", "cpu", "memory", "clock", "tray"],
+    "modules-right": ["custom/openvpn", "network", "cpu", "memory", "clock", "battery", "tray"],
 	"sway/workspaces": {
 		"enable-bar-scroll": true
 	},
@@ -23,11 +23,12 @@
         "format": "ram: {}%"
     },
     "network": {
-        "format-ethernet": "{ifname}: {ipaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected",
-        "format-alt": "{ifname}: {ipaddr}"
+		"format": "📶",
+		"format-disconnected": ""
     },
+	"battery": {
+		"format-charging": "{capacity}% ⏚"
+	},
     "custom/media": {
         "return-type": "json",
         "max-length": 60,
@@ -35,11 +36,10 @@
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
 	"custom/idle": {
-		"exec": "pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'",
-		"interval": 1
+		"exec": "while true; do pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'; done",
+		"on-click": "pgrep swayidle &> /dev/null && systemctl --user stop swayidle || systemctl --user start swayidle"
 	},
 	"custom/openvpn": {
-		"exec": "pgrep openvpn &> /dev/null && echo VPN",
-		"interval": 1
+		"exec": "while true; do pgrep openvpn &> /dev/null && echo VPN; done"
 	}
 }

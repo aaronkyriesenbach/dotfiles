@@ -54,4 +54,4 @@ alias sks='systemctl --user stop swayidle'
 alias sss='systemctl --user status swayidle'
 
 # Properly copy terminfo files to server during SSH
-alias ssh='kitty +kitten ssh'
+command -v kitty &> /dev/null && [ $WAYLAND_DISPLAY ] && alias ssh='kitty +kitten ssh'

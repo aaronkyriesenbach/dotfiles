@@ -2,7 +2,9 @@
 Description=Restic backup to Backblaze B2
 
 [Service]
-ExecStart=/usr/bin/restic backup --verbose --files-from %h/.backup/files
+Type=oneshot
+ExecStart=/usr/bin/restic backup --verbose --files-from %h/.backup_files
+ExecStartPost=/usr/bin/restic forget --keep-last 3 --prune
 
 [Install]
 WantedBy=default.target

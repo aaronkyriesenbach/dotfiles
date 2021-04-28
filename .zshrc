@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 if [ ! -d "$ZSH" ]; then
-	git clone -b master git@github.com:ohmyzsh/ohmyzsh.git "$ZSH"
+	git clone -b master https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
 fi
 
 DISABLE_AUTO_UPDATE=true
