@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import argparse
 import logging
+import os
+import psutil
 import sys
 import signal
 import gi
@@ -124,4 +126,8 @@ def main():
 
 
 if __name__ == '__main__':
+    for proc in psutil.process_iter():
+        if "mediaplayer.py" in " ".join(proc.cmdline()) and proc.pid != os.getpid():
+            proc.kill()
+
     main()

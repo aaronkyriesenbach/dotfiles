@@ -36,10 +36,12 @@
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
 	"custom/idle": {
-		"exec": "while true; do pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'; done",
+		"exec": "pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'",
+		"interval": 1,
 		"on-click": "pgrep swayidle &> /dev/null && systemctl --user stop swayidle || systemctl --user start swayidle"
 	},
 	"custom/openvpn": {
-		"exec": "while true; do pgrep openvpn &> /dev/null && echo VPN; done"
+		"exec": "pgrep openvpn &> /dev/null && echo VPN",
+		"interval": 1
 	}
 }
