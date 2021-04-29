@@ -36,7 +36,7 @@
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
 	"custom/idle": {
-		"exec": "pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'",
+		"exec": "sleep 0.1; pgrep swayidle &> /dev/null && echo 'idle on' || echo 'idle off'",
 		"interval": 1,
 		"on-click": "pgrep swayidle &> /dev/null && systemctl --user stop swayidle || systemctl --user start swayidle"
 	},
