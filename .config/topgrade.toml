@@ -52,7 +52,8 @@ repos = [
 #[brew]
 #greedy_cask = true
 
-#[linux]
+[linux]
+yay_arguments = "--ignore=sway --ignore=wlroots"
 # Arguments to pass yay when updating packages
 #yay_arguments = "--nodevel"
 #trizen_arguments = "--devel"
