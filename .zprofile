@@ -9,6 +9,8 @@ export TERM=xterm-kitty
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
 

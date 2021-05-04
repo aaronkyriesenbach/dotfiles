@@ -4,5 +4,5 @@ profile {
 
 profile {
 	output eDP-1 enable scale 2 position 0,0
-	output DP-5 enable mode 1920x1080@119.982002 position 1920,0
+	output DP-4 enable mode 1920x1080@119.982002 position 1920,0
 }

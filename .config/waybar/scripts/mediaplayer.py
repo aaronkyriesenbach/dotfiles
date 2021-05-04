@@ -5,6 +5,7 @@ import os
 import psutil
 import sys
 import signal
+import time
 import gi
 import json
 gi.require_version('Playerctl', '2.0')
@@ -127,7 +128,7 @@ def main():
 
 if __name__ == '__main__':
     for proc in psutil.process_iter():
-        if "mediaplayer.py" in " ".join(proc.cmdline()) and proc.pid != os.getpid():
+        if "mediaplayer.py" in " ".join(proc.cmdline()) and int(time.time()) - proc.create_time() > 1:
             proc.kill()
 
     main()
