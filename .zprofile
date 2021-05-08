@@ -16,6 +16,6 @@ export SYSTEM_TYPE=$(uname -s)
 
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
-[ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
+[ -d $HOME/scripts/path ] && export PATH="$HOME/scripts/path:$PATH"
 
 [ -f $HOME/.secret ] && source $HOME/.secret
