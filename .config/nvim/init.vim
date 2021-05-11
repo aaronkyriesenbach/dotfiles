@@ -24,10 +24,12 @@ set showmatch " Show matching brackets
 set incsearch " Dynamic searching
 
 " Tab/indent config
-set tabstop=4
-set softtabstop=4
+set tabstop=8
+set expandtab
 set shiftwidth=4
+set autoindent
 set smartindent
+set cindent
 
 set clipboard=unnamedplus
 
