@@ -1,0 +1,9 @@
+[Unit]
+Description=Suspend swayidle while music is playing
+
+[Service]
+Type=simple
+ExecStart=%h/scripts/suspendidlemusic.sh
+
+[Install]
+WantedBy=default.target
