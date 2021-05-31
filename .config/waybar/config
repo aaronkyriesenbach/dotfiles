@@ -36,6 +36,7 @@
             "Playing": "▶",
             "Paused": "⏸",
         },
+        "escape": true,
         "exec": "playerctl metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"alt\": \"{{status}}\"}' -F",
         "on-click": "playerctl play-pause",
     },
