@@ -29,6 +29,9 @@
     "battery": {
         "format-charging": "{capacity}% ⏚"
     },
+    "tray": {
+        "spacing": 0
+    },
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
