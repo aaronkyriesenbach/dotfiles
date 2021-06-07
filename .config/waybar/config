@@ -3,7 +3,7 @@
     "position": "bottom",
     "modules-left": ["sway/workspaces", "sway/mode", "custom/idle"],
     "modules-center": ["custom/media"],
-    "modules-right": ["custom/openvpn", "network", "cpu", "memory", "clock", "battery", "tray"],
+    "modules-right": ["custom/openvpn", "cpu", "memory", "clock", "battery", "tray"],
     "sway/workspaces": {
         "enable-bar-scroll": true
     },
@@ -21,10 +21,6 @@
     },
     "memory": {
         "format": "ram: {}%"
-    },
-    "network": {
-        "format": "📶",
-        "format-disconnected": ""
     },
     "battery": {
         "format-charging": "{capacity}% ⏚"
