@@ -1,8 +1,0 @@
-[Unit]
-Description=Notify when battery is below 20%
-
-[Timer]
-OnCalendar=*:0/5
-
-[Install]
-WantedBy=timers.target

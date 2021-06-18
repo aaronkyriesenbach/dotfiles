@@ -1,9 +1,0 @@
-[Unit]
-Description=Notify when battery is below 20%
-
-[Service]
-Type=oneshot
-ExecStart=%h/scripts/lowbatteryalert.sh
-
-[Install]
-WantedBy=default.target
