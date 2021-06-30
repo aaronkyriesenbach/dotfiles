@@ -16,40 +16,11 @@ push-notify () {
 		-d "message=$1"
 }
 
-# Add unit arguments to sleep
-sleep () {
-	if ! [[ $1 =~ "^[0-9]+$" ]]; then
-		echo "Invalid duration"
-		return 1
-	fi
-
-	case $2 in
-		ms | mil | mils | millis | milliseconds)
-			multiplier=0.001
-			;;
-		s | sec | secs | seconds)
-			multiplier=1
-			;;
-		m | min | mins | minutes)
-			multiplier=60
-			;;
-		h | hr | hrs | hour | hours)
-			multiplier=3600
-			;;
-		*)
-			echo "Invalid unit provided, defaulting to seconds"
-			multiplier=1
-			;;
-	esac
-
-	command sleep $(($1 * $multiplier))
-}
-
 # Suspend swayidle for X minutes and then re-enable it
 suspend-idle () {
 	trap 'systemctl --user start swayidle; kill $$' SIGINT
 
 	systemctl --user stop swayidle
-	sleep $1 $2 || systemctl --user start swayidle
+	sleep $1 || systemctl --user start swayidle
 	systemctl --user start swayidle
 }
