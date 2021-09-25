@@ -57,6 +57,7 @@ alias sss='systemctl --user status swayidle'
 command -v kitty &> /dev/null && [ $WAYLAND_DISPLAY ] && alias ssh='kitty +kitten ssh'
 
 # yadm extensions (based on oh-my-zsh git plugin)
+alias y='yadm'
 alias ysb='yadm status -sb'
 alias yd='yadm diff'
 alias ycam='yadm commit -am'
