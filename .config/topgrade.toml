@@ -1,5 +1,5 @@
 # Disable specific steps - same options as the command line flag
-disable = ["gnome_shell_extensions"]
+#disable = ["system", "emacs"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
