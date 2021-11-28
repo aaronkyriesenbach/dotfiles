@@ -20,7 +20,6 @@ ZSH_THEME="dracula"
 plugins=(
     alias-finder
     asdf
-    autojump
     colored-man-pages
     colorize
     command-not-found
@@ -29,6 +28,10 @@ plugins=(
     gradle
     safe-paste
 )
+
+if [ -f /usr/bin/autojump ]; then
+    plugins+=autojump
+fi
  
 # Install asdf before sourcing oh-my-zsh.sh so that the asdf plugin can see the cloned dir
 if [ ! -d "$HOME/.asdf" ]; then

@@ -1,23 +1,23 @@
 [alias]
-	sb = status -sb
+    sb = status -sb
 
 [push]
-	default = simple
+    default = simple
 
 [pull]
-	rebase = true
+    rebase = true
 
 [log]
-	decorate = true
-	abbrevCommit = true
+    decorate = true
+    abbrevCommit = true
 
 [user]
-	email = aaronkyriesenbach@pobox.com
-	name = Aaron Ky-Riesenbach
-	signingkey = E27C09BE6F820D61
+    email = aaronkyriesenbach@pobox.com
+    name = Aaron Ky-Riesenbach
+    signingkey = E27C09BE6F820D61
 
 [pager]
-	branch = false
+    branch = false
 
 [commit]
     gpgsign = true
