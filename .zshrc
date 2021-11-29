@@ -43,3 +43,5 @@ source $ZSH/oh-my-zsh.sh
 # Personal configuration
 source ~/.alias
 source ~/.function
+
+export GPG_TTY=$TTY

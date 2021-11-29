@@ -10,7 +10,10 @@ export TERM=xterm-kitty
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if [ -n "$DESKTOP_SESSION" ]; then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
