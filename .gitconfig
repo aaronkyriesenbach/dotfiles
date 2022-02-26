@@ -14,7 +14,7 @@
 [user]
     email = aaronkyriesenbach@pobox.com
     name = Aaron Ky-Riesenbach
-    signingkey = E27C09BE6F820D61
+    signingkey = A42F0ED167D852C1
 
 [pager]
     branch = false
