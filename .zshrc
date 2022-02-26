@@ -45,4 +45,3 @@ source ~/.alias
 source ~/.function
 
 export GPG_TTY=$TTY
-
