@@ -1,8 +1,6 @@
 AddPackage adobe-source-han-sans-jp-fonts # Adobe Source Han Sans Subset OTF - Japanese OpenType/CFF fonts
-AddPackage arc-gtk-theme # A flat theme with transparent elements for GTK 3, GTK 2 and Gnome-Shell
 AddPackage kanshi # Dynamic output configuration for Wayland WMs
 AddPackage kitty # A modern, hackable, featureful, OpenGL-based terminal emulator
-AddPackage light # Program to easily change brightness on backlight-controllers.
 AddPackage mako # Lightweight notification daemon for Wayland
 AddPackage otf-font-awesome # Iconic font designed for Bootstrap
 AddPackage otf-ipafont # Japanese outline fonts by Information-technology Promotion Agency, Japan (IPA)
@@ -25,7 +23,6 @@ AddPackage wl-clipboard # Command-line copy/paste utilities for Wayland
 AddPackage wofi # launcher for wlroots-based wayland compositors
 AddPackage xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
 AddPackage xorg-xwayland # run X clients under wayland
-
 AddPackage --foreign adobe-base-14-fonts # Adobe base 14 fonts (Courier, Helvetica, Times, Symbol, ZapfDingbats with Type1)
 AddPackage --foreign batsignal # A lightweight battery monitor daemon
 AddPackage --foreign dracula-gtk-theme # This theme provides support for GTK-3 and GTK-2 based desktop environments like Gnome, Unity, Budgie, Pantheon, XFCE, Mate, etc. Also provides support for KDE plasma.
