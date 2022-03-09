@@ -68,3 +68,6 @@ alias ylg='yadm log'
 
 # Download from Musescore
 alias msdl='npx musescore-dl'
+
+# Reboot into Windows
+alias windows='systemctl reboot --boot-loader-entry=auto-windows'
