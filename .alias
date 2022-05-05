@@ -71,3 +71,7 @@ alias msdl='npx musescore-dl'
 
 # Reboot into Windows
 alias windows='systemctl reboot --boot-loader-entry=auto-windows'
+
+# Docker aliases
+alias dc='docker compose'
+alias dccp='docker compose cp'

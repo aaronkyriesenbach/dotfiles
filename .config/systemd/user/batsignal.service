@@ -1,9 +1,0 @@
-[Unit]
-Description=batsignal
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/batsignal -w 20 -c 10 -d 5
-
-[Install]
-WantedBy=default.target

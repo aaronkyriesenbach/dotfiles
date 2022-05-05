@@ -23,6 +23,8 @@ plugins=(
     colored-man-pages
     colorize
     command-not-found
+    docker
+    docker-compose
     extract
     git
     gradle
