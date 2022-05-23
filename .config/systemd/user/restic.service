@@ -1,5 +1,7 @@
 [Unit]
 Description=Restic backup to Backblaze B2
+After=network-online.service
+Wants=network-online.service
 
 [Service]
 Type=oneshot

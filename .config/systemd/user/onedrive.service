@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync OneDrive to local directory using rclone
+After=network-online.service
+Wants=network-online.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone bisync --check-access -v onedrive: %h/onedrive
+
+[Install]
+WantedBy=default.target

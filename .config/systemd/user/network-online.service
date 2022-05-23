@@ -1,0 +1,10 @@
+[Unit]
+Description=Wait for network connection
+
+[Service]
+Type=oneshot
+ExecStart=/lib/systemd/systemd-networkd-wait-online
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
