@@ -12,6 +12,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -43,3 +44,10 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+" Set line length to 100 characters for .txt files
+autocmd BufRead,BufNewFile *.txt setlocal textwidth=100
+
+" TeX config
+let g:vimtex_view_method = "zathura"
+autocmd BufNewFile *.tex 0r $HOME/.config/nvim/templates/tex

@@ -1,0 +1,16 @@
+\documentclass{article}
+
+\title{Document}
+\author{Aaron Ky-Riesenbach}
+\date{Month Date Year}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Section}
+Text
+
+\end{document}
