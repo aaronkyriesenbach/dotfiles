@@ -45,11 +45,16 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" Set line length to 100 characters for .txt files
-autocmd BufRead,BufNewFile *.txt setlocal textwidth=100
+" Set line length for text files
+:for ext in ["txt", "tex"]
+:    execute printf("autocmd BufRead,BufNewFile *.%s setlocal textwidth=100", ext)
+:endfor
 
 " TeX config
 let g:vimtex_view_method = "zathura"
 let g:vimtex_compiler_latexmk = {'build_dir': '/tmp'}
 let g:vimtex_view_forward_search_on_start = 0
-autocmd BufNewFile *.tex 0r $HOME/.config/nvim/templates/tex
+
+:for ext in ["tex"]
+:    execute printf("autocmd BufNewFile *.%s 0r $HOME/.config/nvim/templates/%s", ext, ext)
+:endfor
