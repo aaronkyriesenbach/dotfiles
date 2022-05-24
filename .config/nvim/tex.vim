@@ -1,0 +1,3 @@
+let g:vimtex_view_method = "zathura"
+let g:vimtex_compiler_latexmk = {'build_dir': '/tmp'}
+let g:vimtex_view_forward_search_on_start = 0
