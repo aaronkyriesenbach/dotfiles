@@ -6,14 +6,6 @@ set showmatch " Show matching brackets
 set incsearch " Dynamic searching
 set clipboard=unnamedplus
 
-" Tab/indent config
-set tabstop=8
-set expandtab
-set shiftwidth=4
-set autoindent
-set smartindent
-set cindent
-
 " Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
