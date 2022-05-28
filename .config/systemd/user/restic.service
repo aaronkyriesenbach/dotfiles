@@ -2,6 +2,7 @@
 Description=Restic backup to Backblaze B2
 After=network-online.service
 Wants=network-online.service
+OnFailure=/usr/bin/notify-send "Restic backup failed"
 
 [Service]
 Type=oneshot
