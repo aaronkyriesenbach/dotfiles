@@ -2,13 +2,13 @@
 Description=Restic backup to Backblaze B2
 After=network-online.service
 Wants=network-online.service
-OnFailure=/usr/bin/notify-send "Restic backup failed"
 
 [Service]
 Type=oneshot
 EnvironmentFile=%h/.restic/env
 ExecStart=/usr/bin/restic backup --verbose --files-from %h/.restic/files
 ExecStartPost=/usr/bin/restic forget --keep-last 3 --prune
+ExecStopPost=/usr/bin/sh -c 'if [ "$$SERVICE_RESULT" != "success" ]; then notify-send "Restic backup failed"; fi'
 
 [Install]
 WantedBy=default.target
