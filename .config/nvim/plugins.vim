@@ -9,7 +9,6 @@ call plug#begin()
 
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'chrisbra/Colorizer'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
