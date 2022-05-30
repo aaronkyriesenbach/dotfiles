@@ -5,9 +5,8 @@ Wants=network-online.service
 
 [Service]
 Type=oneshot
-EnvironmentFile=%h/.restic/env
-ExecStart=/usr/bin/restic backup --verbose --files-from %h/.restic/files
-ExecStartPost=/usr/bin/restic forget --keep-last 3 --prune
+EnvironmentFile=%h/.config/restic/env
+ExecStart=/usr/bin/restic backup --verbose --files-from %h/.config/restic/files
 ExecStopPost=/usr/bin/sh -c 'if [ "$$SERVICE_RESULT" != "success" ]; then notify-send "Restic backup failed"; fi'
 
 [Install]
