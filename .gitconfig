@@ -1,29 +1,27 @@
-[alias]
-    sb = status -sb
-
 [push]
-    default = simple
+	default = simple
 
 [pull]
-    rebase = true
+	rebase = true
 
 [log]
-    decorate = true
-    abbrevCommit = true
+	decorate = true
+	abbrevCommit = true
 
 [user]
-    email = aaronkyriesenbach@pobox.com
-    name = Aaron Ky-Riesenbach
-    signingkey = A42F0ED167D852C1
+	email = aaronkyriesenbach@pobox.com
+	name = Aaron Ky-Riesenbach
+	signingkey = A42F0ED167D852C1
 
 [pager]
-    branch = false
+	branch = false
 
 [commit]
-    gpgsign = true
+	gpgsign = true
 
 [merge]
-    tool = nvimdiff
+	tool = nvimdiff
+	squash = true
 
 [init]
-    defaultBranch = master
+	defaultBranch = master
