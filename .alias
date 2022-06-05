@@ -75,3 +75,9 @@ alias windows='systemctl reboot --boot-loader-entry=auto-windows'
 # Docker aliases
 alias dc='docker compose'
 alias dccp='docker compose cp'
+
+# iwd aliases
+alias iwshow='iwctl station wlan0 show'
+alias iwscan='iwctl station wlan0 scan on'
+alias iwget='iwctl station wlan0 get-networks'
+alias iwcon='iwctl station wlan0 connect'
