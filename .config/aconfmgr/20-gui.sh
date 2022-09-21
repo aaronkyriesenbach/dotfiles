@@ -23,6 +23,7 @@ AddPackage wl-clipboard # Command-line copy/paste utilities for Wayland
 AddPackage wofi # launcher for wlroots-based wayland compositors
 AddPackage xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
 AddPackage xorg-xwayland # run X clients under wayland
+
 AddPackage --foreign adobe-base-14-fonts # Adobe base 14 fonts (Courier, Helvetica, Times, Symbol, ZapfDingbats with Type1)
 AddPackage --foreign batsignal # A lightweight battery monitor daemon
 AddPackage --foreign dracula-gtk-theme # This theme provides support for GTK-3 and GTK-2 based desktop environments like Gnome, Unity, Budgie, Pantheon, XFCE, Mate, etc. Also provides support for KDE plasma.

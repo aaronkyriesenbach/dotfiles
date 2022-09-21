@@ -6,6 +6,8 @@ IgnorePackage bluez-utils # Development and debugging utilities for the bluetoot
 IgnorePackage cups # The CUPS Printing System - daemon package
 IgnorePackage cups-pdf # PDF printer for cups
 IgnorePackage dmidecode # Desktop Management Interface table related utilities
+IgnorePackage docker # Pack, ship and run any application as a lightweight container
+IgnorePackage docker-compose # Fast, isolated development environments using Docker
 IgnorePackage edk2-ovmf # Firmware for Virtual Machines (x86_64, i686)
 IgnorePackage dnsmasq # Lightweight, easy to configure DNS forwarder and DHCP server
 IgnorePackage easyeffects # Audio Effects for Pipewire applications
@@ -46,10 +48,12 @@ IgnorePackage --foreign clion # C/C++ IDE. Free 30-day trial.
 IgnorePackage --foreign clion-cmake # C/C++ IDE. Free 30-day trial.
 IgnorePackage --foreign clion-jre # C/C++ IDE. Free 30-day trial.
 IgnorePackage --foreign deemix # A deezer downloader built from the ashes of Deezloader Remix
+IgnorePackage --foreign eagle # Powerful suite for schematic capture and printed circuit board design (aka eaglecad)
 IgnorePackage --foreign intellij-idea-ultimate-edition # An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.
 IgnorePackage --foreign intellij-idea-ultimate-edition-jre # An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.
 IgnorePackage --foreign nullpomino-slick # An action puzzle game
 IgnorePackage --foreign platformio # A cross-platform code builder and library manager
+IgnorePackage --foreign platformio-udev-rules # udev rules for PlatformIO supported boards/devices
 IgnorePackage --foreign postman-bin # Build, test, and document your APIs faster
 IgnorePackage --foreign slack-desktop # Slack Desktop (Beta) for Linux
 IgnorePackage --foreign teams # Microsoft Teams for Linux is your chat-centered workspace in Office 365
@@ -104,9 +108,12 @@ IgnorePath '/etc/ssl/*'
 IgnorePath '/etc/sudoers'
 IgnorePath '/etc/systemd/system/*'
 IgnorePath '/etc/systemd/user/*'
+IgnorePath '/etc/texmf/*'
 IgnorePath '/lost+found'
 IgnorePath '/opt/nullpomino/*'
 IgnorePath '/opt/spotify/*'
+IgnorePath '/opt/stackstorm/*'
+IgnorePath '/opt/stardew_valley/*'
 IgnorePath '/opt/ventoy/log.txt'
 IgnorePath '/usr/*'
 IgnorePath '/var/*'
