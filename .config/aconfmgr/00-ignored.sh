@@ -30,6 +30,7 @@ IgnorePackage mysql-workbench # A cross-platform, visual database design tool de
 IgnorePackage networkmanager # Network connection manager and user applications
 IgnorePackage nicotine+ # Soulseek music-sharing client, written in python
 IgnorePackage nvidia # NVIDIA drivers for linux
+IgnorePackage openconnect # Open client for Cisco AnyConnect VPN
 IgnorePackage pycharm-community-edition # Python IDE for Professional Developers
 IgnorePackage picard # Official MusicBrainz tagger
 IgnorePackage qemu # A generic and open source machine emulator and virtualizer
@@ -38,6 +39,7 @@ IgnorePackage signal-desktop # Signal Private Messenger for Linux
 IgnorePackage steam # Valve's digital software delivery system
 IgnorePackage sublime-text # Sublime Text is a sophisticated text editor for code, markup and prose
 IgnorePackage telegram-desktop # Official Telegram Desktop client
+IgnorePackage tk # A windowing toolkit for use with tcl
 IgnorePackage tlp # Linux Advanced Power Management
 IgnorePackage virt-manager # Desktop user interface for managing virtual machines
 IgnorePackage vulkan-intel # Intel's Vulkan mesa driver

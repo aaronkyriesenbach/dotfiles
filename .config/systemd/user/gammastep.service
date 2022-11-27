@@ -1,0 +1,10 @@
+[Unit]
+Description=Gammastep screen temperature adjustment
+
+[Service]
+ExecStart=/usr/bin/gammastep
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

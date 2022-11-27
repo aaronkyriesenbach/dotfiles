@@ -1,4 +1,5 @@
 AddPackage adobe-source-han-sans-jp-fonts # Adobe Source Han Sans Subset OTF - Japanese OpenType/CFF fonts
+AddPackage gammastep # Adjust the color temperature of your screen according to your surroundings.
 AddPackage kanshi # Dynamic output configuration for Wayland WMs
 AddPackage kitty # A modern, hackable, featureful, OpenGL-based terminal emulator
 AddPackage mako # Lightweight notification daemon for Wayland
@@ -10,6 +11,7 @@ AddPackage pipewire-pulse # Low-latency audio/video router and processor - Pulse
 AddPackage python-psutil # A cross-platform process and system utilities module for Python
 AddPackage qt5-wayland # Provides APIs for Wayland
 AddPackage sway # Tiling Wayland compositor and replacement for the i3 window manager
+AddPackage swaybg # Wallpaper tool for Wayland compositors
 AddPackage swayidle # Idle management daemon for Wayland
 AddPackage swaylock # Screen locker for Wayland
 AddPackage ttf-bitstream-vera # Bitstream Vera fonts.
