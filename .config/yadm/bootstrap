@@ -1,0 +1,3 @@
+#!/bin/bash
+
+systemctl --user enable batsignal gammastep mako playerctld polkit-gnome restic.timer suspendidlemusic swayidle udiskie
