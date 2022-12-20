@@ -58,6 +58,7 @@ IgnorePackage --foreign platformio # A cross-platform code builder and library m
 IgnorePackage --foreign platformio-udev-rules # udev rules for PlatformIO supported boards/devices
 IgnorePackage --foreign postman-bin # Build, test, and document your APIs faster
 IgnorePackage --foreign slack-desktop # Slack Desktop (Beta) for Linux
+IgnorePackage --foreign spotify # A proprietary music streaming service
 IgnorePackage --foreign teams # Microsoft Teams for Linux is your chat-centered workspace in Office 365
 IgnorePackage --foreign ventoy-bin # A new multiboot USB solution (Binary)
 
@@ -107,6 +108,8 @@ IgnorePath '/etc/shadow'
 IgnorePath '/etc/shadow-'
 IgnorePath '/etc/shells'
 IgnorePath '/etc/ssl/*'
+IgnorePath '/etc/subgid*'
+IgnorePath '/etc/subuid*'
 IgnorePath '/etc/sudoers'
 IgnorePath '/etc/systemd/system/*'
 IgnorePath '/etc/systemd/user/*'

@@ -64,7 +64,7 @@ AddPackage --foreign aconfmgr-git # A configuration manager for Arch Linux
 AddPackage --foreign autojump # A faster way to navigate your filesystem from the command line
 AddPackage --foreign ly # TUI display manager
 AddPackage --foreign needrestart # Restart daemons after library updates.
-AddPackage --foreign paru-bin # AUR helper based on yay
+AddPackage --foreign paru # AUR helper based on yay
 AddPackage --foreign systemd-boot-pacman-hook # Pacman hook to upgrade systemd-boot after systemd upgrade.
 AddPackage --foreign topgrade # Invoke the upgrade procedure of multiple package managers
 

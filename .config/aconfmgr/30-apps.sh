@@ -33,4 +33,3 @@ AddPackage --foreign ferdium-bin # A messaging browser that allows you to combin
 AddPackage --foreign google-chrome # The popular and trusted web browser by Google (Stable Channel)
 AddPackage --foreign openvpn-update-systemd-resolved # OpenVPN systemd-resolved Updater
 AddPackage --foreign spicetify-cli # Command-line tool to customize Spotify client
-AddPackage --foreign spotify # A proprietary music streaming service
