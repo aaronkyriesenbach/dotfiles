@@ -10,8 +10,10 @@ export TERM=xterm-kitty
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
+if [ -f /usr/bin/gnome-keyring-daemon ]; then
+	eval $(gnome-keyring-daemon --start)
+	export SSH_AUTH_SOCK
+fi
 
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
