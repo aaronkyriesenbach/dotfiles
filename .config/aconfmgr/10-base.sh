@@ -2,9 +2,11 @@ AddPackage arch-install-scripts # Scripts to aid in installing Arch Linux
 AddPackage autoconf # A GNU tool for automatically configuring source code
 AddPackage automake # A GNU tool for automatically creating Makefiles
 AddPackage base # Minimal package set to define a basic Arch Linux installation
+AddPackage base-devel # Basic tools to build Arch Linux packages
 AddPackage binutils # A set of programs to assemble and manipulate binary and object files
 AddPackage bison # The GNU general-purpose parser generator
 AddPackage brightnessctl # Lightweight brightness control tool
+AddPackage bluez-utils # Development and debugging utilities for the bluetooth protocol stack
 AddPackage ccache # Compiler cache that speeds up recompilation by caching previous compilations
 AddPackage cmake # A cross-platform open-source make system
 AddPackage dosfstools # DOS filesystem utilities
@@ -69,11 +71,13 @@ AddPackage --foreign systemd-boot-pacman-hook # Pacman hook to upgrade systemd-b
 AddPackage --foreign topgrade # Invoke the upgrade procedure of multiple package managers
 
 CopyFile /etc/ly/config.ini
+CopyFile /etc/modprobe.d/blacklist-nouveau.conf
 CopyFile /etc/polkit-1/rules.d/10-manage-openvpn.rules
 CopyFile /etc/polkit-1/rules.d/20-manage-reflector.rules
 CopyFile /etc/systemd/logind.conf.d/hibernate.conf
 CopyFile /etc/systemd/network/10-wired.network
 CopyFile /etc/systemd/network/20-wireless.network
 CopyFile /etc/systemd/resolved.conf
+CopyFile /etc/udev/rules.d/00-remove-nvidia.rules
 
 CreateLink /etc/udev/rules.d/80-net-setup-link.rules /dev/null

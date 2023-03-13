@@ -81,3 +81,5 @@ alias iwshow='iwctl station wlan0 show'
 alias iwscan='iwctl station wlan0 scan on'
 alias iwget='iwctl station wlan0 get-networks'
 alias iwcon='iwctl station wlan0 connect'
+
+alias please='sudo $(fc -ln -1)'

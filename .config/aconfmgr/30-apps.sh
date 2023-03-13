@@ -18,6 +18,7 @@ AddPackage rclone # Sync files to and from Google Drive, S3, Swift, Cloudfiles, 
 AddPackage restic # Fast, secure, efficient backup program
 AddPackage seahorse # GNOME application for managing PGP keys.
 AddPackage sox # The Swiss Army knife of sound processing tools
+AddPackage spotify-launcher # Client for spotify's apt repository in Rust for Arch Linux
 AddPackage texlive-bibtexextra # TeX Live - Additional BibTeX styles and bibliography databases
 AddPackage texlive-core # TeX Live core distribution
 AddPackage texlive-latexextra # TeX Live - Large collection of add-on packages for LaTeX
