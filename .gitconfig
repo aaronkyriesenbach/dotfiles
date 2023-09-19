@@ -8,11 +8,6 @@
 	decorate = true
 	abbrevCommit = true
 
-[user]
-	email = aaronkyriesenbach@pobox.com
-	name = Aaron Ky-Riesenbach
-	signingkey = AAABE9D50D69055E
-
 [pager]
 	branch = false
 
@@ -25,3 +20,6 @@
 
 [init]
 	defaultBranch = master
+
+[include]
+	path = .gitidentity

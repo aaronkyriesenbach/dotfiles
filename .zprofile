@@ -1,12 +1,14 @@
-export _JAVA_AWT_WM_NONREPARENTING=1
-export KITTY_ENABLE_WAYLAND=1
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=gtk2
-export XDG_CURRENT_DESKTOP=sway
-export MOZ_ENABLE_WAYLAND=1
-export LIBSEAT_BACKEND=logind
+if ! [[ $(grep microsoft /proc/version) ]]; then
+	export _JAVA_AWT_WM_NONREPARENTING=1
+	export KITTY_ENABLE_WAYLAND=1
+	export QT_QPA_PLATFORM=wayland
+	export QT_QPA_PLATFORMTHEME=gtk2
+	export XDG_CURRENT_DESKTOP=sway
+	export MOZ_ENABLE_WAYLAND=1
+	export LIBSEAT_BACKEND=logind
+	export TERM=xterm-kitty
+fi
 
-export TERM=xterm-kitty
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
