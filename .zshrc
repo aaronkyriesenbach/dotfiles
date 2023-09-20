@@ -47,6 +47,3 @@ source ~/.alias
 source ~/.function
 
 export GPG_TTY=$TTY
-
-# Auto-export sourced vars
-setopt allexport
