@@ -8,6 +8,7 @@ Type=oneshot
 EnvironmentFile=%h/.config/restic/env
 ExecStart=/usr/bin/restic backup --verbose --files-from %h/.config/restic/files
 ExecStopPost=/usr/bin/sh -c 'if [ "$$SERVICE_RESULT" != "success" ]; then notify-send "Restic backup failed"; fi'
+ExecStopPost=/usr/bin/restic forget --prune --keep-last 10 --keep-weekly 4 --keep-monthly 12 --keep-yearly 100
 
 [Install]
 WantedBy=default.target
