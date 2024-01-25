@@ -16,10 +16,12 @@
 
 [merge]
 	tool = nvimdiff
-	squash = true
 
 [init]
 	defaultBranch = master
 
 [include]
 	path = .gitidentity
+
+[branch "master"]
+	mergeoptions = --squash
