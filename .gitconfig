@@ -24,4 +24,4 @@
 	path = .gitidentity
 
 [branch "master"]
-	mergeoptions = --squash
+#	mergeoptions = --squash
