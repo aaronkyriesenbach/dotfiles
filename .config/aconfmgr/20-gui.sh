@@ -1,4 +1,5 @@
 AddPackage adobe-source-han-sans-jp-fonts # Adobe Source Han Sans Subset OTF - Japanese OpenType/CFF fonts
+AddPackage foot # Fast, lightweight, and minimalistic Wayland terminal emulator
 AddPackage gammastep # Adjust the color temperature of your screen according to your surroundings.
 AddPackage kanshi # Dynamic output configuration for Wayland WMs
 AddPackage kitty # A modern, hackable, featureful, OpenGL-based terminal emulator
@@ -30,4 +31,5 @@ AddPackage --foreign adobe-base-14-fonts # Adobe base 14 fonts (Courier, Helveti
 AddPackage --foreign batsignal # A lightweight battery monitor daemon
 AddPackage --foreign dracula-gtk-theme # This theme provides support for GTK-3 and GTK-2 based desktop environments like Gnome, Unity, Budgie, Pantheon, XFCE, Mate, etc. Also provides support for KDE plasma.
 AddPackage --foreign grimshot # A helper for screenshots within sway.
+AddPackage --foreign sway-launcher-desktop # TUI Application launcher with Desktop Entry support.
 AddPackage --foreign ttf-iosevka # Typeface family designed for coding, terminal use and technical documents.

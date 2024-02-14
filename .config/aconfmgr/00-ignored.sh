@@ -1,3 +1,4 @@
+IgnorePackage dnsmasq # Lightweight, easy to configure DNS forwarder and DHCP server
 IgnorePackage docker # Pack, ship and run any application as a lightweight container
 IgnorePackage docker-compose # Fast, isolated development environments using Docker
 IgnorePackage globalprotect-openconnect # A GlobalProtect VPN GUI client based on Openconnect and built with Qt5, supports SAML auth mode
@@ -10,10 +11,13 @@ IgnorePackage musescore # Create, play and print beautiful sheet music
 IgnorePackage mysql-workbench # A cross-platform, visual database design tool developed by MySQL
 IgnorePackage openconnect # Open client for Cisco AnyConnect VPN
 IgnorePackage pycharm-community-edition # Python IDE for Professional Developers
+IgnorePackage qemu-full # A full QEMU setup
 IgnorePackage telegram-desktop # Official Telegram Desktop client
 IgnorePackage tlp # Linux Advanced Power Management
+IgnorePackage virt-manager # Desktop user interface for managing virtual machines
 IgnorePackage vulkan-intel # Intel's Vulkan mesa driver
 
+IgnorePackage --foreign chromedriver # Standalone server that implements the W3C WebDriver standard (for google-chrome)
 IgnorePackage --foreign clion # C/C++ IDE. Free 30-day trial.
 IgnorePackage --foreign clion-cmake # C/C++ IDE. Free 30-day trial.
 IgnorePackage --foreign clion-jre # C/C++ IDE. Free 30-day trial.
@@ -27,12 +31,14 @@ IgnorePackage --foreign postman-bin # Build, test, and document your APIs faster
 IgnorePackage --foreign slack-desktop # Slack Desktop (Beta) for Linux
 IgnorePackage --foreign teams # Microsoft Teams for Linux is your chat-centered workspace in Office 365
 IgnorePackage --foreign ventoy-bin # A new multiboot USB solution (Binary)
+IgnorePackage --foreign vmware-horizon-client # VMware Horizon Client connect to VMware Horizon virtual desktop
 
 IgnorePath '/boot/*'
 IgnorePath '/etc/.pwd.lock'
 IgnorePath '/etc/.updated'
 IgnorePath '/etc/adjtime'
 IgnorePath '/etc/arch-release'
+IgnorePath '/etc/brlapi.key'
 IgnorePath '/etc/ca-certificates/*'
 IgnorePath '/etc/cups/*'
 IgnorePath '/etc/dhcpcd.conf'
@@ -80,10 +86,12 @@ IgnorePath '/etc/systemd/system/*'
 IgnorePath '/etc/systemd/user/*'
 IgnorePath '/etc/texmf/*'
 IgnorePath '/lost+found'
+IgnorePath '/opt/flutter/*'
 IgnorePath '/opt/nullpomino/*'
 IgnorePath '/opt/spotify/*'
 IgnorePath '/opt/stackstorm/*'
 IgnorePath '/opt/stardew_valley/*'
+IgnorePath '/etc/vconsole.conf'
 IgnorePath '/opt/ventoy/log.txt'
 IgnorePath '/usr/*'
 IgnorePath '/var/*'

@@ -19,18 +19,17 @@ AddPackage restic # Fast, secure, efficient backup program
 AddPackage seahorse # GNOME application for managing PGP keys.
 AddPackage sox # The Swiss Army knife of sound processing tools
 AddPackage spotify-launcher # Client for spotify's apt repository in Rust for Arch Linux
+AddPackage texlive-basic # TeX Live - Essential programs and files
 AddPackage texlive-bibtexextra # TeX Live - Additional BibTeX styles and bibliography databases
-AddPackage texlive-core # TeX Live core distribution
 AddPackage texlive-latexextra # TeX Live - Large collection of add-on packages for LaTeX
+AddPackage thunar # Modern, fast and easy-to-use file manager for Xfce
 AddPackage transmission-cli # Fast, easy, and free BitTorrent client (CLI tools, daemon and web client)
+AddPackage tumbler # Thumbnail service implementing the thumbnail management D-Bus specification
 AddPackage vlc # Multi-platform MPEG, VCD/DVD, and DivX player
 AddPackage wf-recorder # Screen recorder for wlroots-based compositors such as sway
 AddPackage xorg-xeyes # Follow the mouse/SHAPE extension X demo
-AddPackage youtube-dl # A command-line program to download videos from YouTube.com and a few more sites
 AddPackage zathura # Minimalistic document viewer
 AddPackage zathura-pdf-mupdf # PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
 
-AddPackage --foreign ferdium-bin # A messaging browser that allows you to combine your favorite messaging services into one application (binary release).
 AddPackage --foreign google-chrome # The popular and trusted web browser by Google (Stable Channel)
 AddPackage --foreign openvpn-update-systemd-resolved # OpenVPN systemd-resolved Updater
-AddPackage --foreign spicetify-cli # Command-line tool to customize Spotify client

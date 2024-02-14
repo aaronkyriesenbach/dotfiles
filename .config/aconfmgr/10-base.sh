@@ -8,6 +8,7 @@ AddPackage bison # The GNU general-purpose parser generator
 AddPackage brightnessctl # Lightweight brightness control tool
 AddPackage bluez-utils # Development and debugging utilities for the bluetooth protocol stack
 AddPackage ccache # Compiler cache that speeds up recompilation by caching previous compilations
+AddPackage clang # C language family frontend for LLVM
 AddPackage cmake # A cross-platform open-source make system
 AddPackage dosfstools # DOS filesystem utilities
 AddPackage efibootmgr # Linux user-space application to modify the EFI Boot Manager
@@ -16,6 +17,7 @@ AddPackage flex # A tool for generating text-scanning programs
 AddPackage fwupd # Simple daemon to allow session software to update firmware
 AddPackage gcc # The GNU Compiler Collection - C and C++ frontends
 AddPackage git # the fast distributed version control system
+AddPackage greetd # Generic greeter daemon
 AddPackage gst-plugins-good # Multimedia graph framework - good plugins
 AddPackage gnome-keyring # Stores passwords and encryption keys
 AddPackage go # Core compiler tools for the Go programming language
@@ -36,6 +38,7 @@ AddPackage neofetch # A CLI system information tool written in BASH that support
 AddPackage neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
 AddPackage ntfs-3g # NTFS filesystem driver and utilities
 AddPackage openssh # Premier connectivity tool for remote login with the SSH protocol
+AddPackage p7zip # Command-line file archiver with high compression ratio
 AddPackage pacman # A library-based package manager with dependency support
 AddPackage pacman-contrib # Contributed scripts and tools for pacman systems
 AddPackage patch # A utility to apply patch files to original sources
@@ -64,13 +67,12 @@ AddPackage zsh # A very advanced and programmable command interpreter (shell) fo
 
 AddPackage --foreign aconfmgr-git # A configuration manager for Arch Linux
 AddPackage --foreign autojump # A faster way to navigate your filesystem from the command line
-AddPackage --foreign ly # TUI display manager
 AddPackage --foreign needrestart # Restart daemons after library updates.
 AddPackage --foreign paru # AUR helper based on yay
 AddPackage --foreign systemd-boot-pacman-hook # Pacman hook to upgrade systemd-boot after systemd upgrade.
 AddPackage --foreign topgrade # Invoke the upgrade procedure of multiple package managers
 
-CopyFile /etc/ly/config.ini
+CopyFile /etc/greetd/config.toml
 CopyFile /etc/modprobe.d/blacklist-nouveau.conf
 CopyFile /etc/polkit-1/rules.d/10-manage-openvpn.rules
 CopyFile /etc/polkit-1/rules.d/20-manage-reflector.rules
