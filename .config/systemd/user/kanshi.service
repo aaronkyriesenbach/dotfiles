@@ -1,5 +1,6 @@
 [Unit]
 Description=Dynamic display configuration
+BindsTo=sway-session.target
 
 [Service]
 Type=simple
