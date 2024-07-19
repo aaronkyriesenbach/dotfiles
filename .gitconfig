@@ -25,3 +25,6 @@
 
 [branch "master"]
 #	mergeoptions = --squash
+[user]
+	email = aaronkyriesenbach@pobox.com
+	name = Aaron Ky-Riesenbach
