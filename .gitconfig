@@ -1,3 +1,6 @@
+[include]
+	path = .gitidentity
+
 [push]
 	default = simple
 
@@ -11,20 +14,8 @@
 [pager]
 	branch = false
 
-[commit]
-	gpgsign = true
-
 [merge]
 	tool = nvimdiff
 
 [init]
 	defaultBranch = master
-
-[include]
-	path = .gitidentity
-
-[branch "master"]
-#	mergeoptions = --squash
-[user]
-	email = aaronkyriesenbach@pobox.com
-	name = Aaron Ky-Riesenbach
