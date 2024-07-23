@@ -1,4 +1,8 @@
-if ! [[ $(grep microsoft /proc/version) ]]; then
+# Used in scripts to check if macOS (Darwin) or Linux
+export SYSTEM_TYPE=$(uname -s)
+
+
+if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 	export QT_QPA_PLATFORM=wayland
 	export QT_QPA_PLATFORMTHEME=gtk2
@@ -15,11 +19,10 @@ if [ -f /usr/bin/gnome-keyring-daemon ]; then
 	export SSH_AUTH_SOCK
 fi
 
-# Used in scripts to check if macOS (Darwin) or Linux
-export SYSTEM_TYPE=$(uname -s)
-
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -d $HOME/scripts/path ] && export PATH="$HOME/scripts/path:$PATH"
 
 [ -f $HOME/.secret ] && source $HOME/.secret
+
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
