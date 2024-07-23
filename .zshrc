@@ -31,8 +31,13 @@ plugins=(
     safe-paste
 )
 
-if [ -f /usr/bin/autojump ]; then
+if command -v autojump &> /dev/null; then
     plugins+=autojump
+fi
+
+if command -v kubectl &> /dev/null; then
+    plugins+=kubectl
+    plugins+=kube-ps1
 fi
  
 # Install asdf before sourcing oh-my-zsh.sh so that the asdf plugin can see the cloned dir
@@ -41,6 +46,8 @@ if [ ! -d "$HOME/.asdf" ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+PROMPT='$(kube_ps1)'$PROMPT
 
 # Personal configuration
 source ~/.alias
