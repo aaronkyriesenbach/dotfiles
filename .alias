@@ -80,3 +80,6 @@ alias iwget='iwctl station wlan0 get-networks'
 alias iwcon='iwctl station wlan0 connect'
 
 alias please='sudo $(fc -ln -1)'
+
+alias tf='terraform'
+alias tfmt='terraform fmt -recursive'

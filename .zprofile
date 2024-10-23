@@ -29,3 +29,5 @@ if [ -f /opt/homebrew/bin/brew ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 	export HOMEBREW_NO_ENV_HINTS=true
 fi
+
+[ -d /opt/homebrew/opt/python ] && export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
