@@ -1,33 +1,82 @@
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
 
-
-if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version; then
-	export _JAVA_AWT_WM_NONREPARENTING=1
-	export QT_QPA_PLATFORM=wayland
-	export QT_QPA_PLATFORMTHEME=gtk2
-	export XDG_CURRENT_DESKTOP=sway
-	export MOZ_ENABLE_WAYLAND=1
-	export LIBSEAT_BACKEND=logind
-fi
-
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
 if [ -f /usr/bin/gnome-keyring-daemon ]; then
-	eval $(gnome-keyring-daemon --start)
-	export SSH_AUTH_SOCK
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
 fi
 
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -d $HOME/scripts/path ] && export PATH="$HOME/scripts/path:$PATH"
 
-[ -f $HOME/.secret ] && source $HOME/.secret
-
 if [ -f /opt/homebrew/bin/brew ]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-	export HOMEBREW_NO_ENV_HINTS=true
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_ENV_HINTS=true
 fi
 
 [ -d /opt/homebrew/opt/python ] && export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
+[ -d /usr/share/sway-contrib ] && export PATH="/usr/share/sway-contrib:$PATH"
+
+# Oh-my-ZSH config
+export ZSH="$HOME/.oh-my-zsh"
+
+if [ ! -d "$ZSH" ]; then
+    echo "Installing Oh My ZSH"
+    git clone -b master https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
+fi
+
+# Dracula theme install
+if [ ! -f "$ZSH/themes/dracula.zsh-theme" ]; then
+    echo "Installing ZSH Dracula theme"
+    ZSH_DRACULA="/tmp/zsh-dracula"
+
+    git clone https://github.com/dracula/zsh.git "$ZSH_DRACULA"
+    mv "$ZSH_DRACULA/dracula.zsh-theme" "$ZSH/themes/"
+    mv "$ZSH_DRACULA/lib" "$ZSH/themes/"
+fi
+
+export ZSH_THEME="dracula"
+
+export plugins=(
+    alias-finder
+    asdf
+    colored-man-pages
+    docker
+    docker-compose
+    extract
+    git
+    safe-paste
+)
+
+if command -v autojump &> /dev/null; then
+    plugins+=autojump
+fi
+
+if command -v kubectl &> /dev/null; then
+    plugins+=kubectl
+    plugins+=kube-ps1
+fi
+ 
+# Install asdf before sourcing oh-my-zsh.sh so that the asdf plugin can see the cloned dir
+if [ ! -d "$HOME/.asdf" ]; then
+    echo "Installing asdf"
+    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
+fi
+
+export GPG_TTY=$TTY
+
+if command -v kube_ps1 &> /dev/null; then
+    export PROMPT='$(kube_ps1)'$PROMPT
+fi
+
+if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version && command -v sway &> /dev/null; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export QT_QPA_PLATFORM=wayland
+    export XDG_CURRENT_DESKTOP=sway
+
+    sway
+fi

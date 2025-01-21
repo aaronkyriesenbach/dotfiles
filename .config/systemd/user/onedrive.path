@@ -1,5 +1,0 @@
-[Path]
-PathModified=%h/onedrive
-
-[Install]
-WantedBy=default.target

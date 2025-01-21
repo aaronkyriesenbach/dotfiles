@@ -1,8 +1,0 @@
-[Unit]
-Description=Sync OneDrive directory every 5 minutes
-
-[Timer]
-OnCalendar=*:0/5
-
-[Install]
-WantedBy=timers.target
