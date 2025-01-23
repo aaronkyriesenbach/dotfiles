@@ -21,7 +21,6 @@ fi
 [ -d /opt/homebrew/opt/python ] && export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
 [ -d /usr/share/sway-contrib ] && export PATH="/usr/share/sway-contrib:$PATH"
 
-# Oh-my-ZSH config
 export ZSH="$HOME/.oh-my-zsh"
 
 if [ ! -d "$ZSH" ]; then
@@ -29,7 +28,6 @@ if [ ! -d "$ZSH" ]; then
     git clone -b master https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
 fi
 
-# Dracula theme install
 if [ ! -f "$ZSH/themes/dracula.zsh-theme" ]; then
     echo "Installing ZSH Dracula theme"
     ZSH_DRACULA="/tmp/zsh-dracula"
@@ -41,27 +39,6 @@ fi
 
 export ZSH_THEME="dracula"
 
-export plugins=(
-    alias-finder
-    asdf
-    colored-man-pages
-    docker
-    docker-compose
-    extract
-    git
-    safe-paste
-)
-
-if command -v autojump &> /dev/null; then
-    plugins+=autojump
-fi
-
-if command -v kubectl &> /dev/null; then
-    plugins+=kubectl
-    plugins+=kube-ps1
-fi
- 
-# Install asdf before sourcing oh-my-zsh.sh so that the asdf plugin can see the cloned dir
 if [ ! -d "$HOME/.asdf" ]; then
     echo "Installing asdf"
     git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
