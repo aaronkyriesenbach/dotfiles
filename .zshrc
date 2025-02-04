@@ -13,3 +13,7 @@ if command -v kubectl &> /dev/null; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+if command -v kube_ps1 &> /dev/null; then
+    export PROMPT='$(kube_ps1)'$PROMPT
+fi

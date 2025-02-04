@@ -46,10 +46,6 @@ fi
 
 export GPG_TTY=$TTY
 
-if command -v kube_ps1 &> /dev/null; then
-    export PROMPT='$(kube_ps1)'$PROMPT
-fi
-
 if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version && command -v sway &> /dev/null; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export QT_QPA_PLATFORM=wayland
