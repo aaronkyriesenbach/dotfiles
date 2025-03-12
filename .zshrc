@@ -1,7 +1,11 @@
 source ~/.alias
 source ~/.function
 
-export plugins=(alias-finder asdf colored-man-pages docker docker-compose extract git safe-paste)
+export plugins=(alias-finder colored-man-pages docker docker-compose extract git safe-paste)
+
+if command -v asdf &> /dev/null; then
+    plugins+=asdf
+fi
 
 if command -v autojump &> /dev/null; then
     plugins+=autojump

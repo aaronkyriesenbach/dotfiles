@@ -39,11 +39,6 @@ fi
 
 export ZSH_THEME="dracula"
 
-if [ ! -d "$HOME/.asdf" ]; then
-    echo "Installing asdf"
-    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
-fi
-
 export GPG_TTY=$TTY
 
 if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version && command -v sway &> /dev/null; then
