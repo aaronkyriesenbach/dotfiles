@@ -4,11 +4,6 @@ export SYSTEM_TYPE=$(uname -s)
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 
-if [ -f /usr/bin/gnome-keyring-daemon ]; then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
-
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -d $HOME/scripts/path ] && export PATH="$HOME/scripts/path:$PATH"
