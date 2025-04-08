@@ -91,3 +91,11 @@ alias tfmt="$TF_COMMAND fmt -recursive"
 alias tfi="$TF_COMMAND init"
 alias tfp="$TF_COMMAND plan"
 alias tfa="$TF_COMMAND apply"
+
+alias mnamer="~/.local/bin/mnamer"
+alias rename-movie='mnamer --movie-directory "/data/movies/{name} ({year})"'
+alias rename-tv='mnamer --episode-directory "/data/tv/{series}/Season {season}"'
+
+function get-secret() {
+    kubectl get secret $1 -o json | jq '.data | map_values(@base64d)'
+}

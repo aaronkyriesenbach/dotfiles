@@ -18,6 +18,8 @@ if command -v kubectl &> /dev/null; then
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
+zstyle ':omz:update' mode auto # Allow OMZ to auto update
+
 source $ZSH/oh-my-zsh.sh
 
 if command -v kube_ps1 &> /dev/null; then
