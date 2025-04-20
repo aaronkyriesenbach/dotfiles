@@ -3,36 +3,24 @@ export SYSTEM_TYPE=$(uname -s)
 
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
+export PYENV_ROOT="$HOME/.pyenv"
 
-[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+pathadd=(
+    "$HOME/.cargo/bin"
+    "$HOME/scripts/path"
+    "/usr/share/sway-contrib"
+    "$HOME/.krew"
+    "$PYENV_ROOT/bin"
+)
 
-[ -d $HOME/scripts/path ] && export PATH="$HOME/scripts/path:$PATH"
+for newpath in "${pathadd[@]}"; do
+    export PATH="$newpath:$PATH"
+done
 
 if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export HOMEBREW_NO_ENV_HINTS=true
 fi
-
-[ -d /opt/homebrew/opt/python ] && export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
-[ -d /usr/share/sway-contrib ] && export PATH="/usr/share/sway-contrib:$PATH"
-
-export ZSH="$HOME/.oh-my-zsh"
-
-if [ ! -d "$ZSH" ]; then
-    echo "Installing Oh My ZSH"
-    git clone -b master https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
-fi
-
-if [ ! -f "$ZSH/themes/dracula.zsh-theme" ]; then
-    echo "Installing ZSH Dracula theme"
-    ZSH_DRACULA="/tmp/zsh-dracula"
-
-    git clone https://github.com/dracula/zsh.git "$ZSH_DRACULA"
-    mv "$ZSH_DRACULA/dracula.zsh-theme" "$ZSH/themes/"
-    mv "$ZSH_DRACULA/lib" "$ZSH/themes/"
-fi
-
-export ZSH_THEME="dracula"
 
 export GPG_TTY=$TTY
 

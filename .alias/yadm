@@ -1,0 +1,8 @@
+alias y='yadm'
+alias ysb='yadm status -sb'
+alias yd='yadm diff'
+alias ycam='yadm commit -am'
+alias yp='yadm push'
+alias yl='yadm pull'
+alias ya='yadm add'
+alias ylg='yadm log'

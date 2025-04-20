@@ -1,0 +1,6 @@
+alias sc='systemctl'
+alias scu='systemctl --user'
+alias jc='journalctl -eu'
+alias jcf='journalctl -fu'
+alias jcu='journalctl -e --user-unit'
+alias jcuf='journalctl -f --user-unit'

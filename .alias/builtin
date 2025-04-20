@@ -1,0 +1,10 @@
+alias home='cd ~ && clear'
+
+alias c='clear'
+alias clera='clear'
+alias cleara='clear'
+alias cler='clear'
+alias claer='clear'
+alias clar='clear'
+
+alias e='exit 0'

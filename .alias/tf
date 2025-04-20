@@ -1,0 +1,10 @@
+TF_COMMAND=terraform
+if command -v tofu &> /dev/null; then
+    TF_COMMAND=tofu
+fi
+
+alias tf=$TF_COMMAND
+alias tfmt="$TF_COMMAND fmt -recursive"
+alias tfi="$TF_COMMAND init"
+alias tfp="$TF_COMMAND plan"
+alias tfa="$TF_COMMAND apply"
