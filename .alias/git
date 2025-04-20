@@ -1,0 +1,60 @@
+alias g='git'
+
+alias ga='git add'
+
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+
+alias gco='git checkout'
+alias gcm='git checkout $(git_main_branch)'
+alias gcd='git checkout $(git_develop_branch)'
+alias gcb='git checkout -b'
+
+alias gca='git commit -a'
+alias gcaa='git commit -a --amend'
+alias gcam='git commit -am'
+
+alias glg='git log --stat'
+
+alias gm='git merge'
+
+alias gl='git pull'
+
+alias gp='git push'
+alias gpf='git push --force-with-lease --force-if-includes'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+
+alias grb='git rebase'
+alias grbi='git rebase -i'
+
+alias gsb='git status -sb'
+
+function git_develop_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in dev devel develop development; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return 0
+    fi
+  done
+
+  echo develop
+  return 1
+}
+
+function git_main_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return 0
+    fi
+  done
+
+  # If no main branch was found, fall back to master but return error
+  echo master
+  return 1
+}

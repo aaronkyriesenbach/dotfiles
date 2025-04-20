@@ -1,8 +1,18 @@
 alias y='yadm'
-alias ysb='yadm status -sb'
-alias yd='yadm diff'
-alias ycam='yadm commit -am'
-alias yp='yadm push'
-alias yl='yadm pull'
+
 alias ya='yadm add'
+
+alias yca='yadm commit -a'
+alias ycaa='yadm commit -a --amend'
+alias ycam='yadm commit -am'
+
+alias yd='yadm diff'
+
 alias ylg='yadm log'
+
+alias yl='yadm pull'
+
+alias yp='yadm push'
+alias ypf='yadm push --force-with-lease --force-if-includes'
+
+alias ysb='yadm status -sb'
