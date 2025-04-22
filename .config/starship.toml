@@ -1,4 +1,5 @@
 palette = "dracula"
+add_newline = false
 
 [palettes.dracula]
 background = "#282a36"
@@ -19,4 +20,7 @@ style = 'purple bold'
 format = '[$namespace@$cluster]($style) in '
 
 [deno]
+disabled = true
+
+[nodejs]
 disabled = true

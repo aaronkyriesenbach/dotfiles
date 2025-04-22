@@ -1,5 +1,6 @@
 alias home='cd ~ && clear'
 
+alias clear='precmd() { precmd() { echo } } && clear'
 alias c='clear'
 alias clera='clear'
 alias cleara='clear'
@@ -8,3 +9,7 @@ alias claer='clear'
 alias clar='clear'
 
 alias e='exit 0'
+
+alias la='ls -a'
+alias lh='ls -lh'
+alias lah='ls -lah'

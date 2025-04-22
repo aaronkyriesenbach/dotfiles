@@ -9,8 +9,9 @@ pathadd=(
     "$HOME/.cargo/bin"
     "$HOME/scripts/path"
     "/usr/share/sway-contrib"
-    "$HOME/.krew"
+    "$HOME/.krew/bin"
     "$PYENV_ROOT/bin"
+    "$HOME/.asdf/shims"
 )
 
 for newpath in "${pathadd[@]}"; do

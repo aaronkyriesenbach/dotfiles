@@ -12,8 +12,10 @@ alias gcd='git checkout $(git_develop_branch)'
 alias gcb='git checkout -b'
 
 alias gca='git commit -a'
-alias gcaa='git commit -a --amend'
+alias gcaa='git commit -a --amend --no-edit'
 alias gcam='git commit -am'
+
+alias gd='git diff'
 
 alias glg='git log --stat'
 
@@ -57,4 +59,15 @@ function git_main_branch() {
   # If no main branch was found, fall back to master but return error
   echo master
   return 1
+}
+
+function git_current_branch() {
+  local ref
+  ref=$(git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
 }

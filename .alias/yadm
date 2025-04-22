@@ -3,7 +3,7 @@ alias y='yadm'
 alias ya='yadm add'
 
 alias yca='yadm commit -a'
-alias ycaa='yadm commit -a --amend'
+alias ycaa='yadm commit -a --amend --no-edit'
 alias ycam='yadm commit -am'
 
 alias yd='yadm diff'
