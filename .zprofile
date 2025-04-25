@@ -25,7 +25,10 @@ fi
 
 export GPG_TTY=$TTY
 
-if [[ $SYSTEM_TYPE != "Darwin" ]] && ! grep -q microsoft /proc/version && command -v sway &> /dev/null; then
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+if command -v sway &> /dev/null; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export QT_QPA_PLATFORM=wayland
     export XDG_CURRENT_DESKTOP=sway
