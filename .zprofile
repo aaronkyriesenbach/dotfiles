@@ -1,6 +1,11 @@
 # Used in scripts to check if macOS (Darwin) or Linux
 export SYSTEM_TYPE=$(uname -s)
 
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt SHARE_HISTORY
+
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 export PYENV_ROOT="$HOME/.pyenv"
@@ -12,6 +17,7 @@ pathadd=(
     "$HOME/.krew/bin"
     "$PYENV_ROOT/bin"
     "$HOME/.asdf/shims"
+    "$HOME/.yarn/bin"
 )
 
 for newpath in "${pathadd[@]}"; do
@@ -24,9 +30,6 @@ if [ -f /opt/homebrew/bin/brew ]; then
 fi
 
 export GPG_TTY=$TTY
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 if command -v sway &> /dev/null; then
     export _JAVA_AWT_WM_NONREPARENTING=1

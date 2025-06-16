@@ -7,5 +7,8 @@ fi
 source $HOME/.antidote/antidote.zsh
 antidote load
 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 precmd() { precmd() { echo } }
 eval "$(starship init zsh)"

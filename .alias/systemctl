@@ -4,3 +4,5 @@ alias jc='journalctl -eu'
 alias jcf='journalctl -fu'
 alias jcu='journalctl -e --user-unit'
 alias jcuf='journalctl -f --user-unit'
+
+alias pause-lid='systemd-inhibit --what=handle-lid-switch sleep 1h'

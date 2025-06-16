@@ -1,3 +1,7 @@
-alias mnamer="~/.local/bin/mnamer"
-alias rename-movie='mnamer --movie-directory "/data/movies/{name} ({year})"'
-alias rename-tv='mnamer --episode-directory "/data/tv/{series}/Season {season}"'
+rename-movie () {
+    mnamer --movie-directory "$2/{name} ({year})" $1
+}
+
+rename-tv () {
+    mnamer --episode-directory "$2/{series}/Season {season}" $1
+}
