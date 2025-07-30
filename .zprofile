@@ -18,6 +18,7 @@ pathadd=(
     "$PYENV_ROOT/bin"
     "$HOME/.asdf/shims"
     "$HOME/.yarn/bin"
+    "$HOME/.local/bin"
 )
 
 for newpath in "${pathadd[@]}"; do
