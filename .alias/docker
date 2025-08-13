@@ -1,2 +1,4 @@
 alias dc='docker compose'
 alias dccp='docker compose cp'
+
+alias dcl='docker container list'
