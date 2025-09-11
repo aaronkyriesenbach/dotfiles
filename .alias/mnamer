@@ -1,7 +1,11 @@
 rename-movie () {
-    mnamer --movie-directory "$2/{name} ({year})" $1
+    destination="${2:-/mnt/data/movies}"
+
+    mnamer --movie-directory "$destination/{name} ({year})" "$1"
 }
 
 rename-tv () {
-    mnamer --episode-directory "$2/{series}/Season {season}" $1
+    destination="${2:-/mnt/data/tv}"
+
+    mnamer --episode-directory "$destination/{series}/Season {season}" "$1"
 }

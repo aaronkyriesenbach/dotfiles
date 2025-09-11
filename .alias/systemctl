@@ -5,4 +5,12 @@ alias jcf='journalctl -fu'
 alias jcu='journalctl -e --user-unit'
 alias jcuf='journalctl -f --user-unit'
 
-alias pause-lid='systemd-inhibit --what=handle-lid-switch sleep 1h'
+function pause-lid() {
+    if [ -z "$1" ]; then
+	1="1h"
+    fi
+
+    echo "Pausing lid for $1"
+
+    systemd-inhibit --what=handle-lid-switch sleep $1
+}
