@@ -15,7 +15,7 @@ red = "#ff5555"
 yellow = "#f1fa8c"
 
 [kubernetes]
-disabled = true
+disabled = false
 style = 'purple bold'
 format = '[$namespace@$cluster]($style) in '
 
@@ -23,4 +23,13 @@ format = '[$namespace@$cluster]($style) in '
 disabled = true
 
 [nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[aws]
+disabled = true
+
+[package]
 disabled = true
