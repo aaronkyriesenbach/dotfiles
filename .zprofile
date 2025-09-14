@@ -30,6 +30,10 @@ if [ -f /opt/homebrew/bin/brew ]; then
     export HOMEBREW_NO_ENV_HINTS=true
 fi
 
+if [ ! -d ~/.antidote ]; then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+fi
+
 export GPG_TTY=$TTY
 
 if command -v sway &> /dev/null; then
