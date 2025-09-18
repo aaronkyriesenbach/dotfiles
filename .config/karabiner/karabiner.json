@@ -4,16 +4,79 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Ignore cmd+shift+q for external keyboard",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["command", "shift"] }
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Switch command/ctrl for external keyboard",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": { "key_code": "left_command" },
+                                "to": { "key_code": "left_control" },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": { "key_code": "left_control" },
+                                "to": { "key_code": "left_command" },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Use cmd + d for Spotlight on external keyboards",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": {
+                                    "key_code": "spacebar",
+                                    "modifiers": "command"
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Ignore command-q for external keyboard",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            { "product_id": 320 },
-                                            { "vendor_id": 9456 },
-                                            { "is_keyboard": true }
-                                        ],
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
                                         "type": "device_if"
                                     }
                                 ],
@@ -83,17 +146,7 @@
                         "is_keyboard": true,
                         "product_id": 320,
                         "vendor_id": 9456
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "left_command" }]
-                        }
-                    ]
+                    }
                 }
             ],
             "name": "Default profile",

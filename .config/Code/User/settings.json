@@ -1,0 +1,7 @@
+{
+    "workbench.remoteIndicator.showExtensionRecommendations": false,
+    "extensions.ignoreRecommendations": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "explorer.confirmDelete": false,
+    "workbench.editor.enablePreview": false
+}

@@ -10,6 +10,12 @@ export EDITOR=nvim
 export DIFFPROG="nvim -d"
 export PYENV_ROOT="$HOME/.pyenv"
 
+if [ -d ~/.localconfig ]; then
+    for file in ~/.localconfig/*; do
+	source "$file"
+    done
+fi
+
 pathadd=(
     "$HOME/.cargo/bin"
     "$HOME/scripts/path"
