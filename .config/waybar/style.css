@@ -1,7 +1,7 @@
 @import url('/home/aaron/.config/waybar/dracula.css');
 
 * {
-	font-family: Iosevka;
+	font-family: IosevkaNerdFont;
 	font-size: 16px;
 	background: @background;
 	color: @foreground;
