@@ -1,7 +1,23 @@
 {
     "workbench.remoteIndicator.showExtensionRecommendations": false,
     "extensions.ignoreRecommendations": true,
-    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.nextEditSuggestions.enabled": false,
     "explorer.confirmDelete": false,
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "explorer.confirmDragAndDrop": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "typescriptreact": false
+    }
 }
