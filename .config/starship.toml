@@ -33,3 +33,6 @@ disabled = true
 
 [package]
 disabled = true
+
+[dotnet]
+disabled = true

@@ -20,5 +20,7 @@
         "scminput": false,
         "typescriptreact": false
     },
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "workbench.editor.empty.hint": "hidden"
 }
