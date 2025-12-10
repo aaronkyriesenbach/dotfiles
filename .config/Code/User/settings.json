@@ -19,5 +19,6 @@
         "markdown": false,
         "scminput": false,
         "typescriptreact": false
-    }
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }
