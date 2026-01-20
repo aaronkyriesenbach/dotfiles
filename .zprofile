@@ -16,6 +16,11 @@ if [ -d ~/.localconfig ]; then
     done
 fi
 
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_ENV_HINTS=true
+fi
+
 pathadd=(
     "$HOME/.cargo/bin"
     "$HOME/scripts/path"
@@ -30,11 +35,6 @@ pathadd=(
 for newpath in "${pathadd[@]}"; do
     export PATH="$newpath:$PATH"
 done
-
-if [ -f /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export HOMEBREW_NO_ENV_HINTS=true
-fi
 
 if [ ! -d ~/.antidote ]; then
     git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote

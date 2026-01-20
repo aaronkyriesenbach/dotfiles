@@ -12,3 +12,5 @@ bindkey '^[[B' history-substring-search-down
 
 precmd() { precmd() { echo } }
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
+source <(kubectl completion zsh)
