@@ -25,14 +25,11 @@ disabled = true
 [nodejs]
 disabled = true
 
-[python]
-disabled = true
-
 [aws]
 disabled = true
 
 [package]
 disabled = true
 
-[dotnet]
+[typst]
 disabled = true
