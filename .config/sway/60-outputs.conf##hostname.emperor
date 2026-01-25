@@ -3,14 +3,11 @@ set $output2 "ViewSonic Corporation VA2756-UHD VYP252100727"
 
 output $output1 mode 3840x2160 pos 0 0 scale 1.5
 output $output2 mode 3840x2160 pos 2560 0 scale 1.5
-# This output is at 4480 because it's 1920 + (3840 / 1.5)
+# This output is at 2560 = 3840 / 1.5
 
-workspace 1 output $output1
-workspace 2 output $output2
-workspace 3 output $output1
-workspace 4 output $output2
+workspace 2 output $output1
+workspace 3 output $output2
 workspace 5 output $output1
 workspace 6 output $output2
-workspace 7 output $output1
-workspace 8 output $output2
-workspace 9 output $output1
+workspace 8 output $output1
+workspace 9 output $output2
