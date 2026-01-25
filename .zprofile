@@ -9,6 +9,7 @@ setopt SHARE_HISTORY
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
 export PYENV_ROOT="$HOME/.pyenv"
+export GOPATH="$HOME/.cache/go"
 
 if [ -d ~/.localconfig ]; then
     for file in ~/.localconfig/*; do
