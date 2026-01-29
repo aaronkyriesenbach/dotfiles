@@ -1,0 +1,1 @@
+alias sync-books='rsync -avP --delete --exclude "ssl/" --exclude ".*" /mnt/data/books /run/media/aaron/Kindle/books'

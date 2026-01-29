@@ -1,6 +1,9 @@
 #!/bin/bash
 
-sudo pacman -S sway swaylock swayidle swaybg waybar sway-contrib git iwd ttf-iosevka-nerd ttf-liberation sudo base-devel less fd mako vim neovim brightnessctl direnv kubectl starship foot unzip wget
+sudo pacman -S sway swaylock swayidle swaybg waybar sway-contrib git iwd ttf-iosevka-nerd ttf-liberation sudo base-devel less fd mako vim neovim brightnessctl direnv kubectl starship foot unzip wget udiskie udisks2
+
+systemctl --user enable --now udiskie
+systemctl --user enable --now mako
 
 
 git clone https://aur.archlinux.org/paru.git
