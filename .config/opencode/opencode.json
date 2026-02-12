@@ -8,8 +8,8 @@
   },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
-    "oh-my-opencode@latest",
-    "opencode-antigravity-auth@1.4.3"
+    "oh-my-opencode@3.5.3",
+    "opencode-antigravity-auth@1.4.6"
   ],
   "provider": {
     "google": {
