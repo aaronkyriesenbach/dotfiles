@@ -43,11 +43,11 @@
       "model": "github-copilot/gemini-3-pro-preview"
     },
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.2-codex",
+      "model": "github-copilot/gpt-5.3-codex",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "github-copilot/gpt-5.2-codex",
+      "model": "github-copilot/gpt-5.3-codex",
       "variant": "medium"
     },
     "artistry": {
@@ -68,12 +68,15 @@
     }
   },
   "tmux": {
-      "enabled": true
+    "enabled": true
+  },
+  "browser_automation_engine": {
+    "provider": "agent-browser"
   },
   "experimental": {
-      "auto_resume": true,
-      "dynamic_context_pruning": {
-	  "enabled": true
-      }
+    "auto_resume": true,
+    "dynamic_context_pruning": {
+      "enabled": true
+    }
   }
 }
