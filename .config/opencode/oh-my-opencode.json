@@ -43,11 +43,11 @@
       "model": "github-copilot/gemini-3-pro-preview"
     },
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.2-codex",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.2-codex",
       "variant": "medium"
     },
     "artistry": {

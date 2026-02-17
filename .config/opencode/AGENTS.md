@@ -2,17 +2,6 @@
 
 This file contains instructions that apply to all agents working in any project.
 
-## Required Skills
-
-### Subagent Driven Development
-
-**MANDATORY**: When implementing features, you MUST use the `subagent-driven-development` skill. This is not optional.
-
-Before implementing any feature:
-1. Invoke the `subagent-driven-development` skill
-2. Follow its process exactly
-3. Break down work appropriately into subagent tasks
-
 ## Code Quality Standards
 
 ### Type Safety
