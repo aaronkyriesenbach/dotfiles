@@ -8,8 +8,7 @@
     "compress": "allow"
   },
   "plugin": [
-    "@tarquinen/opencode-dcp@latest",
     "oh-my-opencode@latest",
-    "opencode-antigravity-auth@1.5.1"
+    "opencode-antigravity-auth@1.6.0"
   ]
 }
