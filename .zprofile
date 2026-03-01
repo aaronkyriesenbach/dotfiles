@@ -43,11 +43,3 @@ if [ ! -d ~/.antidote ]; then
 fi
 
 export GPG_TTY=$TTY
-
-if command -v sway &> /dev/null && [[ ! ${SSH_TTY} ]] && [[ ! ${TMUX} ]]; then
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export QT_QPA_PLATFORM=wayland
-    export XDG_CURRENT_DESKTOP=sway
-
-    sway
-fi

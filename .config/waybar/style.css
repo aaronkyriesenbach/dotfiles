@@ -3,10 +3,13 @@
 * {
 	font-family: IosevkaNerdFont;
 	font-size: 16px;
-	background: @background;
-	color: @foreground;
 	padding-left: 5px;
 	padding-right: 5px;
+}
+
+window#waybar {
+	background: @background;
+	color: @foreground;
 }
 
 .modules-left, #workspaces {
@@ -20,17 +23,18 @@
 #workspaces button {
 	border-radius: 5px;
 	font-weight: bold;
+	text-shadow: none;
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.active {
 	background: @purple;
 }
 
-#workspaces button.focused > * {
+#workspaces button.focused > *, #workspaces button.active > * {
 	background-color: transparent;
 	color: @background;
 }
 
-#custom-media {
-	color: #1db954;
+#mpris {
+	color: #FC3C44;
 }
