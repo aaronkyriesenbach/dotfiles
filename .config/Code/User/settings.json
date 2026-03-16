@@ -26,4 +26,5 @@
   },
   "python.analysis.autoImportCompletions": true,
   "git.confirmSync": false,
+  "workbench.sideBar.location": "right",
 }
