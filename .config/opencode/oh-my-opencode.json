@@ -13,9 +13,6 @@
       "model": "github-copilot/gpt-5.4",
       "variant": "high"
     },
-    "librarian": {
-      "model": "github-copilot/claude-sonnet-4.6"
-    },
     "explore": {
       "model": "github-copilot/gpt-5-mini"
     },
@@ -36,19 +33,22 @@
     },
     "atlas": {
       "model": "github-copilot/claude-sonnet-4.6"
+    },
+    "sisyphus-junior": {
+      "model": "github-copilot/claude-sonnet-4.6"
+    },
+    "librarian": {
+      "model": "github-copilot/claude-sonnet-4.6"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "github-copilot/gemini-3.1-pro-preview"
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "variant": "high"
     },
     "ultrabrain": {
       "model": "github-copilot/gpt-5.3-codex",
       "variant": "xhigh"
-    },
-    "deep": {
-      "model": "github-copilot/gpt-5.3-codex",
-      "variant": "medium"
     },
     "artistry": {
       "model": "github-copilot/gemini-3.1-pro-preview",
@@ -65,6 +65,10 @@
     },
     "writing": {
       "model": "github-copilot/gemini-3-flash-preview"
+    },
+    "deep": {
+      "model": "github-copilot/gpt-5.3-codex",
+      "variant": "medium"
     }
   },
   "tmux": {
@@ -74,7 +78,7 @@
     "provider": "agent-browser"
   },
   "background_task": {
-      "staleTimeoutMs": 600000
+    "staleTimeoutMs": 600000
   },
   "experimental": {
     "auto_resume": true,
