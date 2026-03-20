@@ -33,3 +33,6 @@ disabled = true
 
 [typst]
 disabled = true
+
+[golang]
+disabled = true
