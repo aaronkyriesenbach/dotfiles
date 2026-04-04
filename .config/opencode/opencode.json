@@ -3,12 +3,14 @@
   "permission": {
     "external_directory": {
       "$HOME/.config/opencode/*": "allow",
-      "/tmp/*": "allow"
+      "$HOME/.cache/*": "allow",
+      "/tmp/*": "allow",
+      "/var/folders/t9/*": "allow"
     },
     "compress": "allow"
   },
   "plugin": [
-    "oh-my-opencode@latest",
+    "oh-my-openagent",
     "opencode-antigravity-auth@1.6.0"
   ]
 }

@@ -2,6 +2,12 @@
 
 This file contains instructions that apply to all agents working in any project.
 
+## Tool usage instructions
+
+**IMPORTANT**: Make sure tools are always installed and used correctly:
+- NEVER install an application, tool, package, library, etc without explicitly asking permission first.
+- ALWAYS install tools locally to the project if possible unless explicitly specified otherwise. For example, install Python packages using virtual environments, not globally.
+
 ## Code Quality Standards
 
 ### Type Safety

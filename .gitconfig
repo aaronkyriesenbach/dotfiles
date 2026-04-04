@@ -1,6 +1,9 @@
 [include]
 	path = .gitidentity
 
+[includeIf "gitdir/i:/Users/Aaron/Repos/personal-projects/"]
+	path = /Users/Aaron/Repos/personal-projects/.gitconfig
+
 [push]
 	default = simple
 

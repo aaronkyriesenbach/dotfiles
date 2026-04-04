@@ -2,11 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
     },
     "hephaestus": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.4",
       "variant": "medium"
     },
     "oracle": {
@@ -20,22 +20,24 @@
       "model": "github-copilot/gemini-3-flash-preview"
     },
     "prometheus": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high"
     },
     "metis": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high"
     },
     "momus": {
       "model": "github-copilot/gpt-5.4",
-      "variant": "medium"
+      "variant": "xhigh"
     },
     "atlas": {
-      "model": "github-copilot/claude-sonnet-4.6"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
     },
     "sisyphus-junior": {
-      "model": "github-copilot/claude-sonnet-4.6"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
     },
     "librarian": {
       "model": "github-copilot/claude-sonnet-4.6"
@@ -47,7 +49,7 @@
       "variant": "high"
     },
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.4",
       "variant": "xhigh"
     },
     "artistry": {
@@ -61,13 +63,14 @@
       "model": "github-copilot/claude-sonnet-4.6"
     },
     "unspecified-high": {
-      "model": "github-copilot/claude-sonnet-4.6"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high"
     },
     "writing": {
       "model": "github-copilot/gemini-3-flash-preview"
     },
     "deep": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.4",
       "variant": "medium"
     }
   },
