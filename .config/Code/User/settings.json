@@ -4,13 +4,13 @@
   "github.copilot.nextEditSuggestions.enabled": false,
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
-  "typescript.preferences.includePackageJsonAutoImports": "on",
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.formatOnSave": true,
   "explorer.confirmDragAndDrop": false,
   "[typescript]": {
+
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "github.copilot.enable": {
@@ -20,11 +20,17 @@
     "scminput": false,
     "typescriptreact": false,
   },
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "chat.tools.terminal.autoApprove": {
     "yarn test": true,
   },
-  "python.analysis.autoImportCompletions": true,
   "git.confirmSync": false,
   "workbench.sideBar.location": "right",
+  "js/ts.preferences.includePackageJsonAutoImports": "on",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
