@@ -10,7 +10,7 @@
     "compress": "allow"
   },
   "plugin": [
-    "oh-my-openagent",
-    "opencode-antigravity-auth@1.6.0"
+    "opencode-antigravity-auth@1.6.0",
+    "oh-my-openagent@latest"
   ]
 }
