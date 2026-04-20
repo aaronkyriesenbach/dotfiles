@@ -1,3 +1,4 @@
+{% if yadm.hostname == "emperor" %}
 $ultrawide = desc:LG Electronics LG ULTRAWIDE 408NTVS5J487
 $left = desc:ViewSonic Corporation VA2756-UHD VYP252100731
 $vertical = desc:ViewSonic Corporation VA2756-UHD VYP252100727
@@ -15,3 +16,11 @@ workspace = 6, monitor:$vertical
 workspace = 7, monitor:$left
 workspace = 8, monitor:$ultrawide
 workspace = 8, monitor:$vertical
+{% endif %}
+{% if yadm.hostname == "adelie" %}
+monitorv2 {
+    output = eDP-1
+    mode = 1920x1200@60
+    scale = 1
+}
+{% endif %}
