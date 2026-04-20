@@ -7,10 +7,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
-  "editor.formatOnSave": true,
   "explorer.confirmDragAndDrop": false,
   "[typescript]": {
-
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "github.copilot.enable": {
@@ -37,4 +35,9 @@
   "leetcode.workspaceFolder": "/home/aaron/.leetcode",
   "leetcode.hint.commentDescription": false,
   "leetcode.defaultLanguage": "typescript",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.ts": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.formatOnSave": true,
 }

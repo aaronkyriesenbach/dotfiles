@@ -15,7 +15,7 @@ red = "#ff5555"
 yellow = "#f1fa8c"
 
 [kubernetes]
-disabled = false
+disabled = true
 style = 'purple bold'
 format = '[$namespace@$cluster]($style) in '
 
