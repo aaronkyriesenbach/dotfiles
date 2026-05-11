@@ -14,3 +14,6 @@ precmd() { precmd() { echo } }
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 source <(kubectl completion zsh)
+
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)

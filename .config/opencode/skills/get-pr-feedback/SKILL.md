@@ -26,22 +26,26 @@ Collect every unresolved review thread on a GitHub pull request, then for each t
 
 ## Script Contract
 
+- `<root>/scripts/preflight_check.sh <pr-identifier>` — Verifies the local checkout matches the PR's repo and branch. Outputs `pr_number`, `pr_repo`, `pr_branch`, `current_repo`, `current_branch`, `status` (one of `pass`, `repo_mismatch`, `branch_mismatch`). Exit 0 always; read `status=` to determine pass/fail. Exit 1 only for missing args/tools.
 - `<root>/scripts/fetch_feedback.sh <pr-identifier>` — Resolves PR metadata, fetches all review threads via GraphQL (paginated), filters to unresolved, writes JSON. Outputs `owner`, `repo`, `pr_number`, `output_json`, `status`.
 
 ## Workflow
 
 ### Step 0 — Pre-flight validation
 
-Before fetching feedback, verify that the local checkout matches the PR:
+Run the preflight check script:
 
-1. Resolve the PR's head branch and repository using `gh pr view <pr-identifier> --json headRefName,headRepository -q '.headRepository.owner.login + "/" + .headRepository.name + " " + .headRefName'`.
-2. Get the current repo with `gh repo view --json owner,name -q '.owner.login + "/" + .name'`.
-3. Get the current branch with `git branch --show-current`.
-4. **If the current repo does not match the PR's repository**, STOP and warn:
-   > "⚠️ The current repository (`{current}`) does not match the PR's repository (`{expected}`). You are likely in the wrong directory. Please `cd` to the correct repo and try again."
-5. **If the current branch does not match the PR's head branch**, STOP and warn:
-   > "⚠️ The current branch (`{current}`) does not match the PR's branch (`{expected}`). You should check out the PR branch first so the analysis reflects the actual code under review. Run: `git checkout {expected}`"
-6. If both match, proceed.
+```bash
+<root>/scripts/preflight_check.sh <pr-identifier>
+```
+
+Parse the key=value output. Then:
+
+- **If `status=repo_mismatch`**: STOP and warn:
+  > "The current repository (`{current_repo}`) does not match the PR's repository (`{pr_repo}`). You are likely in the wrong directory. Please `cd` to the correct repo and try again."
+- **If `status=branch_mismatch`**: STOP and warn:
+  > "The current branch (`{current_branch}`) does not match the PR's branch (`{pr_branch}`). You should check out the PR branch first so the analysis reflects the actual code under review. Run: `git checkout {pr_branch}`"
+- **If `status=pass`**: proceed to Step 1.
 
 ### Step 1 — Fetch unresolved threads
 

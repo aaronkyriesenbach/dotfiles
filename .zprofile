@@ -19,6 +19,8 @@ fi
 
 if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export PATH="$(gem environment gemdir)/bin:$PATH"
     export HOMEBREW_NO_ENV_HINTS=true
 fi
 

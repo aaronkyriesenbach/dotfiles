@@ -26,10 +26,10 @@
   "js/ts.preferences.includePackageJsonAutoImports": "on",
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "leetcode.hint.configWebviewMarkdown": false,
   "leetcode.workspaceFolder": "/home/aaron/.leetcode",
@@ -37,7 +37,8 @@
   "leetcode.defaultLanguage": "typescript",
   "editor.codeActionsOnSave": {
     "source.fixAll.ts": "always",
-    "source.organizeImports": "always"
+    "source.organizeImports": "always",
   },
   "editor.formatOnSave": true,
+  "update.showReleaseNotes": false,
 }

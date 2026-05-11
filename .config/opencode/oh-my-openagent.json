@@ -38,7 +38,7 @@
       ]
     },
     "multimodal-looker": {
-      "model": "github-copilot/gpt-5-nano"
+      "model": "github-copilot/gpt-5-mini"
     },
     "prometheus": {
       "model": "github-copilot/claude-opus-4.6",
@@ -79,6 +79,7 @@
     },
     "atlas": {
       "model": "github-copilot/claude-sonnet-4.6",
+      "variant": "high",
       "fallback_models": [
         {
           "model": "github-copilot/gpt-5.4",
@@ -88,6 +89,7 @@
     },
     "sisyphus-junior": {
       "model": "github-copilot/claude-sonnet-4.6",
+      "variant": "high",
       "fallback_models": [
         {
           "model": "github-copilot/gpt-5.4",
@@ -145,7 +147,7 @@
       ]
     },
     "quick": {
-      "model": "github-copilot/gpt-5.4-mini",
+      "model": "github-copilot/gpt-5-mini",
       "fallback_models": [
         {
           "model": "github-copilot/claude-haiku-4.5"
@@ -157,6 +159,7 @@
     },
     "unspecified-low": {
       "model": "github-copilot/claude-sonnet-4.6",
+      "variant": "low",
       "fallback_models": [
         {
           "model": "github-copilot/gemini-3-flash-preview"
@@ -165,6 +168,7 @@
     },
     "unspecified-high": {
       "model": "github-copilot/claude-sonnet-4.6",
+      "variant": "high",
       "fallback_models": [
         {
           "model": "github-copilot/gemini-3-flash-preview"
@@ -175,7 +179,8 @@
       "model": "github-copilot/gemini-3-flash-preview",
       "fallback_models": [
         {
-          "model": "github-copilot/claude-sonnet-4.6"
+          "model": "github-copilot/claude-sonnet-4.6",
+	  "variant": "high"
         }
       ]
     }

@@ -1,6 +1,6 @@
 ---
 name: address-pr-feedback
-description: Address unresolved PR review comments by offering to fix easy issues, applying code changes, and replying/resolving threads. Auto-detects feedback JSON from a prior get-pr-feedback run, or accepts an optional PR number to fetch fresh data.
+description: Address unresolved PR review comments by offering to fix easy issues, applying code changes, and replying/resolving threads.
 ---
 
 # Address PR Feedback
@@ -13,11 +13,11 @@ Address unresolved review threads on a GitHub pull request by:
 2. Applying code changes with user confirmation.
 3. Replying to threads and resolving them.
 
-This skill expects feedback data from a prior `get-pr-feedback` run. It will auto-detect the JSON file, or fetch fresh data if needed.
+This skill fetches the latest unresolved feedback directly from GitHub and addresses it.
 
 ## Required Inputs
 
-- **PR identifier** (optional): PR number, branch name, or full URL. If omitted, the skill auto-detects the most recent feedback JSON for the current repository.
+- **PR identifier**: PR number, branch name, or full URL (same formats `gh pr view` accepts).
 
 ## Prerequisites
 
@@ -29,6 +29,7 @@ This skill expects feedback data from a prior `get-pr-feedback` run. It will aut
 
 All scripts are located in the `get-pr-feedback` skill's scripts directory:
 
+- `<get-pr-feedback-root>/scripts/preflight_check.sh <pr-identifier>` — Verifies the local checkout matches the PR's repo and branch. Outputs `pr_number`, `pr_repo`, `pr_branch`, `current_repo`, `current_branch`, `status` (one of `pass`, `repo_mismatch`, `branch_mismatch`).
 - `<get-pr-feedback-root>/scripts/fetch_feedback.sh <pr-identifier>` — Fetches unresolved threads, writes JSON.
 - `<get-pr-feedback-root>/scripts/reply_and_resolve_thread.sh <thread-id> <reply-body>` — Posts a reply to a thread and resolves it in one call.
 
@@ -36,38 +37,37 @@ Where `<get-pr-feedback-root>` is the `get-pr-feedback` skill directory (typical
 
 ## Workflow
 
-### Step 0 — Pre-flight validation and locate feedback data
+### Step 0 — Pre-flight validation and fetch feedback
 
 **Pre-flight: Verify the local checkout matches the PR.**
 
-1. Determine the PR number. Either use the provided PR identifier, or extract it from the most recent feedback JSON filename (`/tmp/pr_feedback_{owner}_{repo}_{pr_number}.json`).
-2. Resolve the PR's head branch and repository using `gh pr view <pr-number> --json headRefName,headRepository -q '.headRepository.owner.login + "/" + .headRepository.name + " " + .headRefName'`.
-3. Get the current repo with `gh repo view --json owner,name -q '.owner.login + "/" + .name'`.
-4. Get the current branch with `git branch --show-current`.
-5. **If the current repo does not match the PR's repository**, STOP and warn:
-   > "⚠️ The current repository (`{current}`) does not match the PR's repository (`{expected}`). You are likely in the wrong directory. Please `cd` to the correct repo and try again."
-6. **If the current branch does not match the PR's head branch**, STOP and warn:
-   > "⚠️ The current branch (`{current}`) does not match the PR's branch (`{expected}`). You should check out the PR branch first so fixes land on the correct branch. Run: `git checkout {expected}`"
-7. If both match, proceed.
+1. Run the preflight check script:
+   ```bash
+   <get-pr-feedback-root>/scripts/preflight_check.sh <pr-identifier>
+   ```
+2. Parse the key=value output. Then:
+   - **If `status=repo_mismatch`**: STOP and warn:
+     > "The current repository (`{current_repo}`) does not match the PR's repository (`{pr_repo}`). You are likely in the wrong directory. Please `cd` to the correct repo and try again."
+   - **If `status=branch_mismatch`**: STOP and warn:
+     > "The current branch (`{current_branch}`) does not match the PR's branch (`{pr_branch}`). You should check out the PR branch first so fixes land on the correct branch. Run: `git checkout {pr_branch}`"
+   - **If `status=pass`**: proceed.
 
-**Locate feedback data:**
+**Fetch feedback:**
 
-1. Determine `owner` and `repo` from `gh repo view --json owner,name -q '.owner.login + "_" + .name'`.
-2. Look for `/tmp/pr_feedback_{owner}_{repo}_*.json` files.
-3. If exactly one exists, use it. If multiple exist, use the most recently modified one.
-4. If none exist and a PR identifier was provided, run `fetch_feedback.sh <pr-identifier>` to generate it.
-5. If none exist and no PR identifier was provided, ask the user for a PR number.
+```bash
+<get-pr-feedback-root>/scripts/fetch_feedback.sh <pr-identifier>
+```
 
-Read the JSON. Each entry contains:
+Read the output JSON. Each entry contains:
 - `thread_id`: GraphQL node ID
 - `thread_status`: `active` or `outdated`
 - `path`: file path the comment targets
 - `line`: line number
 - `comments`: array of `{ author, body, createdAt }`
 
-### Step 1 — Analyze threads (if not already analyzed)
+### Step 1 — Analyze threads
 
-If this is a fresh fetch (Step 0 ran `fetch_feedback.sh`), analyze each thread:
+For each unresolved thread:
 
 1. Read the **file and line range** referenced by the comment in the local checkout.
 2. **Summarize** the reviewer's concern in 1-2 sentences.
@@ -126,5 +126,5 @@ If yes, compose a reply explaining why the comment is incorrect (cite the actual
 - Do NOT refactor or change code unrelated to the review comment being addressed.
 - Do NOT commit changes — only edit files. The user decides when to commit.
 - If `gh` or `jq` is not available, stop and tell the user.
-- If no feedback data can be found and no PR identifier is provided, ask the user.
+- If the PR identifier is not provided, ask the user.
 - If the current repo or branch does not match the PR, stop and warn the user. Do NOT proceed with fixes.
