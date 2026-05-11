@@ -187,5 +187,9 @@
   },
   "tmux": {
       "enabled": true
+  },
+  "team_mode": {
+      "enabled": true,
+      "tmux_visualization": true
   }
 }

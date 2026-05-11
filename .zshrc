@@ -17,3 +17,4 @@ source <(kubectl completion zsh)
 
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
+[ -s "/home/aaron/.bun/_bun" ] && source "/home/aaron/.bun/_bun"

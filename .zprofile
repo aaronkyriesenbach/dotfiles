@@ -10,6 +10,7 @@ export EDITOR=nvim
 export DIFFPROG="nvim -d"
 export PYENV_ROOT="$HOME/.pyenv"
 export GOPATH="$HOME/.cache/go"
+export ANDROID_HOME="/opt/android-sdk"
 
 if [ -d ~/.localconfig ]; then
     for file in ~/.localconfig/*; do
@@ -34,6 +35,7 @@ pathadd=(
     "$HOME/.yarn/bin"
     "$HOME/.local/bin"
     "$HOME/.bun/bin"
+    "/opt/android-sdk/cmdline-tools/latest/bin"
 )
 
 for newpath in "${pathadd[@]}"; do
