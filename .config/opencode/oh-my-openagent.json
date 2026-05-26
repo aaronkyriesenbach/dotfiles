@@ -30,15 +30,15 @@
       ]
     },
     "explore": {
-      "model": "github-copilot/gpt-5-mini",
+      "model": "github-copilot/gpt-5.4-mini",
       "fallback_models": [
         {
-          "model": "github-copilot/grok-code-fast-1"
+          "model": "github-copilot/claude-haiku-4.5"
         }
       ]
     },
     "multimodal-looker": {
-      "model": "github-copilot/gpt-5-mini"
+      "model": "github-copilot/gpt-5.4-mini"
     },
     "prometheus": {
       "model": "github-copilot/claude-opus-4.6",
@@ -147,7 +147,7 @@
       ]
     },
     "quick": {
-      "model": "github-copilot/gpt-5-mini",
+      "model": "github-copilot/gpt-5.4-mini",
       "fallback_models": [
         {
           "model": "github-copilot/claude-haiku-4.5"
