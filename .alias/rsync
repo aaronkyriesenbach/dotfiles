@@ -1,1 +1,1 @@
-alias sync-books='rsync -avP --delete --exclude "ssl/" --exclude ".*" /mnt/data/books /run/media/aaron/Kindle/books'
+alias sync-books='rsync -rtvP --delete --modify-window=1 --no-perms --no-owner --no-group --exclude "ssl/" --exclude ".*" /mnt/data/books /run/media/aaron/Kindle/books'
