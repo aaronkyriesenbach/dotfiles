@@ -1,0 +1,56 @@
+{
+  "hideThinkingBlock": true,
+  "lastChangelogVersion": "0.80.2",
+  "theme": "dark",
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultThinkingLevel": "normal",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:context-mode",
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-lens"
+  ],
+  "subagents": {
+    "agentOverrides": {
+      "researcher": {
+        "model": "openrouter/deepseek/deepseek-v4-flash",
+        "thinking": "normal",
+        "output": false
+      },
+      "scout": {
+        "model": "openrouter/deepseek/deepseek-v4-flash",
+        "thinking": "normal",
+        "output": false
+      },
+      "delegate": {
+        "model": "openrouter/deepseek/deepseek-v4-flash",
+        "thinking": "normal"
+      },
+      "context-builder": {
+        "model": "openrouter/deepseek/deepseek-v4-flash",
+        "thinking": "normal"
+      },
+      "planner": {
+        "model": "openrouter/deepseek/deepseek-v4-pro",
+        "thinking": "high",
+        "output": false
+      },
+      "worker": {
+        "model": "openrouter/deepseek/deepseek-v4-pro",
+        "thinking": "high"
+      },
+      "reviewer": {
+        "model": "openrouter/deepseek/deepseek-v4-pro",
+        "thinking": "high"
+      },
+      "oracle": {
+        "model": "openrouter/deepseek/deepseek-v4-pro",
+        "thinking": "high"
+      }
+    }
+  }
+}
