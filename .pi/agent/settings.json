@@ -4,7 +4,7 @@
   "theme": "dark",
   "defaultProvider": "openrouter",
   "defaultModel": "deepseek/deepseek-v4-flash",
-  "defaultThinkingLevel": "normal",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
     "npm:context-mode",

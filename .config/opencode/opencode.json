@@ -12,5 +12,6 @@
   "plugin": [
     "opencode-antigravity-auth@1.6.0",
     "oh-my-openagent@latest"
-  ]
+  ],
+  "formatter": true
 }
