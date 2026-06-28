@@ -1,45 +1,18 @@
+---
+name: setup-no-mistakes
+description: Sets up no-mistakes for a repository
+---
 # Set up a New Project with `no-mistakes`
 
 This skill explains how to install, configure, and use `no-mistakes` — an AI-driven validation pipeline by kunchenguid — on a new project.
 
-> **Source**: https://github.com/kunchenguid/no-mistakes | Docs: https://kunchenguid.github.io/no-mistakes/
+> **Source**: <https://github.com/kunchenguid/no-mistakes> | Docs: <https://kunchenguid.github.io/no-mistakes/>
 
 **What it is**: `no-mistakes` puts a local git proxy (the "gate") in front of your real remote. Push to `no-mistakes` instead of `origin`, and it spins up a disposable worktree, runs review → test → docs → lint → push → PR → CI, and opens a clean PR automatically once every check passes. It is agent-agnostic (works with Claude, Codex, Pi, OpenCode, Rovo Dev, Copilot, or ACP targets).
 
 ---
 
-## 1. Install
-
-**macOS / Linux** (one-liner):
-```sh
-curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
-```
-
-**Windows** (PowerShell):
-```powershell
-irm https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.ps1 | iex
-```
-
-**Go install** (no embedded telemetry):
-```sh
-go install github.com/kunchenguid/no-mistakes/cmd/no-mistakes@latest
-```
-
-**From source**:
-```sh
-git clone git@github.com:kunchenguid/no-mistakes.git
-cd no-mistakes
-make build
-make install
-```
-
-The installer puts the real binary in `~/.no-mistakes/bin`, symlinks it to `~/.local/bin` or `/usr/local/bin`, and restarts the background daemon.
-
-**Telemetry**: Official release binaries include the default self-hosted telemetry. Disable with `NO_MISTAKES_TELEMETRY=0`. Override host/ID with `NO_MISTAKES_UMAMI_HOST` and `NO_MISTAKES_UMAMI_WEBSITE_ID`.
-
----
-
-## 2. Prerequisites
+## 1. Prerequisites
 
 | Dependency | Required for | Check with |
 |---|---|---|
@@ -59,7 +32,7 @@ no-mistakes doctor   # Check what's available
 
 ---
 
-## 3. Initialize a Project
+## 2. Initialize a Project
 
 Navigate to any git repo with an `origin` remote:
 
@@ -71,6 +44,7 @@ no-mistakes init
 This creates a local bare gate repo at `~/.no-mistakes/repos/<id>.git`, installs a post-receive hook, adds a `no-mistakes` git remote to your working repo, installs the `/no-mistakes` agent skill at user level, and ensures the daemon is running.
 
 For **GitHub fork contributions**:
+
 ```sh
 # origin should point at the parent repo
 git remote set-url origin git@github.com:parent-owner/repo.git
@@ -81,7 +55,7 @@ no-mistakes init --fork-url git@github.com:your-user/repo.git
 
 ---
 
-## 4. Configure the Pipeline
+## 3. Configure the Pipeline
 
 Configuration is optional — the default `agent: auto` path works. Two config files:
 
@@ -166,7 +140,7 @@ intent:
 
 ---
 
-## 5. Push Through the Gate
+## 4. Push Through the Gate
 
 Three ways to trigger the same pipeline:
 
@@ -208,7 +182,7 @@ The agent inspects scope, preserves unrelated work, commits only the task change
 
 ---
 
-## 6. Pipeline Steps (in order)
+## 5. Pipeline Steps (in order)
 
 ```
 intent → rebase → review → test → document → lint → push → pr → ci
@@ -232,11 +206,12 @@ If the branch has no diff after rebase, remaining steps are skipped.
 
 ---
 
-## 7. Auto-Fix Configuration
+## 6. Auto-Fix Configuration
 
 When a pipeline step finds issues, `no-mistakes` can automatically ask the agent to fix them before pausing for your approval.
 
 **Finding actions**:
+
 - `auto-fix` — objective issues safe to fix automatically
 - `ask-user` — intent-sensitive or ambiguous issues that pause for approval
 - `no-op` — informational notes only
@@ -247,21 +222,24 @@ When a pipeline step finds issues, `no-mistakes` can automatically ask the agent
 
 ---
 
-## 8. Provider Integration
+## 7. Provider Integration
 
 ### GitHub
+
 ```sh
 brew install gh   # or install from https://github.com/cli/cli
 gh auth login
 ```
 
 ### GitLab
+
 ```sh
 brew install glab   # v1.5x required
 glab auth login
 ```
 
 ### Bitbucket Cloud
+
 ```sh
 export NO_MISTAKES_BITBUCKET_EMAIL=you@example.com
 export NO_MISTAKES_BITBUCKET_API_TOKEN=your-api-token
@@ -271,7 +249,7 @@ export NO_MISTAKES_BITBUCKET_API_TOKEN=your-api-token
 
 ---
 
-## 9. Agent AXI Interface (for coding agents)
+## 8. Agent AXI Interface (for coding agents)
 
 Agents drive the gate non-interactively via `no-mistakes axi`:
 
@@ -298,6 +276,7 @@ no-mistakes axi abort
 ```
 
 Key rules for agents:
+
 - `--intent` is required when starting a new run — describe the goal, not the diff
 - Read every return and respond at each `gate:` — the run never advances past a gate on its own
 - Resolve `auto-fix` findings on judgment, ignore `no-op` when approving, stop on `ask-user`
@@ -306,7 +285,7 @@ Key rules for agents:
 
 ---
 
-## 10. Common Commands Reference
+## 9. Common Commands Reference
 
 | Command | What it does |
 |---------|-------------|
@@ -326,7 +305,7 @@ Key rules for agents:
 
 ---
 
-## 11. Troubleshooting
+## 10. Troubleshooting
 
 **Daemon not running**: `no-mistakes daemon start` or `no-mistakes init` (re-initialize).
 
@@ -346,7 +325,7 @@ Key rules for agents:
 
 ---
 
-## 12. Environment Variables
+## 11. Environment Variables
 
 | Variable | Purpose |
 |----------|---------|
