@@ -1,6 +1,7 @@
 colorscheme dracula
 
 set number " Line numbers
+set relativenumber " Show line numbers relative to current line
 set cursorline " Highlight current line
 set showmatch " Show matching brackets
 set incsearch " Dynamic searching
