@@ -1,0 +1,22 @@
+{% if yadm.hostname == "emperor" %}
+local ultrawide = "desc:LG Electronics LG ULTRAWIDE 408NTVS5J487"
+local left      = "desc:ViewSonic Corporation VA2756-UHD VYP252100731"
+local vertical  = "desc:ViewSonic Corporation VA2756-UHD VYP252100727"
+
+hl.monitor({ output = ultrawide, mode = "3440x1440@100", position = "0x0",        scale = 1 })
+hl.monitor({ output = left,      mode = "3840x2160@60",  position = "auto-left",  scale = 1.5 })
+hl.monitor({ output = vertical,  mode = "3840x2160@60",  position = "auto-right", scale = 1.5, transform = 3 })
+
+hl.workspace_rule({ workspace = "1", monitor = left,      default = true })
+hl.workspace_rule({ workspace = "2", monitor = ultrawide, default = true })
+hl.workspace_rule({ workspace = "3", monitor = vertical,  default = true })
+hl.workspace_rule({ workspace = "4", monitor = left })
+hl.workspace_rule({ workspace = "5", monitor = ultrawide })
+hl.workspace_rule({ workspace = "6", monitor = vertical })
+hl.workspace_rule({ workspace = "7", monitor = left })
+hl.workspace_rule({ workspace = "8", monitor = ultrawide })
+hl.workspace_rule({ workspace = "9", monitor = vertical })
+{% endif %}
+{% if yadm.hostname == "adelie" %}
+hl.monitor({ output = "eDP-1", mode = "1920x1200@60", scale = 1})
+{% endif %}
