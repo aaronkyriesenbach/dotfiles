@@ -13,9 +13,9 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(programs.menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(
-    "hyprctl keyword workspace \"$(hyprctl activeworkspace | awk 'NR==1{print $3}'),layout:dwindle\""))
+    "hyprctl eval 'hl.workspace_rule({workspace = \"'$(hyprctl activeworkspace | awk 'NR==1{print $3}')'\", layout = \"dwindle\"})'"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(
-    "hyprctl keyword workspace \"$(hyprctl activeworkspace | awk 'NR==1{print $3}'),layout:scrolling\""))
+    "hyprctl eval 'hl.workspace_rule({workspace = \"'$(hyprctl activeworkspace | awk 'NR==1{print $3}')'\", layout = \"scrolling\"})'"))
 
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd(
     "hyprctl reload && notify-send 'Reload successful' || notify-send 'Reload failed'"))
