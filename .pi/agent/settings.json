@@ -1,6 +1,6 @@
 {
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.80.2",
+  "lastChangelogVersion": "0.80.5",
   "theme": "dark",
   "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
   "defaultProvider": "openrouter",
