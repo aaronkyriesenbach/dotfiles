@@ -10,7 +10,46 @@
 # if $SHELL is unset.
 #
 # Memory cap configurable via $AGENT_SANDBOX_MEM (default 8G).
+#
+# On Linux, uses systemd-run to create a transient cgroup scope: MemoryMax
+# caps the *whole* process tree cumulatively and hard-kills it on overage.
+#
+# macOS has no cgroups and no public/scriptable equivalent (the kernel's
+# jetsam/phys_footprint ledger is private API and per-process only), so we
+# fall back to `ulimit -v`: a per-process virtual-address-space cap via
+# setrlimit. It's inherited by children but NOT cumulative across the tree,
+# and it limits virtual memory rather than actual RSS - a best-effort guard,
+# not a hard cumulative ceiling. If this ever needs to be more accurate,
+# look at `memlimit` or `procguard` (poll phys_footprint + killpg the whole
+# process group) instead of trying to make ulimit do more than it can.
 
-exec systemd-run --user --scope --quiet \
-  -p MemoryMax="${AGENT_SANDBOX_MEM:-8G}" -p MemorySwapMax=0 --collect \
-  -- "${SHELL:-/bin/sh}" "$@"
+mem="${AGENT_SANDBOX_MEM:-8G}"
+shell="${SHELL:-/bin/sh}"
+
+if [ "$(uname -s)" = "Linux" ] && command -v systemd-run >/dev/null 2>&1; then
+  exec systemd-run --user --scope --quiet \
+    -p MemoryMax="$mem" -p MemorySwapMax=0 --collect \
+    -- "$shell" "$@"
+fi
+
+# No systemd cgroups available (macOS, or a systemd-less Linux) - fall back
+# to a best-effort per-process virtual memory cap. ulimit -v takes KiB, so
+# convert the human-readable "8G"/"512M"/"1024K"/<bytes> value.
+#
+# Deliberately avoids ${var%pattern}/${var#pattern} suffix/prefix removal -
+# some shells (encountered in the wild: a bash 5.3 build) mis-evaluate that
+# form of parameter expansion to an empty string. `sed` + `case` sidestep it
+# entirely and are portable to every target shell/OS this script runs on.
+to_kib() {
+  num=$(printf '%s' "$1" | sed 's/[^0-9].*$//')
+  unit=$(printf '%s' "$1" | sed 's/^[0-9]*//')
+  case "$unit" in
+    [Gg]*) echo $(( num * 1024 * 1024 )) ;;
+    [Mm]*) echo $(( num * 1024 )) ;;
+    [Kk]*) echo "$num" ;;
+    *)     echo $(( num / 1024 )) ;;
+  esac
+}
+
+ulimit -v "$(to_kib "$mem")" 2>/dev/null
+exec "$shell" "$@"
