@@ -1,0 +1,16 @@
+#!/bin/sh
+# agent-shell-sandbox - generic per-invocation memory cap for any AI coding
+# agent's shell/bash tool.
+#
+# Reads $SHELL at runtime to pick which shell to actually run. This is safe
+# here because every harness this is wired into (opencode's "shell" config
+# key, Pi's "shellPath" setting) hooks in via its OWN native config option -
+# neither overrides the $SHELL environment variable itself, so this script
+# never risks seeing itself as $SHELL and recursing. Falls back to /bin/sh
+# if $SHELL is unset.
+#
+# Memory cap configurable via $AGENT_SANDBOX_MEM (default 8G).
+
+exec systemd-run --user --scope --quiet \
+  -p MemoryMax="${AGENT_SANDBOX_MEM:-8G}" -p MemorySwapMax=0 --collect \
+  -- "${SHELL:-/bin/sh}" "$@"

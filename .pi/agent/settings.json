@@ -2,6 +2,7 @@
   "hideThinkingBlock": true,
   "lastChangelogVersion": "0.80.2",
   "theme": "dark",
+  "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
   "defaultProvider": "openrouter",
   "defaultModel": "deepseek/deepseek-v4-flash",
   "defaultThinkingLevel": "high",

@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "shell": "{env:HOME}/.local/bin/agent-shell-sandbox",
   "permission": {
     "external_directory": {
       "$HOME/.config/opencode/*": "allow",
@@ -9,9 +10,6 @@
     },
     "compress": "allow"
   },
-  "plugin": [
-    "opencode-antigravity-auth@1.6.0",
-    "oh-my-openagent@latest"
-  ],
+  "plugin": ["opencode-antigravity-auth@1.6.0", "oh-my-openagent@latest"],
   "formatter": true
 }
