@@ -12,7 +12,7 @@
       ]
     },
     "hephaestus": {
-      "model": "github-copilot/gpt-5.5",
+      "model": "github-copilot/gpt-5.6-sol",
       "variant": "medium"
     },
     "oracle": {
@@ -26,6 +26,14 @@
         {
           "model": "github-copilot/claude-opus-4.8",
           "variant": "high"
+        }
+      ]
+    },
+    "librarian": {
+      "model": "github-copilot/gpt-5.4-mini",
+      "fallback_models": [
+        {
+          "model": "github-copilot/claude-haiku-4.5"
         }
       ]
     },
@@ -64,7 +72,7 @@
       "variant": "high"
     },
     "momus": {
-      "model": "github-copilot/gpt-5.5",
+      "model": "github-copilot/gpt-5.6-sol",
       "variant": "xhigh",
       "fallback_models": [
         {
@@ -96,14 +104,6 @@
         }
       ],
       "variant": "high"
-    },
-    "librarian": {
-      "model": "github-copilot/gpt-5.4-mini",
-      "fallback_models": [
-        {
-          "model": "github-copilot/claude-haiku-4.5"
-        }
-      ]
     }
   },
   "categories": {
@@ -118,8 +118,8 @@
       ]
     },
     "ultrabrain": {
-      "model": "github-copilot/gemini-3.1-pro-preview",
-      "variant": "high",
+      "model": "github-copilot/gpt-5.6-sol",
+      "variant": "xhigh",
       "fallback_models": [
         {
           "model": "github-copilot/claude-opus-4.8",
@@ -128,8 +128,8 @@
       ]
     },
     "deep": {
-      "model": "github-copilot/gpt-5.5",
-      "variant": "medium",
+      "model": "github-copilot/gpt-5.6-terra",
+      "variant": "xhigh",
       "fallback_models": [
         {
           "model": "github-copilot/claude-opus-4.8",
@@ -166,7 +166,8 @@
       ]
     },
     "unspecified-low": {
-      "model": "github-copilot/claude-sonnet-5",
+      "model": "github-copilot/gpt-5.6-luna",
+      "variant": "xhigh",
       "fallback_models": [
         {
           "model": "github-copilot/gemini-3-flash-preview"
