@@ -4,7 +4,7 @@
   "theme": "dark",
   "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
   "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultModel": "deepseek/deepseek-v4-pro",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
