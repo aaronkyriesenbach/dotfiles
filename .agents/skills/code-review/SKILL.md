@@ -1,99 +1,89 @@
 ---
 name: code-review
-description: Use to review code changes in a branch, PR, or diff before merging. Triggered by prompts like "review my changes", "code review this PR", "check this branch before merging", or "is this ready to merge?"
+description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
 ---
 
-# Code Review
+Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
-Conduct a structured code review of changes on the current branch, producing a severity-rated issue list and a final REJECT/ACCEPT verdict.
+- **Standards** — does the code conform to this repo's documented coding standards?
+- **Spec** — does the code faithfully implement the originating issue / PRD / spec?
 
-## Procedure
+Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-### Step 1 — Discover the changeset
+The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing.
 
-Determine what changed. Use exactly one of these based on what's available:
+## Process
 
-- **GitHub PR** (if user provided a PR number or URL): `gh pr diff <pr-identifier>`
-- **Branch diff against default branch**: `git log main...HEAD --oneline` then `git diff main...HEAD`
-- **Branch diff against another ref**: `git diff <base-ref>...HEAD` (use the ref the user specifies)
+### 1. Pin the fixed point
 
-If the user hasn't specified what to review, default to `git diff main...HEAD`. If `main` doesn't exist, try `master`, then `develop`.
+Whatever the user said is the fixed point — a commit SHA, branch name, tag, `main`, `HEAD~5`, etc. If they didn't specify one, ask for it.
 
-### Step 2 — Run automated checks
+Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so the comparison is against the merge-base). Also note the list of commits via `git log <fixed-point>..HEAD --oneline`.
 
-Before manual review, run these and note any failures:
+Before going further, confirm the fixed point resolves (`git rev-parse <fixed-point>`) and the diff is non-empty. A bad ref or empty diff should fail here — not inside two parallel sub-agents.
 
-```bash
-lsp_diagnostics          # LSP errors/warnings on changed files
-lens_diagnostics mode=delta  # pi-lens warnings for this session
-```
+### 2. Identify the spec source
 
-If the project has a linter or build command, run it:
+Look for the originating spec, in this order:
 
-```bash
-# e.g., npm run lint, cargo clippy, etc.
-```
+1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — fetch via the workflow in `docs/agents/issue-tracker.md`.
+2. A path the user passed as an argument.
+3. A PRD/spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
+4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
-**Do not proceed past automated failures without noting them.** These are automatically Critical severity issues.
+### 3. Identify the standards sources
 
-### Step 3 — Review the diff
+Anything in the repo that documents how code should be written, such as `CODING_STANDARDS.md` or `CONTRIBUTING.md`.
 
-Walk through changed files. For each file, read the relevant sections using `read`, `module_report`, or `read_enclosing`. Check against these categories, weighted by project standards in AGENTS.md:
+On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below — a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
 
-1. **Type safety** — No `any` types, no lint-suppression comments, proper null handling. These are Critical per AGENTS.md.
-2. **DRY violations** — Duplicated logic, redefined types, relative imports instead of path aliases.
-3. **Correctness & logic** — Edge cases, off-by-one errors, race conditions, incorrect assumptions.
-4. **Error handling** — Uncaught promises, swallowed errors, missing validation, unclear error messages.
-5. **Performance** — N+1 queries, unnecessary allocations, missing indexes, blocking operations.
-6. **Security** — Injection vectors, exposed secrets, missing auth checks, unsafe deserialization.
-7. **Readability & naming** — Confusing names, missing comments on non-obvious logic, overly clever code.
+- **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.
+- **Always a judgement call.** Each smell is a labelled heuristic ("possible Feature Envy"), never a hard violation — and, like any standard here, skip anything tooling already enforces.
 
-Rate each finding: **Critical**, **High**, **Medium**, or **Low**.
+Each smell reads *what it is* → *how to fix*; match it against the diff:
 
-### Step 4 — Present findings
+- **Mysterious Name** — a function, variable, or type whose name doesn't reveal what it does or holds. → rename it; if no honest name comes, the design's murky.
+- **Duplicated Code** — the same logic shape appears in more than one hunk or file in the change. → extract the shared shape, call it from both.
+- **Feature Envy** — a method that reaches into another object's data more than its own. → move the method onto the data it envies.
+- **Data Clumps** — the same few fields or params keep travelling together (a type wanting to be born). → bundle them into one type, pass that.
+- **Primitive Obsession** — a primitive or string standing in for a domain concept that deserves its own type. → give the concept its own small type.
+- **Repeated Switches** — the same `switch`/`if`-cascade on the same type recurs across the change. → replace with polymorphism, or one map both sites share.
+- **Shotgun Surgery** — one logical change forces scattered edits across many files in the diff. → gather what changes together into one module.
+- **Divergent Change** — one file or module is edited for several unrelated reasons. → split so each module changes for one reason.
+- **Speculative Generality** — abstraction, parameters, or hooks added for needs the spec doesn't have. → delete it; inline back until a real need shows.
+- **Message Chains** — long `a.b().c().d()` navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
+- **Middle Man** — a class or function that mostly just delegates onward. → cut it, call the real target direct.
+- **Refused Bequest** — a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
 
-Use this format:
+### 4. Spawn both sub-agents in parallel
 
-```markdown
-## Code Review: <branch-or-pr-name>
+Send a single message with two `Agent` tool calls. Use the `general-purpose` subagent for both.
 
-### Automated Checks
-- LSP diagnostics: <N errors, N warnings> (or "clean")
-- Lint: <status>
-- Build: <status>
+**Standards sub-agent prompt** — include:
 
-### Issues
+- The full diff command and commit list.
+- The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full — the sub-agent has no other access to it.
+- The brief: "Report — per file/hunk where relevant — (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls — documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
 
-#### <file-path>:<line-range> — <severity>
-**Category**: <type-safety | dry | correctness | error-handling | performance | security | readability>
-**Problem**: <concise description of what's wrong>
-**Fix**: <specific, actionable suggestion>
+**Spec sub-agent prompt** — include:
 
-(repeat for each issue)
+- The diff command and commit list.
+- The path or fetched contents of the spec.
+- The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
 
-### Verdict: REJECT | ACCEPT
+If the spec is missing, skip the Spec sub-agent and note this in the final report.
 
-<Detailed reasoning. ACCEPT only if no Critical or High issues remain.>
-```
+### 5. Aggregate
 
-### Step 5 — Apply verdict rules
+Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings — the two axes are deliberately separate (see _Why two axes_).
 
-- **REJECT** if: any Critical issues, 3+ High issues, or any automated check failure.
-- **ACCEPT** if: at most a few Medium/Low issues that can be addressed in follow-up.
+End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes — that's the reranking the separation exists to prevent.
 
-If REJECT, do NOT offer to fix — let the user decide. If they want fixes, the `address-pr-feedback` skill handles that flow.
+## Why two axes
 
-## Gotchas
+A change can pass one axis and fail the other:
 
-- Don't flag generated code (protobuf, GraphQL types, Prisma client, `.d.ts` files, auto-generated configs). Check file headers for "auto-generated" or "DO NOT EDIT" markers.
-- Don't flag test snapshot updates or test fixture files as issues unless the snapshot content is clearly wrong.
-- `lsp_diagnostics` on a directory scans all files — scope it to changed files only if the project is large.
-- AGENTS.md forbids `any` types, lint-suppression comments, and relative imports — these are always Critical, not matters of style.
-- If you can't determine whether a pattern is intentional (e.g., a deliberate `any` escape hatch), flag it as Medium with a question, not Critical.
-- The `module_report` tool with `blastRadius: true` can reveal whether a change has unexpected downstream impact — use it for changes touching shared utilities or types.
+- Code that follows every standard but implements the wrong thing → **Standards pass, Spec fail.**
+- Code that does exactly what the issue asked but breaks the project's conventions → **Spec pass, Standards fail.**
 
-## Hard Rules
-
-- Never apply fixes during review. Review is read-only.
-- Never commit, push, or modify branch state.
-- Never skip automated checks to save time — they're the highest-signal part of the review.
+Reporting them separately stops one axis from masking the other.
