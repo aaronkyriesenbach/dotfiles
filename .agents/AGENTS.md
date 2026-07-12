@@ -74,7 +74,7 @@ Configure path aliases in your project's tsconfig.json or equivalent.
 
 ### Before Every Commit
 
-**Format:** `<type>: <description>` — types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`.
+**Format:** `<type>: <description>` — types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`. Commit messages MUST be 80 characters at most - they should not contain a detailed list of changes.
 
 **Run these checks and fix all issues before committing:**
 

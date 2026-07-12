@@ -1,6 +1,6 @@
 {
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.80.5",
+  "lastChangelogVersion": "0.80.6",
   "theme": "dark",
   "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
   "defaultProvider": "openrouter",
@@ -11,7 +11,10 @@
     "npm:context-mode",
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
-    "npm:@juicesharp/rpiv-todo",
+    {
+      "source": "npm:@juicesharp/rpiv-todo",
+      "extensions": ["+index.ts"]
+    },
     {
       "source": "npm:@juicesharp/rpiv-ask-user-question",
       "extensions": [

@@ -39,3 +39,6 @@ disabled = true
 
 [dotnet]
 disabled = true
+
+[bun]
+disabled = true

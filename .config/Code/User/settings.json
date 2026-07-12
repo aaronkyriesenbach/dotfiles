@@ -42,4 +42,7 @@
   "editor.formatOnSave": true,
   "update.showReleaseNotes": false,
   "workbench.startupEditor": "none",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
 }
