@@ -4,7 +4,7 @@
   "theme": "dark",
   "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
   "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultModel": "deepseek/deepseek-v4-pro",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
@@ -12,8 +12,14 @@
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
     "npm:@juicesharp/rpiv-todo",
-    "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-lens"
+    {
+      "source": "npm:@juicesharp/rpiv-ask-user-question",
+      "extensions": [
+        "+index.ts"
+      ]
+    },
+    "npm:pi-lens",
+    "git:github.com/aaronkyriesenbach/pi-package-manager@master"
   ],
   "subagents": {
     "agentOverrides": {

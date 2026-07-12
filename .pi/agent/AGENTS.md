@@ -1,1 +1,1 @@
-/Users/Aaron/.agents/AGENTS.md
+../../.agents/AGENTS.md
