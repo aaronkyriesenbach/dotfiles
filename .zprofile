@@ -11,6 +11,7 @@ export DIFFPROG="nvim -d"
 export PYENV_ROOT="$HOME/.pyenv"
 export GOPATH="$HOME/.cache/go"
 export ANDROID_HOME="/opt/android-sdk"
+export PI_SKIP_VERSION_CHECK=1
 
 if [ -d ~/.localconfig ]; then
     for file in ~/.localconfig/*; do

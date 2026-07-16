@@ -2,9 +2,9 @@
   "hideThinkingBlock": true,
   "lastChangelogVersion": "0.80.6",
   "theme": "dark",
-  "shellPath": "/home/aaron/.local/bin/agent-shell-sandbox",
-  "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-pro",
+  "shellPath": "~/.local/bin/agent-shell-sandbox",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-sonnet-5",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
@@ -13,10 +13,6 @@
     "npm:pi-subagents",
     {
       "source": "npm:@juicesharp/rpiv-todo",
-      "extensions": ["+index.ts"]
-    },
-    {
-      "source": "npm:@juicesharp/rpiv-ask-user-question",
       "extensions": [
         "+index.ts"
       ]
