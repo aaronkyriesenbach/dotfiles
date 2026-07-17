@@ -4,10 +4,14 @@ This file contains instructions that apply to all agents working in any project.
 
 ## Tool usage instructions
 
+### Installing tools
 **IMPORTANT**: Make sure tools are always installed and used correctly:
 
 - NEVER install an application, tool, package, library, etc without explicitly asking permission first.
 - ALWAYS install tools locally to the project if possible unless explicitly specified otherwise. For example, install Python packages using virtual environments, not globally.
+
+### Finding files
+Use the `fd` command to find files instead of `find` - it has a similar interface but is much faster. Always search in the user's home directory or a subdirectory unless explicitly specified; NEVER search from `/`, as it will time out.
 
 ## Code Quality Standards
 

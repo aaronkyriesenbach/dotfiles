@@ -5,7 +5,7 @@
   "shellPath": "~/.local/bin/agent-shell-sandbox",
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-5",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access",
     "npm:context-mode",
@@ -18,7 +18,8 @@
       ]
     },
     "npm:pi-lens",
-    "git:github.com/aaronkyriesenbach/pi-package-manager@master"
+    "git:github.com/aaronkyriesenbach/pi-package-manager@master",
+    "npm:@aaronkyriesenbach/pi-frozen-defaults@0.2.1"
   ],
   "subagents": {
     "agentOverrides": {
