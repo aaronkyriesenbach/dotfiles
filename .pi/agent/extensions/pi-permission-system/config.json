@@ -10,7 +10,8 @@
     "bash": {
       "*": "allow",
       "rm -rf /*": "ask",
-      "find /*": "deny"
+      "find /*": "deny",
+      "find ~/": "allow"
     },
     "external_directory": {
 	"*": "ask",

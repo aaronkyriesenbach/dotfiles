@@ -38,10 +38,9 @@ require("monitors")
 require("binds")
 require("style")
 
-hl.exec_cmd("pkill waybar; waybar")
-hl.exec_cmd("pkill hypridle; hypridle")
-
 hl.on("hyprland.start", function()
+    hl.exec_cmd("pkill waybar; waybar")
+    hl.exec_cmd("pkill hypridle; hypridle")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("cider",   { workspace = "1" })
     hl.exec_cmd("firefox", { workspace = "2" })
