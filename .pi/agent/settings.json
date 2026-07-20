@@ -10,7 +10,6 @@
     "npm:pi-web-access",
     "npm:context-mode",
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
     {
       "source": "npm:@juicesharp/rpiv-todo",
       "extensions": [
@@ -19,6 +18,8 @@
     },
     "npm:pi-lens",
     "npm:@aaronkyriesenbach/pi-frozen-defaults@0.3.1",
-    "npm:@aaronkyriesenbach/pi-package-manager@0.3.0"
+    "npm:@aaronkyriesenbach/pi-package-manager@0.3.0",
+    "npm:@gotgenes/pi-subagents",
+    "npm:@gotgenes/pi-permission-system"
   ]
 }
