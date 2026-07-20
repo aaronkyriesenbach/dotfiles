@@ -11,7 +11,7 @@ This file contains instructions that apply to all agents working in any project.
 - ALWAYS install tools locally to the project if possible unless explicitly specified otherwise. For example, install Python packages using virtual environments, not globally.
 
 ### Finding files
-Use the `fd` command to find files instead of `find` - it has a similar interface but is much faster. Always search in the user's home directory or a subdirectory unless explicitly specified; NEVER search from `/`, as it will time out.
+ALWAYS use the `fd` command to find files instead of `find` - it has a similar interface but is much faster. ALWAYS search in the user's home directory or a subdirectory unless explicitly specified; NEVER search from `/`, as it will time out. **THIS IS CRUCIAL:** SEARCHING FROM `/` WILL CAUSE YOU TO FAIL YOUR TASK, DO NOT DO IT.
 
 ## Code Quality Standards
 
