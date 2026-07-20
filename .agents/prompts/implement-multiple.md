@@ -1,6 +1,7 @@
 ---
 name: implement-multiple
 description: "Implement a scoped batch of open tickets (a count, a wave count, an explicit set, or all ready-for-agent) using subagent-driven waves."
+argument-hint: "[a count, wave count, ticket set/label, or blank for all ready-for-agent]"
 ---
 
 # Implement Multiple
@@ -12,6 +13,8 @@ Take a scoped batch of open tickets, group them into dependency-respecting **wav
 Read `docs/agents/issue-tracker.md`. If it doesn't exist, tell the user to run `/setup-engineering-skills` first and stop. This file tells you which CLI to use (`gh`, `glab`, or freeform) and the conventions for listing, reading, and commenting on issues.
 
 ## 2. Determine scope
+
+The user's request: $ARGUMENTS (if blank, default to all ready-for-agent tickets, per the last bullet below)
 
 Parse what the user asked for when they invoked this skill:
 

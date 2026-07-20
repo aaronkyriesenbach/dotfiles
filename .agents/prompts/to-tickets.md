@@ -1,6 +1,7 @@
 ---
 name: to-tickets
 description: Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker â€” edges as text in one file per ticket locally, or native blocking links on a real tracker.
+argument-hint: "[optional: spec path, issue #, or URL]"
 ---
 
 # To Tickets
@@ -14,6 +15,8 @@ The issue tracker and triage label vocabulary should have been provided to you â
 ### 1. Gather context
 
 Work from whatever is already in the conversation context. If the user passes a reference (a spec path, an issue number or URL) as an argument, fetch it and read its full body and comments.
+
+Argument passed: $ARGUMENTS (if blank, work from the conversation context)
 
 ### 2. Explore the codebase (optional)
 

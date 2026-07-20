@@ -20,44 +20,5 @@
     "npm:pi-lens",
     "npm:@aaronkyriesenbach/pi-frozen-defaults@0.3.1",
     "npm:@aaronkyriesenbach/pi-package-manager@0.3.0"
-  ],
-  "subagents": {
-    "agentOverrides": {
-      "researcher": {
-        "model": "openrouter/deepseek/deepseek-v4-flash",
-        "thinking": "normal",
-        "output": false
-      },
-      "scout": {
-        "model": "openrouter/deepseek/deepseek-v4-flash",
-        "thinking": "normal",
-        "output": false
-      },
-      "delegate": {
-        "model": "openrouter/deepseek/deepseek-v4-flash",
-        "thinking": "normal"
-      },
-      "context-builder": {
-        "model": "openrouter/deepseek/deepseek-v4-flash",
-        "thinking": "normal"
-      },
-      "planner": {
-        "model": "openrouter/deepseek/deepseek-v4-pro",
-        "thinking": "high",
-        "output": false
-      },
-      "worker": {
-        "model": "openrouter/deepseek/deepseek-v4-pro",
-        "thinking": "high"
-      },
-      "reviewer": {
-        "model": "openrouter/deepseek/deepseek-v4-pro",
-        "thinking": "high"
-      },
-      "oracle": {
-        "model": "openrouter/deepseek/deepseek-v4-pro",
-        "thinking": "high"
-      }
-    }
-  }
+  ]
 }

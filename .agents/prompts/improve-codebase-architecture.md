@@ -1,6 +1,7 @@
 ---
 name: improve-codebase-architecture
 description: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
+argument-hint: "[optional: area/module to focus on]"
 ---
 
 # Improve Codebase Architecture
@@ -15,6 +16,8 @@ This command is _informed_ by the project's domain model and built on a shared d
 ## Process
 
 ### 1. Explore
+
+Focus area: $ARGUMENTS (if blank, scan the whole codebase)
 
 Read the project's domain glossary (`CONTEXT.md`) and any ADRs in the area you're touching first.
 

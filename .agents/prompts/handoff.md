@@ -1,10 +1,12 @@
 ---
 name: handoff
 description: Compact the current conversation into a handoff document for another agent to pick up.
-argument-hint: "What will the next session be used for?"
+argument-hint: "[purpose of next session]"
 ---
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save it in the current working directory with a concise name relevant to the topic at hand (example: network-troubleshooting.md).
+
+The next session will be used for: $ARGUMENTS (if blank, infer the purpose from the conversation)
 
 Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.
 

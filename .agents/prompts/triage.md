@@ -1,6 +1,7 @@
 ---
 name: triage
 description: Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.
+argument-hint: "[what to triage, e.g. \"#42\" or \"show what needs attention\"]"
 ---
 
 # Triage
@@ -45,7 +46,11 @@ State transitions: an unlabeled issue normally goes to `needs-triage` first; fro
 
 ## Invocation
 
-The maintainer invokes `/triage` and describes what they want in natural language. Interpret the request and act. Examples:
+The maintainer invokes `/triage` and describes what they want in natural language. Interpret the request and act.
+
+The maintainer's request: $ARGUMENTS (if blank, show what needs attention — the default view below)
+
+Examples:
 
 - "Show me anything that needs my attention"
 - "Let's look at #42" (issue or PR)

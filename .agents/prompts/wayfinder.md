@@ -1,6 +1,7 @@
 ---
 name: wayfinder
 description: Plan a huge chunk of work — more than one agent session can hold — as a shared map of investigation tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.
+argument-hint: "[a loose idea, or a map URL/number]"
 ---
 
 A loose idea has arrived — too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its tickets one at a time until the route is clear.
@@ -107,6 +108,8 @@ Two modes. Either way, **never resolve more than one ticket per session.**
 
 User invokes with a loose idea.
 
+The loose idea: $ARGUMENTS (if blank, ask the user what they want to find their way to before proceeding)
+
 1. **Name the destination.** Run a `/grilling` and `/domain-modeling` session to pin down what this map is finding its way to — the spec, decision, or change. The destination fixes the scope, so it's settled first.
 2. **Map the frontier.** Grill again, **breadth-first** this time: fan out across the whole space rather than deep on any one thread, surfacing the open decisions and the first steps takeable now. **If this surfaces no fog** — the way to the destination is already clear, the whole journey small enough for one session — you don't need a map. Stop and ask the user how they'd like to proceed.
 3. **Create the map** (label `wayfinder:map`): Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**.
@@ -116,6 +119,8 @@ User invokes with a loose idea.
 ### Work through the map
 
 User invokes with a map (URL or number). A ticket is **optional** — without one, you pick the next decision, not the user.
+
+The map (and optionally a ticket): $ARGUMENTS (if blank, ask the user which map to work through)
 
 1. Load the **map** — the low-res view, not every ticket body.
 2. Choose the ticket. If the user named one, use it. Otherwise take the first frontier ticket in order. **Claim it**: assign it to yourself before any work.

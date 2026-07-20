@@ -1,6 +1,7 @@
 ---
 name: writing-skills
 description: Write or update an agent skill. Use when the user asks to create, write, design, or improve a skill, or when they describe a task they want the agent to handle better. Covers the full lifecycle — discovery, planning, writing, and testing — plus the vocabulary for judging a skill's quality.
+argument-hint: "[optional: what the skill should help the agent do]"
 ---
 
 # Writing Skills
@@ -17,7 +18,9 @@ A skill exists to wrangle determinism out of a stochastic system. **Predictabili
 
 ### Step 1: Discovery — Understand What's Needed
 
-Before writing a single line, ask the user clarifying questions. Use `ask_user_question`. Don't guess — the first draft's quality depends entirely on how well you understand the domain.
+Seed task: $ARGUMENTS (if blank, start discovery from scratch)
+
+Before writing a single line, ask the user clarifying questions. Use `ask_user_question`. Don't guess — the first draft's quality depends entirely on how well you understand the domain. Use the seed task above (if given) as your starting point, not a substitute for asking.
 
 **Minimum questions to ask**:
 

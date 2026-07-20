@@ -1,9 +1,12 @@
 ---
 name: to-spec
 description: Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
+argument-hint: "[optional: feature/focus name]"
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec (you may know this document as a PRD). Do NOT interview the user — just synthesize what you already know.
+
+Focus/feature name: $ARGUMENTS (if blank, infer the single feature/focus from the conversation; if more than one thread is live, ask which one before writing the spec)
 
 The issue tracker and triage label vocabulary should have been provided to you — run `/setup-engineering-skills` if not.
 
