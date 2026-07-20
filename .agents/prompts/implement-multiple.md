@@ -1,7 +1,6 @@
 ---
 name: implement-multiple
-description: "Implement a scoped batch of open tickets (a count, a wave count, an explicit set, or all ready-for-agent) using subagent-driven waves. User-invoked only."
-disable-model-invocation: true
+description: "Implement a scoped batch of open tickets (a count, a wave count, an explicit set, or all ready-for-agent) using subagent-driven waves."
 ---
 
 # Implement Multiple

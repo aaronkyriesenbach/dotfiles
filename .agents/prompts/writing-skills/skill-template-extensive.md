@@ -123,7 +123,7 @@ Progress:
 <!-- Load these on-demand, not all at once -->
 
 | Topic | File | When to load |
-|---|---|---|
+| --- | --- | --- |
 | API reference | [references/api.md](references/api.md) | If the API returns a non-200 status |
 | Schema details | [references/schema.md](references/schema.md) | When writing queries |
 | Template output | [assets/output-template.md](assets/output-template.md) | When producing final output |

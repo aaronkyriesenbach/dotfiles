@@ -1,10 +1,10 @@
 # Testing and Optimizing Skill Descriptions
 
-The description field determines whether a skill triggers. Test it systematically.
+The description field determines whether a model-invoked skill triggers. Test it systematically.
 
 ## How Triggering Works
 
-At startup, the agent loads only `name` and `description` of each skill. When the user's prompt matches a description, the agent loads the full SKILL.md. The description carries the entire burden of triggering.
+At startup, the agent loads only `name` and `description` of each skill. When the user's prompt matches a description, the agent loads the full SKILL.md (or prompt file). The description carries the entire burden of triggering.
 
 **Key insight**: The agent only consults skills when the task requires knowledge beyond what it can handle alone. A simple "read this file" won't trigger a file-processing skill — the agent can handle it with basic tools.
 
@@ -96,7 +96,7 @@ description: Analyze CSV and tabular data files — compute summary statistics,
 
 After selecting a description:
 
-1. Update the `description` field in SKILL.md
+1. Update the `description` field
 2. Verify it's under 1024 characters
 3. Manual sanity check: try a few prompts manually
 4. Real check: 5-10 fresh queries (never seen during optimization) through the eval

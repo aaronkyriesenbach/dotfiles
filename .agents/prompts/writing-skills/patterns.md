@@ -1,6 +1,6 @@
 # Instruction Patterns — Detailed Examples
 
-Expanded examples for the patterns introduced in SKILL.md.
+Expanded examples for the patterns introduced in [writing-skills.md](../writing-skills.md).
 
 ## Gotchas
 

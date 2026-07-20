@@ -1,8 +1,8 @@
 # Glossary — Building Great Skills
 
-The domain model for what makes a skill great. A skill exists to wrangle determinism out of a stochastic system; the root virtue is **Predictability**, and every term below is a lever on it. This is the disclosed reference for [`writing-great-skills`](SKILL.md).
+The domain model for what makes a skill great — the vocabulary behind the guidance in [writing-skills.md](../writing-skills.md). A skill exists to wrangle determinism out of a stochastic system; the root virtue is **Predictability**, and every term below is a lever on it.
 
-The terms are grouped by axis: **Invocation** (how a skill is reached), **Information Hierarchy** (how its content is arranged), **Steering** (how the agent's runtime behaviour is shaped), and **Pruning** (how it is kept lean). Each **failure mode** lives beside the lever that cures it, tagged _failure mode_.
+The terms are grouped by axis: **Invocation** (how a skill is reached — see also [skill-anatomy.md](skill-anatomy.md) for the practical mechanics), **Information Hierarchy** (how its content is arranged), **Steering** (how the agent's runtime behaviour is shaped), and **Pruning** (how it is kept lean). Each **failure mode** lives beside the lever that cures it, tagged _failure mode_.
 
 **Bold terms** in any definition are themselves defined in this glossary; find them by their heading.
 
@@ -14,7 +14,7 @@ _Avoid_: consistency, reliability, robustness, output-determinism
 
 ## Invocation
 
-How a skill is reached — and the two loads you pay for the choice.
+How a skill is reached — and the two loads you pay for the choice. See [skill-anatomy.md](skill-anatomy.md) for the frontmatter mechanics (`disable-model-invocation`) that implement this choice.
 
 ### Model-Invoked
 
@@ -82,7 +82,7 @@ _Avoid_: structure, organization, layout
 
 ### Steps
 
-The ordered actions the agent performs — when a skill has them, the primary tier of its content, and the part that earns its place in SKILL.md. Not every skill has steps: a skill can be all steps (`tdd`), all **reference** (a review), or both, independent of invocation. Every step ends on a **completion criterion**, clear or vague.
+The ordered actions the agent performs — when a skill has them, the primary tier of its content, and the part that earns its place in the main file. Not every skill has steps: a skill can be all steps (`tdd`), all **reference** (a review), or both, independent of invocation. Every step ends on a **completion criterion**, clear or vague.
 
 _Avoid_: workflow, instructions, choreography
 
@@ -100,7 +100,7 @@ _Avoid_: doc, resource, knowledge base
 
 ### Progressive Disclosure
 
-Moving **reference** down the ladder — out of SKILL.md and behind a **context pointer** — so the top stays legible. Not primarily a token optimisation; it is how the **information hierarchy** is protected. Licensed by **branching**: disclose what only some branches need, inline what every path needs, and if a pointer fires unreliably on must-have material, sharpen its wording, and pull it back inline only if that fails.
+Moving **reference** down the ladder — out of the main file and behind a **context pointer** — so the top stays legible. Not primarily a token optimisation; it is how the **information hierarchy** is protected. Licensed by **branching**: disclose what only some branches need, inline what every path needs, and if a pointer fires unreliably on must-have material, sharpen its wording, and pull it back inline only if that fails.
 
 _Avoid_: lazy loading, chunking
 
@@ -112,7 +112,7 @@ _Avoid_: grouping, clustering, cohesion
 
 ### Sprawl
 
-_Failure mode._ A skill that is simply too long — too many lines in SKILL.md — independent of whether they are stale or repeated. Even an all-live, all-unique skill can sprawl. It costs readability (the agent wades through more before it can act, and attention thins across the excess), maintainability (every extra line is one more to keep **relevant**), and tokens. The cure is the **information hierarchy**: push **reference** down behind **context pointers**, and split by **branch** or sequence so each path carries only what it needs. Distinct from **sediment** (length from stale accumulation) and **duplication** (length from repeated meaning) — sprawl is length itself, whatever its cause.
+_Failure mode._ A skill that is simply too long — too many lines — independent of whether they are stale or repeated. Even an all-live, all-unique skill can sprawl. It costs readability (the agent wades through more before it can act, and attention thins across the excess), maintainability (every extra line is one more to keep **relevant**), and tokens. The cure is the **information hierarchy**: push **reference** down behind **context pointers**, and split by **branch** or sequence so each path carries only what it needs. Distinct from **sediment** (length from stale accumulation) and **duplication** (length from repeated meaning) — sprawl is length itself, whatever its cause.
 
 _Avoid_: bloat, length, size, verbosity
 
