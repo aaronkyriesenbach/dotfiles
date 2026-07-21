@@ -1,0 +1,94 @@
+cmd() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: cmd <description of what you want to do>" >&2
+        echo "Example: cmd make this github repo private" >&2
+        return 1
+    fi
+
+    if ! command -v pi >/dev/null 2>&1; then
+        echo "cmd: 'pi' not found in PATH" >&2
+        return 1
+    fi
+
+    local query="$*"
+    local os shell_name
+    os="$(uname -s)"
+    shell_name="$(basename "${SHELL:-sh}")"
+
+    local system_prompt="You are a shell command generator. The user describes a task in \
+natural language and you respond with ONLY the exact shell one-liner to accomplish it on \
+their system, and nothing else: no explanation, no markdown code fences, no backticks, no \
+leading '\$' prompt, no commentary before or after. Output a single line. If multiple steps \
+are needed, chain them with && or ; on that single line. Prefer commonly available CLI tools \
+(gh, git, docker, kubectl, etc.) appropriate for the user's OS and shell. \
+Environment: OS=${os}, Shell=${shell_name}, CWD=${PWD}."
+
+    # MODEL env var overrides the default model, e.g.:
+    #   MODEL=openrouter/deepseek-v4-flash cmd list docker containers
+    # Defaults to github-copilot's claude-haiku-4.5 when unset.
+    local model="${MODEL:-github-copilot/claude-haiku-4.5}"
+
+    local result stderr_output
+    local stderr_file
+    stderr_file="$(mktemp)"
+    result="$(pi \
+        --model "$model" \
+        --print \
+        --no-tools \
+        --no-session \
+        --no-extensions \
+        --no-skills \
+        --no-context-files \
+        --no-prompt-templates \
+        --system-prompt "$system_prompt" \
+        "$query" 2>"$stderr_file")"
+    stderr_output="$(cat "$stderr_file")"
+    rm -f "$stderr_file"
+
+    if [[ -z "$result" ]]; then
+        if [[ -n "$stderr_output" ]]; then
+            echo "cmd: pi failed (model=$model): $stderr_output" >&2
+        else
+            echo "cmd: no response from pi (model=$model)" >&2
+        fi
+        return 1
+    fi
+
+    # Strip a wrapping markdown code fence if the model added one anyway,
+    # and trim surrounding whitespace/newlines.
+    result="$(echo "$result" | sed -e '/^```/d')"
+    result="${result#"${result%%[![:space:]]*}"}"
+    result="${result%"${result##*[![:space:]]}"}"
+
+    if [[ -z "$result" ]]; then
+        echo "cmd: pi returned an empty command" >&2
+        return 1
+    fi
+
+    # Prefer prefilling the command at the next prompt. This only works in
+    # zsh (print -z pushes text onto the line editor buffer). Everywhere
+    # else, fall back to copying it to the clipboard.
+    if [[ -n "$ZSH_VERSION" ]]; then
+        print -z -- "$result"
+        echo "cmd: prefilled at prompt -> $result"
+        return 0
+    fi
+
+    local copied=0
+    if [[ "$os" == "Darwin" ]] && command -v pbcopy >/dev/null 2>&1; then
+        printf '%s' "$result" | pbcopy && copied=1
+    elif [[ -n "$WAYLAND_DISPLAY" ]] && command -v wl-copy >/dev/null 2>&1; then
+        printf '%s' "$result" | wl-copy && copied=1
+    elif command -v xclip >/dev/null 2>&1; then
+        printf '%s' "$result" | xclip -selection clipboard && copied=1
+    elif command -v xsel >/dev/null 2>&1; then
+        printf '%s' "$result" | xsel --clipboard --input && copied=1
+    fi
+
+    if [[ $copied -eq 1 ]]; then
+        echo "cmd: copied to clipboard -> $result"
+    else
+        echo "cmd: $result"
+        echo "cmd: (no clipboard tool found; command printed above)" >&2
+    fi
+}
