@@ -59,10 +59,20 @@ Iterate until the user approves the breakdown.
 
 ### 5. Publish the tickets to the configured tracker
 
-Publish the approved tickets. **How** depends on the tracker `/setup-engineering-skills` configured — the tickets are the same either way, only the shape of the blocking edges changes:
+Publish the approved tickets **in dependency order, one ticket at a time — create, then immediately link, before moving to the next ticket.** Never batch-create every ticket and come back to link them afterward; that second pass is the step that gets skipped. Each ticket must exist before its dependents are created, so its real identifier is available to link against.
+
+**How** depends on the tracker `/setup-engineering-skills` configured — read `docs/agents/issue-tracker.md` for this repo's exact commands (its "Wayfinding operations → Blocking" section has the literal command for native blocking on this tracker; reuse it here, not just for `/wayfinder`):
 
 - **Local files** → write one file per ticket under `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first). Each file's "Blocked by" lists the numbers/titles it depends on. Use the per-ticket file template below — one ticket per file, never a single combined file.
-- **A real issue tracker (GitHub, Linear, …)** → publish one issue per ticket in dependency order (blockers first) so each ticket's blocking edges can reference real identifiers. **ALWAYS** use the platform's native blocking / sub-issue relationship where it has one; also set each ticket's "Blocked by" to the blocking issues. Apply the `ready-for-agent` triage label unless instructed otherwise — the tickets are agent-grabbable by construction.
+- **GitHub** → `gh issue create` the ticket, then for each blocker immediately run `gh api --method POST repos/<owner>/<repo>/issues/<child>/dependencies/blocked_by -F issue_id=<blocker-db-id>` (the blocker's numeric database id via `gh api repos/<owner>/<repo>/issues/<n> --jq .id` — not `#number`, not `node_id`). Also write the "Blocked by" text in the body as a human-readable backup. If the dependencies API 404s (feature disabled on this repo), fall back to a `Blocked by: #<n>, #<n>` line at the top of the body and say so in your summary — do not silently skip the native link without noting the fallback.
+- **GitLab** → `glab issue create` the ticket, then for each blocker immediately post `glab issue note <child> --message "/blocked_by #<blocker>"`. Also write the "Blocked by" text in the description. Fall back to a `Blocked by:` line only if native blocking links are unavailable (free tier), and say so.
+- **Other tracker (Linear, Jira, …)** → look up that tracker's native "blocks / is blocked by" relationship (not just a parent/sub-task link, unless sub-task is the only mechanism) and set it via its CLI/API/MCP tool immediately after creating the ticket. Record the exact mechanism you used in `docs/agents/issue-tracker.md` for next time if it isn't documented there yet.
+
+In every case: set each ticket's "Blocked by" text too, and apply the `ready-for-agent` triage label unless instructed otherwise — the tickets are agent-grabbable by construction.
+
+### 6. Verify every blocking edge landed natively
+
+Before reporting the ticket set as done, re-fetch each published ticket that has one or more blockers and confirm the native relationship is actually set (e.g. `gh issue view <n> --json ...` for `issue_dependencies_summary.blocked_by`, or the equivalent read for the configured tracker) — don't trust that the create/link calls succeeded just because they didn't error. Build a small table of ticket → expected blockers (from the approved breakdown in step 4) → confirmed native blockers, and fix any mismatch before finishing. Report this table to the user as part of your summary, including any tickets where you had to fall back to text-only "Blocked by" because native linking wasn't available.
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 
