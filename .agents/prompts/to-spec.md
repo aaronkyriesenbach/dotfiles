@@ -18,7 +18,9 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+1. Write the spec using the template below, then publish it to the project issue tracker, applying the `epic` label (create it first if the tracker doesn't have it yet — see `docs/agents/issue-tracker.md`'s "Epics" section for the exact mechanism this repo uses). Do NOT apply `ready-for-agent` to the spec/epic issue itself — `to-spec` and `to-tickets` run in the same session, so the spec is never meant to sit in an agent-actionable queue on its own; only the tickets `to-tickets` cuts from it get `ready-for-agent`.
+
+For local-markdown tracking, write a `Type: epic` line near the top of `spec.md` instead of a label, and skip any `Status:`/triage line — it isn't a triageable ticket.
 
 <spec-template>
 

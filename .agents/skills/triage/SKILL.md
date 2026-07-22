@@ -38,6 +38,8 @@ Five **state** roles:
 
 For a PR, the same states read against the attached code: `ready-for-agent` means a brief is attached and an agent should take the next step on the diff; `ready-for-human` means it's ready for a human to merge.
 
+**Epic/spec issues are out of scope for this state machine.** An issue carrying the `epic` label (see the issue-tracker config's "Epics" section, if this repo also uses `to-spec`/`to-tickets`) is a spec document, not a triage subject — it never carries a category or state role, and it is not "unlabeled" in the sense this skill means. Skip it entirely in discovery and don't triage it even if explicitly named unless the maintainer overrides.
+
 Every triaged issue should carry exactly one category role and one state role. If state roles conflict, flag it and ask the maintainer before doing anything else.
 
 These are canonical role names — the actual label strings used in the issue tracker may differ. The mapping should have been provided to you - run `/setup-matt-pocock-skills` if not.
@@ -57,7 +59,7 @@ The maintainer invokes `/triage` and describes what they want in natural languag
 
 Query the issue tracker and present three buckets, oldest first:
 
-1. **Unlabeled** — never triaged.
+1. **Unlabeled** — never triaged. Exclude anything carrying the `epic` label — a spec/epic issue is a different kind of artifact, not an untriaged one.
 2. **`needs-triage`** — evaluation in progress.
 3. **`needs-info` with reporter activity since the last triage notes** — needs re-evaluation.
 

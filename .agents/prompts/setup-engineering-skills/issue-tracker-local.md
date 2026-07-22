@@ -18,6 +18,15 @@ Create a new file under `.scratch/<feature-slug>/` (creating the directory if ne
 
 Read the file at the referenced path. The user will normally pass the path or the issue number directly.
 
+## Epics (specs broken into tickets)
+
+Used by `to-spec`, `to-tickets`, and `implement-multiple`. The feature directory `.scratch/<feature-slug>/` already is the epic-to-tickets grouping — `spec.md` is the epic, everything under `issues/` belongs to it. No extra label or manifest is needed.
+
+- **Mark the spec as an epic**: `spec.md` gets a `Type: epic` line near the top instead of a `Status:`/triage line — it isn't itself a triageable ticket.
+- **List an epic's tickets**: list files under `.scratch/<feature-slug>/issues/`.
+- **List available epics**: list `.scratch/*/spec.md` files that still have at least one file under their `issues/` with `Status: ready-for-agent` (or equivalent open/unclaimed state).
+- **Close an epic**: once every file under its `issues/` is closed, append a `## Comments` note to `spec.md` listing which tickets completed it, then add `Status: complete` near its `Type: epic` line.
+
 ## Wayfinding operations
 
 Used by `/wayfinder`. The **map** is a file with one **child** file per ticket.

@@ -33,6 +33,17 @@ Create a GitHub issue.
 
 Run `gh issue view <number> --comments`.
 
+## Epics (specs broken into tickets)
+
+Used by `to-spec`, `to-tickets`, and `implement-multiple`. An **epic** is the published spec issue; its **tickets** are the vertical slices `to-tickets` cuts from it.
+
+- **Mark an issue as an epic**: `gh issue create --label epic` (create the `epic` label first if it doesn't exist: `gh label create epic --description "Spec/epic issue, not an implementable ticket"`). An epic issue never carries `ready-for-agent` — `to-spec` and `to-tickets` run in the same session, so the spec is never meant to sit in an agent-actionable queue on its own.
+- **Link a ticket to its epic**: use GitHub's native sub-issues endpoint — `gh api --method POST repos/<owner>/<repo>/issues/<epic>/sub_issue -f sub_issue_id=<ticket-db-id>` (the ticket's numeric **database id**, via `gh api repos/<owner>/<repo>/issues/<n> --jq .id` — not `#number`). Also write `Part of #<epic>` at the top of the ticket body as a human-readable backup.
+- **List an epic's tickets**: `gh api repos/<owner>/<repo>/issues/<epic>/sub_issues --jq '[.[] | {number, title, state, labels: [.labels[].name]}]'`.
+- **Find a ticket's epic**: `gh api repos/<owner>/<repo>/issues/<n>/parent --jq '{number, title}'` (404 if the ticket has no parent).
+- **List available epics**: `gh issue list --state open --label epic --json number,title`, then for each, list its tickets (above) and keep only epics with at least one open ticket labelled `ready-for-agent`.
+- **Close an epic**: once every one of its sub-issues is closed, post a summary comment (`gh issue comment <epic> --body "..."`) listing which tickets completed it, then `gh issue close <epic>` — same command as closing any other issue.
+
 ## Wayfinding operations
 
 Used by `/wayfinder`. The **map** is a single issue with **child** issues as tickets.

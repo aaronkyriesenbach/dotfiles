@@ -34,6 +34,19 @@ Create a GitLab issue.
 
 Run `glab issue view <number> --comments`.
 
+## Epics (specs broken into tickets)
+
+Used by `to-spec`, `to-tickets`, and `implement-multiple`. An **epic** is the published spec issue; its **tickets** are the vertical slices `to-tickets` cuts from it.
+
+GitLab's native Epics feature is Premium/Ultimate-only and its REST API is already deprecated in favor of GraphQL work items — not something to build a cross-tier skill on. Use the same label + body-text convention the wayfinding operations below use for the map/child relationship:
+
+- **Mark an issue as an epic**: `glab issue create --label epic` (create the label first if needed via the GitLab UI or `glab api`). An epic issue never carries `ready-for-agent` — `to-spec` and `to-tickets` run in the same session, so the spec is never meant to sit in an agent-actionable queue on its own.
+- **Link a ticket to its epic**: write `Part of #<epic>` at the top of the ticket's description. This is the operative mechanism — there's no reliable native call to also make.
+- **List an epic's tickets**: `glab issue list -F json`, filtered to open issues whose description contains `Part of #<epic>`.
+- **Find a ticket's epic**: parse `Part of #<n>` from the ticket's own description.
+- **List available epics**: `glab issue list -F json --label epic --state open`, then for each, list its tickets (above) and keep only epics with at least one open ticket labelled `ready-for-agent`.
+- **Close an epic**: once every one of its tickets is closed, post a summary note (`glab issue note <epic> --message "..."`) listing which tickets completed it, then `glab issue close <epic>` — same command as closing any other issue.
+
 ## Wayfinding operations
 
 Used by `/wayfinder`. The **map** is a single issue with **child** issues as tickets.
