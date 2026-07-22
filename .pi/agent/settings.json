@@ -20,6 +20,7 @@
     "npm:@aaronkyriesenbach/pi-frozen-defaults@0.3.1",
     "npm:@aaronkyriesenbach/pi-package-manager@0.3.0",
     "npm:@gotgenes/pi-subagents",
-    "npm:@gotgenes/pi-permission-system"
+    "npm:@gotgenes/pi-permission-system",
+    "npm:@gotgenes/pi-subagents-worktrees"
   ]
 }

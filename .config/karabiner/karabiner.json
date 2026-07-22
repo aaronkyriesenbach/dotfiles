@@ -49,28 +49,6 @@
                         ]
                     },
                     {
-                        "description": "Use cmd + shift + L to lock screen on external keyboards",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": false }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["control", "shift"] }
-                                },
-                                "to": {
-                                    "key_code": "q",
-                                    "modifiers": ["command", "control"]
-                                },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Ignore cmd+shift+q for external keyboard",
                         "manipulators": [
                             {
