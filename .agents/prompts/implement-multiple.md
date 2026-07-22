@@ -86,14 +86,19 @@ Wait for the user to confirm, adjust the set, or reorder before executing. This 
 
 For each wave, in order:
 
-1. **Select a subagent per ticket.** Default to `worker` — it's the implementation agent and the one `/implement` is written for. Only deviate when the ticket's own nature calls for it: a pure review/cleanup ticket suits `reviewer`; a research spike with no code change suits `researcher`. When in doubt, use `worker`.
+1. **Select a subagent type and model per ticket.** Default subagent type to `worker` — it's the implementation agent and the one `/implement` is written for. Only deviate when the ticket's own nature calls for it: a pure review/cleanup ticket suits `reviewer`; a research spike with no code change suits `researcher`. When in doubt, use `worker`. Then pick a model sized to the ticket's difficulty:
+   - Routine, well-scoped, mechanical tickets (small fixes, boilerplate, config/doc changes) → a faster/cheaper model.
+   - Standard feature/bugfix tickets → the default model.
+   - Tickets that are architecturally risky, touch many files/modules, or have ambiguous/underspecified requirements → a stronger/higher-reasoning model.
+
+   Judge this from the ticket's title, body, and any size/complexity signals the tracker exposes (e.g. `size:S`/`size:L` labels) — don't just default every ticket to the same model.
 2. **Launch the wave in parallel** with `worktree: true` so each ticket gets an isolated git worktree — parallel writers must not collide on the same working tree. Give every child the full issue body/comments (don't make it re-fetch), the issue number, and the instruction to apply the `implement` skill:
 
    ```
    subagent({
      tasks: [
-       { agent: "worker", skill: "implement", task: "Implement issue #12: <title>.\n\n<full issue body>\n\nUse the implement skill: follow TDD at pre-agreed seams, run typechecking and tests, code-review, and commit." },
-       { agent: "worker", skill: "implement", task: "Implement issue #14: ..." }
+       { agent: "worker", model: "sonnet", skill: "implement", task: "Implement issue #12: <title>.\n\n<full issue body>\n\nUse the implement skill: follow TDD at pre-agreed seams, run typechecking and tests, code-review, and commit." },
+       { agent: "researcher", model: "haiku", skill: "implement", task: "Implement issue #14: ..." }
      ],
      worktree: true,
      concurrency: <wave size, capped sensibly>
@@ -121,3 +126,4 @@ After the last wave, report: tickets implemented and closed (with commit/branch 
 - **An epic closes on whichever run finishes its last ticket, not only on a run explicitly scoped to it.** Always re-check the epic's full child set (not just this run's scope) before closing — a trimmed run, or a bulk cross-epic run, may finish an epic incidentally.
 - **An unscoped invocation always asks which epic first — never a silent batch.** List the available epics and their ready-child counts (step 2) and wait for the user to pick one, or to explicitly name an alternative scope like all ready-for-agent. The step 7 wave-plan confirmation is still required on top of that, regardless of how the scope was chosen.
 - **A ticket-count scope never splits a wave.** Round down to the last fully-included wave and say so; running half of a wave defeats the point of waves being an atomic dependency unit.
+- **Model/subagent-type choice is per-ticket, not per-wave.** A wave can mix a cheap-model doc fix with a strong-model refactor — don't pick one model for the whole wave.
