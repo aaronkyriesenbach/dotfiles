@@ -86,26 +86,23 @@ Wait for the user to confirm, adjust the set, or reorder before executing. This 
 
 For each wave, in order:
 
-1. **Select a subagent type and model per ticket.** Default subagent type to `worker` — it's the implementation agent and the one `/implement` is written for. Only deviate when the ticket's own nature calls for it: a pure review/cleanup ticket suits `reviewer`; a research spike with no code change suits `researcher`. When in doubt, use `worker`. Then pick a model sized to the ticket's difficulty:
+1. **Select a subagent type and model per ticket, from your actual available agent roster** (the types listed in the `subagent` tool's own description — built-ins plus every custom agent under `.pi/agents/`/`~/.pi/agent/agents/`). Match the ticket's domain to the best-fit specialist by its description: a frontend/UI ticket suits `engineering-frontend-developer`, a backend/API ticket suits `engineering-backend-architect`, a schema/migration ticket suits `engineering-database-optimizer`, an infra/CI ticket suits `engineering-devops-automator` or `engineering-sre`, a security fix suits the matching `security-*` specialist, a mobile ticket suits `engineering-mobile-app-builder`, a pure review/cleanup ticket suits `engineering-code-reviewer`, a docs-only ticket suits `engineering-technical-writer`, and so on. Fall back to `general-purpose` when no specialist clearly fits — it inherits the parent's full system prompt and conventions, which is the safest default for a generic implementation ticket. Every agent type in the roster is opted into git-worktree isolation via `subagents-worktrees.json` (see below), so whichever type you pick, the child still gets an isolated worktree automatically. Then pick a model sized to the ticket's difficulty:
    - Routine, well-scoped, mechanical tickets (small fixes, boilerplate, config/doc changes) → a faster/cheaper model.
    - Standard feature/bugfix tickets → the default model.
    - Tickets that are architecturally risky, touch many files/modules, or have ambiguous/underspecified requirements → a stronger/higher-reasoning model.
 
    Judge this from the ticket's title, body, and any size/complexity signals the tracker exposes (e.g. `size:S`/`size:L` labels) — don't just default every ticket to the same model.
-2. **Launch the wave in parallel** with `worktree: true` so each ticket gets an isolated git worktree — parallel writers must not collide on the same working tree. Give every child the full issue body/comments (don't make it re-fetch), the issue number, and the instruction to apply the `implement` skill:
+2. **Launch the wave in parallel**, one `subagent` call per ticket with the chosen `subagent_type` and `run_in_background: true`. Worktree isolation is automatic and config-driven (via the `@gotgenes/pi-subagents-worktrees` extension) — there is no `worktree` parameter on this tool, and none is needed: because every agent type is listed in `worktreeAgents`, each child transparently gets its own detached worktree before it runs, regardless of which specialist you picked. Give every child the full issue body/comments (don't make it re-fetch), the issue number, and the instruction to apply the `implement` skill:
 
    ```
-   subagent({
-     tasks: [
-       { agent: "worker", model: "sonnet", skill: "implement", task: "Implement issue #12: <title>.\n\n<full issue body>\n\nUse the implement skill: follow TDD at pre-agreed seams, run typechecking and tests, code-review, and commit." },
-       { agent: "researcher", model: "haiku", skill: "implement", task: "Implement issue #14: ..." }
-     ],
-     worktree: true,
-     concurrency: <wave size, capped sensibly>
-   })
+   subagent({ subagent_type: "engineering-backend-architect", model: "sonnet", description: "Implement #12", run_in_background: true,
+     prompt: "Implement issue #12: <title>.\n\n<full issue body>\n\nUse the implement skill: follow TDD at pre-agreed seams, run typechecking and tests, code-review, and commit." })
+   subagent({ subagent_type: "general-purpose", model: "haiku", description: "Implement #14", run_in_background: true,
+     prompt: "Implement issue #14: ..." })
    ```
 
-3. **Wait for the wave to finish**, then merge each worktree branch back into the base branch before starting the next wave — a later wave's tickets may build on this wave's code, so the base must be up to date before those children even start.
+   Each call returns an agent ID immediately; collect them all before moving to the next step. The extension's own concurrency limit (default 4, tunable via `/subagents:settings`) queues excess launches automatically — no need to compute a `concurrency` value yourself.
+3. **Wait for the wave to finish** with `get_subagent_result({ agent_id, wait: true })` per child. Each result that made changes carries a trailer like `Changes saved to branch \`pi-agent-<id>\`. Merge with: \`git merge <branch>\`` — read the branch name from there (a child with no changes has its worktree removed automatically and carries no branch to merge). Merge every wave-member's branch back into the base branch before starting the next wave — a later wave's tickets may build on this wave's code, so the base must be up to date before those children even start.
 4. **Verify the merged state**: run the project's typecheck/build/test commands once per wave (not just per ticket) to catch cross-ticket integration issues `/implement`'s own single-ticket checks couldn't see.
 5. **Close each successfully implemented ticket** once its wave is merged and verified: post a closing comment with its commit/branch reference, then close it per the tracker's convention in `docs/agents/issue-tracker.md` (e.g. `gh issue close <n> --comment "..."`, or `glab issue note` followed by `glab issue close`, or the local-file equivalent). Do this per ticket, not as a batch note on the wave.
 6. **Check whether any epic this wave touched is now fully done.** For each distinct epic among the tickets just closed (resolved via the same per-tracker lookup used in step 3), re-fetch its *complete* child set — not just this run's scope, since a ticket-count/wave-count trim or an unrelated earlier run may have left other children still open. If every child is now closed, post a summary comment on the epic listing the tickets that completed it, then close the epic too. If any child is still open, leave the epic open and note the remaining open count for the final summary.
@@ -126,4 +123,5 @@ After the last wave, report: tickets implemented and closed (with commit/branch 
 - **An epic closes on whichever run finishes its last ticket, not only on a run explicitly scoped to it.** Always re-check the epic's full child set (not just this run's scope) before closing — a trimmed run, or a bulk cross-epic run, may finish an epic incidentally.
 - **An unscoped invocation always asks which epic first — never a silent batch.** List the available epics and their ready-child counts (step 2) and wait for the user to pick one, or to explicitly name an alternative scope like all ready-for-agent. The step 7 wave-plan confirmation is still required on top of that, regardless of how the scope was chosen.
 - **A ticket-count scope never splits a wave.** Round down to the last fully-included wave and say so; running half of a wave defeats the point of waves being an atomic dependency unit.
-- **Model/subagent-type choice is per-ticket, not per-wave.** A wave can mix a cheap-model doc fix with a strong-model refactor — don't pick one model for the whole wave.
+- **Model *and* subagent type are per-ticket, not per-wave.** A wave can mix a cheap-model doc fix routed to `engineering-technical-writer` with a strong-model refactor routed to `engineering-backend-architect` — don't pick one model or one specialist for the whole wave.
+- **This workflow depends on `subagents-worktrees.json`'s `worktreeAgents` covering every agent type you might pick in step 8.1.** There's no wildcard — the extension only isolates types explicitly listed by name. If you pick a specialist that isn't in `worktreeAgents`, that child silently runs unisolated in the parent cwd instead of a worktree (no error, no note). Keep the config's `worktreeAgents` list in sync with `.pi/agents/`/`~/.pi/agent/agents/` whenever you add a new custom agent type.
