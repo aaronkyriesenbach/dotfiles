@@ -1,6 +1,6 @@
 {
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.82.0",
   "theme": "dark",
   "shellPath": "~/.local/bin/agent-shell-sandbox",
   "defaultProvider": "github-copilot",
@@ -10,15 +10,15 @@
     "npm:pi-web-access",
     "npm:context-mode",
     "npm:pi-mcp-adapter",
-    {
-      "source": "npm:@juicesharp/rpiv-todo",
-      "extensions": [
-        "+index.ts"
-      ]
-    },
     "npm:pi-lens",
     "npm:@aaronkyriesenbach/pi-frozen-defaults@0.3.1",
-    "npm:@aaronkyriesenbach/pi-package-manager@0.3.0",
+    {
+      "source": "npm:@aaronkyriesenbach/pi-package-manager@0.3.0",
+      "extensions": [],
+      "skills": [],
+      "prompts": [],
+      "themes": []
+    },
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-permission-system",
     "npm:@gotgenes/pi-subagents-worktrees"
