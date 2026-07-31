@@ -100,13 +100,13 @@ The block:
 
 Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `triage` is installed and Section B ran. When it isn't, both are omitted.
 
-Then write the docs files using the seed templates in the `setup-engineering-skills/` folder as a starting point:
+Then write the docs files using the seed templates in the `~/.agents/prompts/setup-engineering-skills/` folder as a starting point:
 
-- [setup-engineering-skills/issue-tracker-github.md](setup-engineering-skills/issue-tracker-github.md) — GitHub issue tracker
-- [setup-engineering-skills/issue-tracker-gitlab.md](setup-engineering-skills/issue-tracker-gitlab.md) — GitLab issue tracker
-- [setup-engineering-skills/issue-tracker-local.md](setup-engineering-skills/issue-tracker-local.md) — local-markdown issue tracker
-- [setup-engineering-skills/triage-labels.md](setup-engineering-skills/triage-labels.md) — label mapping (only if `triage` is installed)
-- [setup-engineering-skills/domain.md](setup-engineering-skills/domain.md) — domain doc consumer rules + layout
+- [~/.agents/prompts/setup-engineering-skills/issue-tracker-github.md](~/.agents/prompts/setup-engineering-skills/issue-tracker-github.md) — GitHub issue tracker
+- [~/.agents/prompts/setup-engineering-skills/issue-tracker-gitlab.md](~/.agents/prompts/setup-engineering-skills/issue-tracker-gitlab.md) — GitLab issue tracker
+- [~/.agents/prompts/setup-engineering-skills/issue-tracker-local.md](~/.agents/prompts/setup-engineering-skills/issue-tracker-local.md) — local-markdown issue tracker
+- [~/.agents/prompts/setup-engineering-skills/triage-labels.md](~/.agents/prompts/setup-engineering-skills/triage-labels.md) — label mapping (only if `triage` is installed)
+- [~/.agents/prompts/setup-engineering-skills/domain.md](~/.agents/prompts/setup-engineering-skills/domain.md) — domain doc consumer rules + layout
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 

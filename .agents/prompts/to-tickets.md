@@ -41,6 +41,14 @@ Give each ticket its **blocking edges** — the other tickets that must complete
 
 **Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change — rename a column, retype a shared symbol — whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket — green is promised only there.
 
+**Stamp each ticket's implementation scope.** `implement-multiple` routes each ticket to a cost-appropriate model tier (see `implement-multiple/TIERS.md`) using a short **Implementation scope** note on the ticket itself, not the tracker's own size labels (those vary by repo; this note doesn't). Set it per ticket:
+
+- **Change type**: `logic` (the ticket writes or modifies application behaviour — true for nearly every tracer-bullet vertical slice) or `mechanical` (docs-only, config/version bump, formatting, pure scaffold/extraction — no behaviour change at all). Default to `logic` unless you're certain nothing in the ticket changes behavior.
+- **Footprint**: the rough file/module count this ticket is expected to touch, and whether it's confined to one module or crosses several.
+- **Ambiguity**: `none` (acceptance criteria fully pin down the behavior) or `some` (a real judgment call remains — name it).
+
+A wide-refactor batch is always `logic` with its footprint noted as the batch's blast radius, even though each individual edit is repetitive — mechanical-looking edits at scale are still expensive to get wrong, and `implement-multiple` uses footprint (not "looks mechanical") to decide whether a batch needs a stronger model.
+
 ### 4. Quiz the user
 
 Present the proposed breakdown as a numbered list. For each ticket, show:
@@ -48,12 +56,14 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 - **Title**: short descriptive name
 - **Blocked by**: which other tickets (if any) must complete first
 - **What it delivers**: the end-to-end behaviour this ticket makes work
+- **Implementation scope**: its change type/footprint/ambiguity note
 
 Ask the user:
 
 - Does the granularity feel right? (too coarse / too fine)
 - Are the blocking edges correct — does each ticket only depend on tickets that genuinely gate it?
 - Should any tickets be merged or split further?
+- Does the implementation scope look right — any ticket mis-tagged as `mechanical` that actually changes behavior, or a footprint that looks underestimated?
 
 Iterate until the user approves the breakdown.
 
@@ -87,6 +97,8 @@ Do NOT close or modify any parent issue.
 
 **Blocked by:** the numbers/titles of the tickets that gate this one, or "None — can start immediately".
 
+**Implementation scope:** change type: `logic` | `mechanical` · footprint: <e.g. "1 file, single module" or "12 files across 3 packages"> · ambiguity: `none` | `some — <name the open call>`
+
 **Status:** ready-for-agent
 
 - [ ] Acceptance criterion 1
@@ -103,6 +115,12 @@ Do NOT close or modify any parent issue.
 ## What to build
 
 The end-to-end behaviour this ticket makes work, from the user's perspective — not layer-by-layer implementation.
+
+## Implementation scope
+
+- Change type: `logic` | `mechanical`
+- Footprint: <rough file/module count, and whether it's confined to one module or crosses several>
+- Ambiguity: `none` | `some — <name the open call>`
 
 ## Acceptance criteria
 
