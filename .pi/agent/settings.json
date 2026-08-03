@@ -5,10 +5,9 @@
   "shellPath": "~/.local/bin/agent-shell-sandbox",
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
-    "npm:context-mode",
     "npm:pi-mcp-adapter",
     "npm:pi-lens",
     "npm:@aaronkyriesenbach/pi-frozen-defaults",
