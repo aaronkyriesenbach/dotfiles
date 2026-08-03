@@ -102,17 +102,23 @@ Ruling something out of scope is a scoping act, not a step on the route. When a 
 
 ## Invocation
 
-Two modes. Either way, **never resolve more than one ticket per session.**
+**Resolve the invocation exactly once**, before anything else, then commit to the mode it yields — don't re-examine $ARGUMENTS again later. Argument given: $ARGUMENTS
+
+- **Empty** → ask the user for a loose idea *or* a map to work through, then stop and wait.
+- **One issue reference** (a tracker URL, a bare `#<n>` / `<n>`, or any other id shape the tracker doc defines) → look it up:
+  - Carries `wayfinder:map` → that issue is **the map**; no ticket named yet. Mode: *Work through the map*.
+  - It's a child issue of a map instead → **the map** is its parent, **the ticket** is the reference you were given. Mode: *Work through the map*.
+  - Resolves to neither → say so, ask which map to work through, then stop and wait.
+- **Two references** → the first is **the map**, the second is **the ticket**. Mode: *Work through the map*.
+- **Otherwise** (prose, a description, a fuzzy goal) → the whole argument is **the loose idea**. Mode: *Chart the map*.
+
+Either mode: **never resolve more than one ticket per session.**
 
 ### Chart the map
 
-User invokes with a loose idea.
+Starts from **the loose idea** resolved above.
 
-0. **Resolve the invocation.** Argument given: $ARGUMENTS
-   - Empty → ask the user what they want to find their way to, then stop and wait.
-   - Otherwise → treat it as the loose idea driving step 1.
-
-1. **Name the destination.** Ground it in the loose idea from step 0. Run a `/grilling` and `/domain-modeling` session to pin down what this map is finding its way to — the spec, decision, or change. The destination fixes the scope, so it's settled first.
+1. **Name the destination.** Ground it in the loose idea resolved above. Run a `/grilling` and `/domain-modeling` session to pin down what this map is finding its way to — the spec, decision, or change. The destination fixes the scope, so it's settled first.
 2. **Map the frontier.** Grill again, **breadth-first** this time: fan out across the whole space rather than deep on any one thread, surfacing the open decisions and the first steps takeable now. **If this surfaces no fog** — the way to the destination is already clear, the whole journey small enough for one session — you don't need a map. Stop and ask the user how they'd like to proceed.
 3. **Create the map** (label `wayfinder:map`): Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**.
 4. **Create the tickets you can specify now** as child issues of the map — then wire blocking edges in a **second pass** (issues need ids before they can reference each other). Wiring sorts them into the frontier and the blocked; everything you can't yet specify stays in the fog — the **Not yet specified** section.
@@ -120,14 +126,10 @@ User invokes with a loose idea.
 
 ### Work through the map
 
-User invokes with a map (URL or number). A ticket is **optional** — without one, you pick the next decision, not the user.
+Starts from **the map** (and, optionally, **the ticket**) resolved above. A ticket is optional — without one, you pick the next decision, not the user.
 
-0. **Resolve the invocation.** Argument given: $ARGUMENTS — may be empty, a map (URL/number) alone, or a map plus a ticket.
-   - Empty → ask the user which map to work through, then stop and wait.
-   - Otherwise → the map is given; treat any additional reference as the named ticket for step 2.
-
-1. Load the **map** given in step 0 — the low-res view, not every ticket body.
-2. Choose the ticket. If step 0 resolved a named ticket, use it. Otherwise take the first frontier ticket in order. **Claim it**: assign it to yourself before any work.
+1. Load the **map** — the low-res view, not every ticket body.
+2. Choose the ticket. If a ticket was resolved above, use it. Otherwise take the first frontier ticket in order. **Claim it**: assign it to yourself before any work.
 3. Resolve it — **zoom as needed**: fetch the full body of any related or closed ticket on demand; invoke the skills the `## Notes` block names. If in doubt, use `/grilling` and `/domain-modeling`.
 4. Record the resolution: post the answer as a **resolution comment**, **close** the issue, and **append a context pointer** to the map's Decisions-so-far.
 5. Add newly-surfaced tickets (create-then-wire); graduate any fog the answer has made specifiable, clearing each graduated patch from **Not yet specified** so it lives only as its new ticket. If the answer reveals a ticket — this one or another — sits beyond the destination, **rule it out of scope** rather than resolving it on the route. If the decision invalidates other parts of the map, update or delete those tickets.
