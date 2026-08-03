@@ -11,7 +11,7 @@
     "npm:context-mode",
     "npm:pi-mcp-adapter",
     "npm:pi-lens",
-    "npm:@aaronkyriesenbach/pi-frozen-defaults@0.3.1",
+    "npm:@aaronkyriesenbach/pi-frozen-defaults",
     {
       "source": "npm:@aaronkyriesenbach/pi-package-manager@0.3.0",
       "extensions": [],
@@ -21,6 +21,7 @@
     },
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-permission-system",
-    "npm:@gotgenes/pi-subagents-worktrees"
+    "npm:@gotgenes/pi-subagents-worktrees",
+    "npm:@aaronkyriesenbach/pi-clean-comments"
   ]
 }
