@@ -5,7 +5,7 @@
   "shellPath": "~/.local/bin/agent-shell-sandbox",
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-5",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-mcp-adapter",
