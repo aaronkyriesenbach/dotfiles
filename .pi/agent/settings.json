@@ -21,6 +21,7 @@
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-permission-system",
     "npm:@gotgenes/pi-subagents-worktrees",
-    "npm:@aaronkyriesenbach/pi-clean-comments"
+    "npm:@aaronkyriesenbach/pi-clean-comments",
+    "npm:@aaronkyriesenbach/pi-substitute-commands"
   ]
 }
