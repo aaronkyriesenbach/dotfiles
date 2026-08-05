@@ -11,9 +11,23 @@ This file contains instructions that apply to all agents working in any project.
 - NEVER install an application, tool, package, library, etc without explicitly asking permission first.
 - ALWAYS install tools locally to the project if possible unless explicitly specified otherwise. For example, install Python packages using virtual environments, not globally.
 
-### Finding files
+### Searching and finding files
 
-ALWAYS use the `fd` command to find files instead of `find` - it has a similar interface but is much faster. ALWAYS search in the user's home directory or a subdirectory unless explicitly specified; NEVER search from `/`, as it will time out. **THIS IS CRUCIAL:** SEARCHING FROM `/` WILL CAUSE YOU TO FAIL YOUR TASK, DO NOT DO IT.
+**Never use `find` or `grep`.** Use `fd` and `rg` (ripgrep) instead — they're faster,
+respect .gitignore, and have saner defaults. If a command starts with `find` or
+`grep`, stop and rewrite it with `fd`/`rg` before running it.
+
+Common translations:
+
+- `find . -name "*.ts"` → `fd -e ts`
+- `find . -iname "foo*"` → `fd -i foo`
+- `grep -r "pattern" .` → `rg "pattern"`
+- `grep -rn "pattern" src/` → `rg -n "pattern" src/`
+- `find . -type d -name node_modules` → `fd -t d node_modules`
+
+ALWAYS search in the user's home directory or a subdirectory unless explicitly
+specified; NEVER search from `/`, as it will time out. **THIS IS CRUCIAL:**
+SEARCHING FROM `/` WILL CAUSE YOU TO FAIL YOUR TASK, DO NOT DO IT.
 
 ## Code Quality Standards
 
