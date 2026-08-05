@@ -15,12 +15,16 @@
 # results are never treated as searchable text, so base64 reasoning signatures
 # can't produce false-positive matches.
 #
-# Requires: bash, jq, base64, find.
+# Requires: bash, jq, fd.
 
 set -euo pipefail
 
-# jq filter shared by search/show: emits one "role<TAB>base64(text)" line per
-# human-text block in user/assistant/custom_message messages.
+# jq filter shared by search/show: emits one role+text record per human-text
+# block in user/assistant/custom_message messages, in a single pass over the
+# whole file (one jq process per file, no per-block subprocess). Records are
+# joined with \x1e and role/text within a record with \x1f; any of those
+# control bytes occurring in real text are stripped since they can't survive
+# as literal delimiters (real newlines are left intact).
 EXTRACT_FILTER='
 select(.type=="message")
 | .message as $m
@@ -29,8 +33,36 @@ select(.type=="message")
     then [$m.role, $m.content]
     else ($m.content // [])[] | select(.type=="text") | [$m.role, .text]
     end )
-| [.[0], (.[1] | @base64)]
-| @tsv
+| (.[0] | gsub("[\u001e\u001f]";" ")) as $role
+| (.[1] | gsub("[\u001e\u001f]";" ")) as $text
+| $role + "\u001f" + $text + "\u001e"
+'
+
+# Like EXTRACT_FILTER, but scans multiple files in a single jq process (jq
+# treats concatenated file args as one continuous stream), tags every record
+# with input_filename, and does term-matching itself (jq's C string ops beat a
+# bash loop over tens of thousands of text blocks) so cmd_search's bash loop
+# only ever sees records that already matched at least one term. $terms_json
+# is supplied as an --argjson array of the original (as-typed) search terms;
+# matching is case-insensitive via ascii_downcase on both sides. Hit terms for
+# a record are joined with \u0001 (a byte that can't appear in a CLI term).
+ALL_FILTER='
+if .type=="session" then
+  "H\u001f" + input_filename + "\u001f" + ((.cwd // "unknown")|tostring|gsub("[\u001e\u001f]";" ")) + "\u001f" + ((.timestamp // "unknown")|tostring|gsub("[\u001e\u001f]";" ")) + "\u001e"
+elif .type=="message" then
+  .message as $m
+  | select($m.role=="user" or $m.role=="assistant" or $m.role=="custom_message")
+  | ( if ($m.content|type)=="string"
+      then [$m.role, $m.content]
+      else ($m.content // [])[] | select(.type=="text") | [$m.role, .text]
+      end )
+  | (.[0] | gsub("[\u001e\u001f]";" ")) as $role
+  | (.[1] | gsub("[\u001e\u001f]";" ")) as $text
+  | ($text | ascii_downcase) as $lower
+  | ($terms_json | map(select(. as $t | $lower | contains($t | ascii_downcase)))) as $hits
+  | select(($hits|length) > 0)
+  | "T\u001f" + input_filename + "\u001f" + $role + "\u001f" + ($hits | join("\u0001")) + "\u001f" + $text + "\u001e"
+else empty end
 '
 
 die() {
@@ -64,15 +96,7 @@ sessions_root() {
 find_session_files() {
 	local root="$1"
 	[[ -d "$root" ]] || return 0
-	find "$root" -type f -name '*.jsonl' | sort
-}
-
-# Reads the header (first line) of a session file, prints "cwd<TAB>timestamp".
-read_header() {
-	local file="$1"
-	head -n 1 "$file" 2>/dev/null |
-		jq -r 'select(.type=="session") | [(.cwd // "unknown"), (.timestamp // "unknown")] | @tsv' \
-			2>/dev/null || true
+	fd -t f -e jsonl . "$root" | sort
 }
 
 # Prints a ~100-char snippet around the first case-insensitive match of $2 in $1.
@@ -186,65 +210,90 @@ cmd_search() {
 		cutoff=$(($(date -u +%s) - days * 86400))
 	fi
 
+	# Built once, not per file: jq does the actual case-insensitive matching in
+	# ALL_FILTER, so bash never loops over all terms per text block.
+	local terms_json
+	terms_json="$(printf '%s\n' "${terms[@]}" | jq -R . | jq -cs .)"
+
 	local -a result_blocks=()
-	local file
-	for file in "${files[@]}"; do
-		local header cwd header_ts
-		header="$(read_header "$file")"
-		cwd="${header%%$'\t'*}"
-		header_ts="${header#*$'\t'}"
-		[[ -n "$cwd" ]] || cwd="unknown"
-		[[ -n "$header_ts" ]] || header_ts="unknown"
-
-		if [[ -n "$cutoff" && "$header_ts" != "unknown" ]]; then
-			local epoch
-			epoch="$(iso_to_epoch "$header_ts")"
-			if [[ -n "$epoch" ]] && ((epoch < cutoff)); then
-				continue
-			fi
-		fi
-
+	if [[ ${#files[@]} -gt 0 ]]; then
+		local cur_file="" cur_cwd="unknown" cur_ts="unknown" skip_file=0
 		local -A matched=()
 		local -a snippets=()
-		local role b64text text term
-		while IFS=$'\t' read -r role b64text; do
-			[[ -n "$role" ]] || continue
-			text="$(printf '%s' "$b64text" | base64 -d 2>/dev/null || true)"
-			for term in "${terms[@]}"; do
-				[[ -n "${matched[$term]:-}" ]] && continue
-				shopt -s nocasematch
-				if [[ "$text" == *"$term"* ]]; then
-					shopt -u nocasematch
-					matched[$term]=1
-					if [[ ${#snippets[@]} -lt $snippets_per_file ]]; then
-						snippets+=("[$role] $(make_snippet "$text" "$term")")
-					fi
+		local rectype fname role hits text rec epoch hit_term
+
+		# Finalizes accumulated matches/snippets for cur_file into result_blocks,
+		# then resets accumulators for the next file. Shares cmd_search's locals
+		# (matched, snippets, cur_*) via bash's dynamic scoping.
+		finalize_file() {
+			[[ -n "$cur_file" ]] || return 0
+			if [[ $skip_file -eq 0 ]]; then
+				local match_count=${#matched[@]}
+				local hit=0
+				if [[ $require_all -eq 1 ]]; then
+					[[ $match_count -eq ${#terms[@]} ]] && hit=1
 				else
-					shopt -u nocasematch
+					[[ $match_count -gt 0 ]] && hit=1
 				fi
-			done
-			[[ ${#matched[@]} -eq ${#terms[@]} ]] && break
-		done < <(jq -r "$EXTRACT_FILTER" "$file" 2>/dev/null || true)
+				if [[ $hit -eq 1 ]]; then
+					local matched_terms
+					matched_terms="$(printf '%s\n' "${!matched[@]}" | sort | paste -sd ',' -)"
+					local snippets_joined=""
+					local s
+					for s in "${snippets[@]:-}"; do
+						[[ -n "$s" ]] && snippets_joined+="${s}"$'\x1e'
+					done
+					result_blocks+=("${match_count}"$'\x1f'"${cur_ts}"$'\x1f'"${cur_file}"$'\x1f'"${cur_cwd}"$'\x1f'"${matched_terms}"$'\x1f'"${snippets_joined}")
+				fi
+			fi
+			matched=()
+			snippets=()
+		}
 
-		local match_count=${#matched[@]}
-		local hit=0
-		if [[ $require_all -eq 1 ]]; then
-			[[ $match_count -eq ${#terms[@]} ]] && hit=1
-		else
-			[[ $match_count -gt 0 ]] && hit=1
-		fi
-		[[ $hit -eq 1 ]] || continue
+		while IFS= read -r -d $'\x1e' rec; do
+			rectype="${rec%%$'\x1f'*}"
+			rec="${rec#*$'\x1f'}"
+			fname="${rec%%$'\x1f'*}"
+			rec="${rec#*$'\x1f'}"
 
-		local matched_terms
-		matched_terms="$(printf '%s\n' "${!matched[@]}" | sort | paste -sd ',' -)"
-		local snippets_joined=""
-		local s
-		for s in "${snippets[@]:-}"; do
-			[[ -n "$s" ]] && snippets_joined+="${s}"$'\x1e'
-		done
+			if [[ "$fname" != "$cur_file" ]]; then
+				finalize_file
+				cur_file="$fname"
+				cur_cwd="unknown"
+				cur_ts="unknown"
+				skip_file=0
+			fi
 
-		result_blocks+=("${match_count}"$'\x1f'"${header_ts}"$'\x1f'"${file}"$'\x1f'"${cwd}"$'\x1f'"${matched_terms}"$'\x1f'"${snippets_joined}")
-	done
+			if [[ "$rectype" == "H" ]]; then
+				cur_cwd="${rec%%$'\x1f'*}"
+				cur_ts="${rec#*$'\x1f'}"
+				[[ -n "$cur_cwd" ]] || cur_cwd="unknown"
+				[[ -n "$cur_ts" ]] || cur_ts="unknown"
+				if [[ -n "$cutoff" && "$cur_ts" != "unknown" ]]; then
+					epoch="$(iso_to_epoch "$cur_ts")"
+					[[ -n "$epoch" ]] && ((epoch < cutoff)) && skip_file=1
+				fi
+				continue
+			fi
+
+			[[ $skip_file -eq 1 ]] && continue
+
+			role="${rec%%$'\x1f'*}"
+			rec="${rec#*$'\x1f'}"
+			hits="${rec%%$'\x1f'*}"
+			text="${rec#*$'\x1f'}"
+			[[ -n "$role" ]] || continue
+			while IFS= read -r -d $'\x01' hit_term; do
+				[[ -n "$hit_term" ]] || continue
+				[[ -n "${matched[$hit_term]:-}" ]] && continue
+				matched[$hit_term]=1
+				if [[ ${#snippets[@]} -lt $snippets_per_file ]]; then
+					snippets+=("[$role] $(make_snippet "$text" "$hit_term")")
+				fi
+			done <<<"${hits}"$'\x01'
+		done < <(jq -j --argjson terms_json "$terms_json" "$ALL_FILTER" "${files[@]}" 2>/dev/null || true)
+		finalize_file
+	fi
 
 	[[ ${#result_blocks[@]} -gt 0 ]] || {
 		if [[ $as_json -eq 1 ]]; then
@@ -321,10 +370,11 @@ cmd_show() {
 	[[ -f "$file" ]] || die "File not found: $file"
 
 	local printed=0
-	local role b64text text
-	while IFS=$'\t' read -r role b64text; do
+	local role text rec
+	while IFS= read -r -d $'\x1e' rec; do
+		role="${rec%%$'\x1f'*}"
+		text="${rec#*$'\x1f'}"
 		[[ -n "$role" ]] || continue
-		text="$(printf '%s' "$b64text" | base64 -d 2>/dev/null || true)"
 		if [[ -n "$grep_term" ]]; then
 			shopt -s nocasematch
 			[[ "$text" == *"$grep_term"* ]] || {
@@ -336,7 +386,7 @@ cmd_show() {
 		echo "--- $role ---"
 		printf '%s\n\n' "$text"
 		printed=$((printed + 1))
-	done < <(jq -r "$EXTRACT_FILTER" "$file" 2>/dev/null || true)
+	done < <(jq -j "$EXTRACT_FILTER" "$file" 2>/dev/null || true)
 
 	if [[ $printed -eq 0 ]]; then
 		if [[ -n "$grep_term" ]]; then
