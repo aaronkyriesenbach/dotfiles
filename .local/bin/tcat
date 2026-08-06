@@ -1,0 +1,227 @@
+#!/usr/bin/env bash
+#
+# tcat - print basic information about one or more .torrent files
+#
+# Bencode is binary (raw SHA1 hashes etc.), which bash strings can't hold
+# safely (no embedded NUL support), so the actual decoding is done by an
+# embedded Perl helper. This script is just the driver/formatter.
+
+set -euo pipefail
+
+usage() {
+    echo "Usage: tcat <file.torrent> [file2.torrent ...]" >&2
+    exit 1
+}
+
+[ "$#" -ge 1 ] || usage
+
+decode_torrent() {
+    perl -MDigest::SHA=sha1_hex -e '
+        use strict;
+        use warnings;
+
+        my $file = shift @ARGV;
+        open(my $fh, "<:raw", $file) or die "Cannot open $file: $!\n";
+        local $/;
+        my $data = <$fh>;
+        close($fh);
+
+        my $pos = 0;
+
+        sub decode {
+            my ($data, $posref) = @_;
+            my $c = substr($$data, $$posref, 1);
+
+            if ($c eq "d") {
+                $$posref++;
+                my %dict;
+                my @order;
+                while (substr($$data, $$posref, 1) ne "e") {
+                    my $key = decode($data, $posref);
+                    my $val = decode($data, $posref);
+                    $dict{$key->{value}} = $val;
+                    push @order, $key->{value};
+                }
+                $$posref++;
+                return { type => "dict", value => \%dict, order => \@order };
+            } elsif ($c eq "l") {
+                $$posref++;
+                my @list;
+                while (substr($$data, $$posref, 1) ne "e") {
+                    push @list, decode($data, $posref);
+                }
+                $$posref++;
+                return { type => "list", value => \@list };
+            } elsif ($c eq "i") {
+                $$posref++;
+                my $start = $$posref;
+                while (substr($$data, $$posref, 1) ne "e") { $$posref++; }
+                my $num = substr($$data, $start, $$posref - $start);
+                $$posref++;
+                return { type => "int", value => $num + 0 };
+            } elsif ($c =~ /[0-9]/) {
+                my $start = $$posref;
+                while (substr($$data, $$posref, 1) ne ":") { $$posref++; }
+                my $len = substr($$data, $start, $$posref - $start) + 0;
+                $$posref++;
+                my $str = substr($$data, $$posref, $len);
+                $$posref += $len;
+                return { type => "str", value => $str };
+            } else {
+                die "Bad bencode at offset ${$posref}\n";
+            }
+        }
+
+        my $root = decode(\$data, \$pos);
+        my %top = %{ $root->{value} };
+
+        sub val { my $n = shift; return defined $n ? $n->{value} : undef; }
+
+        my $info = $top{info};
+        die "No info dict\n" unless $info;
+
+        # Recompute the raw bencoding of the info dict to hash it (avoids
+        # needing exact byte offsets by re-encoding deterministically).
+        sub encode {
+            my ($node) = @_;
+            my $t = $node->{type};
+            if ($t eq "str") {
+                return length($node->{value}) . ":" . $node->{value};
+            } elsif ($t eq "int") {
+                return "i" . $node->{value} . "e";
+            } elsif ($t eq "list") {
+                return "l" . join("", map { encode($_) } @{ $node->{value} }) . "e";
+            } elsif ($t eq "dict") {
+                my %d = %{ $node->{value} };
+                my $out = "d";
+                for my $k (sort keys %d) {
+                    $out .= length($k) . ":" . $k . encode($d{$k});
+                }
+                return $out . "e";
+            }
+        }
+
+        my $info_hash = sha1_hex(encode($info));
+
+        my $info_dict = $info->{value};
+        my $name = val($info_dict->{name}) // "(unknown)";
+        my $piece_length = val($info_dict->{"piece length"}) // 0;
+        my $pieces = val($info_dict->{pieces}) // "";
+        my $num_pieces = $piece_length > 0 ? int(length($pieces) / 20) : 0;
+
+        my @files;
+        if (exists $info_dict->{files}) {
+            for my $f (@{ val($info_dict->{files}) }) {
+                my %fd = %{ $f->{value} };
+                my @path = map { val($_) } @{ val($fd{path}) };
+                push @files, { path => join("/", @path), length => val($fd{length}) };
+            }
+        } else {
+            push @files, { path => $name, length => val($info_dict->{length}) // 0 };
+        }
+
+        my $total_size = 0;
+        $total_size += $_->{length} for @files;
+
+        my @trackers;
+        if (exists $top{"announce-list"}) {
+            for my $tier (@{ val($top{"announce-list"}) }) {
+                for my $t (@{ $tier->{value} }) {
+                    push @trackers, val($t);
+                }
+            }
+        } elsif (exists $top{announce}) {
+            push @trackers, val($top{announce});
+        }
+
+        my $comment = val($top{comment}) // "";
+        my $created_by = val($top{"created by"}) // "";
+        my $creation_date = val($top{"creation date"}) // "";
+        my $is_private = val($info_dict->{private}) // 0;
+
+        # Emit a simple tab-separated record protocol for the bash side.
+        print "INFOHASH\t$info_hash\n";
+        print "NAME\t$name\n";
+        print "SIZE\t$total_size\n";
+        print "PIECELEN\t$piece_length\n";
+        print "NUMPIECES\t$num_pieces\n";
+        print "PRIVATE\t$is_private\n";
+        print "COMMENT\t$comment\n";
+        print "CREATEDBY\t$created_by\n";
+        print "CREATEDATE\t$creation_date\n";
+        print "NUMFILES\t" . scalar(@files) . "\n";
+        for my $f (@files) {
+            print "FILE\t$f->{length}\t$f->{path}\n";
+        }
+        for my $t (@trackers) {
+            print "TRACKER\t$t\n";
+        }
+    ' "$1"
+}
+
+human_size() {
+    local bytes="$1"
+    awk -v b="$bytes" 'BEGIN {
+        split("B KiB MiB GiB TiB PiB", units, " ");
+        u = 1;
+        while (b >= 1024 && u < 6) { b /= 1024; u++; }
+        printf "%.2f %s", b, units[u];
+    }'
+}
+
+print_torrent() {
+    local file="$1"
+    local name="" size="" piecelen="" numpieces="" private="" comment=""
+    local createdby="" createdate="" numfiles="" infohash=""
+    local -a files=()
+    local -a trackers=()
+
+    while IFS=$'\t' read -r key a b; do
+        case "$key" in
+            INFOHASH)   infohash="$a" ;;
+            NAME)       name="$a" ;;
+            SIZE)       size="$a" ;;
+            PIECELEN)   piecelen="$a" ;;
+            NUMPIECES)  numpieces="$a" ;;
+            PRIVATE)    private="$a" ;;
+            COMMENT)    comment="$a" ;;
+            CREATEDBY)  createdby="$a" ;;
+            CREATEDATE) createdate="$a" ;;
+            NUMFILES)   numfiles="$a" ;;
+            FILE)       files+=("$a"$'\t'"$b") ;;
+            TRACKER)    trackers+=("$a") ;;
+        esac
+    done < <(decode_torrent "$file")
+
+    echo "== $file =="
+    echo "Name:          $name"
+    echo "Info hash:     $infohash"
+    echo "Total size:    $(human_size "$size") ($size bytes)"
+    echo "Piece length:  $(human_size "$piecelen")"
+    echo "Pieces:        $numpieces"
+    echo "Private:       $([ "$private" = "1" ] && echo yes || echo no)"
+    [ -n "$comment" ] && echo "Comment:       $comment"
+    [ -n "$createdby" ] && echo "Created by:    $createdby"
+    if [ -n "$createdate" ] && [ "$createdate" != "0" ]; then
+        echo "Creation date: $(date -d "@$createdate" 2>/dev/null || echo "$createdate")"
+    fi
+    echo "Trackers:      ${#trackers[@]}"
+    for t in "${trackers[@]}"; do
+        echo "  - $t"
+    done
+    echo "Files ($numfiles):"
+    for f in "${files[@]}"; do
+        flen="${f%%$'\t'*}"
+        fpath="${f#*$'\t'}"
+        printf "  %10s  %s\n" "$(human_size "$flen")" "$fpath"
+    done
+    echo
+}
+
+for arg in "$@"; do
+    if [ ! -f "$arg" ]; then
+        echo "tcat: $arg: no such file" >&2
+        continue
+    fi
+    print_torrent "$arg"
+done
