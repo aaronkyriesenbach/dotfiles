@@ -1,6 +1,6 @@
 # Model tiers
 
-Reference doc for [`implement-multiple`](../implement-multiple.md) step 8.1's per-ticket model selection and step 8.4's escalation-on-failure retry. Kept separate from the workflow prompt because model rosters shift roughly monthly — this file is what should need updating, not the workflow logic that reads it.
+Reference doc for [`implement-multiple`](SKILL.md) step 8.1's per-ticket model selection and step 8.4's escalation-on-failure retry. Kept separate from the workflow prompt because model rosters shift roughly monthly — this file is what should need updating, not the workflow logic that reads it.
 
 **Last reviewed:** 2026-07-31. Re-verify tier membership if this date is more than ~60 days stale, especially for anything added since — and prefer independent, practitioner-run evals over vendor launch posts where they disagree (see "Why the floor is here").
 
