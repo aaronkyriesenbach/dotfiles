@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "lastSyncedRef": "v1.2.3",
+  "skills": {
+    "tdd": { "upstreamName": "tdd", "upstreamPath": "skills/engineering/tdd/SKILL.md" },
+    "prototype": { "upstreamName": "prototype", "upstreamPath": "skills/engineering/prototype/SKILL.md" },
+    "research": { "upstreamName": "research", "upstreamPath": "skills/engineering/research/SKILL.md" },
+    "diagnosing-bugs": { "upstreamName": "diagnosing-bugs", "upstreamPath": "skills/engineering/diagnosing-bugs/SKILL.md" },
+    "domain-modeling": { "upstreamName": "domain-modeling", "upstreamPath": "skills/engineering/domain-modeling/SKILL.md" },
+    "codebase-design": { "upstreamName": "codebase-design", "upstreamPath": "skills/engineering/codebase-design/SKILL.md" },
+    "implement": { "upstreamName": "implement", "upstreamPath": "skills/engineering/implement/SKILL.md" },
+    "grill-me": { "upstreamName": "grill-me", "upstreamPath": "skills/productivity/grill-me/SKILL.md" },
+    "grill-with-docs": { "upstreamName": "grill-with-docs", "upstreamPath": "skills/engineering/grill-with-docs/SKILL.md" },
+    "handoff": { "upstreamName": "handoff", "upstreamPath": "skills/productivity/handoff/SKILL.md" },
+    "improve-codebase-architecture": { "upstreamName": "improve-codebase-architecture", "upstreamPath": "skills/engineering/improve-codebase-architecture/SKILL.md" },
+    "setup-engineering-skills": { "upstreamName": "setup-matt-pocock-skills", "upstreamPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md" },
+    "to-spec": { "upstreamName": "to-spec", "upstreamPath": "skills/engineering/to-spec/SKILL.md" },
+    "to-tickets": { "upstreamName": "to-tickets", "upstreamPath": "skills/engineering/to-tickets/SKILL.md" },
+    "wayfinder": { "upstreamName": "wayfinder", "upstreamPath": "skills/engineering/wayfinder/SKILL.md" },
+    "writing-skills": { "upstreamName": "writing-for-agents", "upstreamPath": "skills/productivity/writing-for-agents/SKILL.md" },
+    "writing-for-agents": { "upstreamName": "writing-for-agents", "upstreamPath": "skills/productivity/writing-for-agents/SKILL.md" },
+    "grilling": { "upstreamName": "grilling", "upstreamPath": "skills/productivity/grilling/SKILL.md" },
+    "triage": { "upstreamName": "triage", "upstreamPath": "skills/engineering/triage/SKILL.md" },
+    "ask-matt": { "upstreamName": "ask-matt", "upstreamPath": "skills/engineering/ask-matt/SKILL.md" },
+    "loop-me": { "upstreamName": "loop-me", "upstreamPath": "skills/in-progress/loop-me/SKILL.md" },
+    "migrate-to-shoehorn": { "upstreamName": "migrate-to-shoehorn", "upstreamPath": "skills/misc/migrate-to-shoehorn/SKILL.md" },
+    "resolving-merge-conflicts": { "upstreamName": "resolving-merge-conflicts", "upstreamPath": "skills/engineering/resolving-merge-conflicts/SKILL.md" },
+    "teach": { "upstreamName": "teach", "upstreamPath": "skills/productivity/teach/SKILL.md" },
+    "to-questionnaire": { "upstreamName": "to-questionnaire", "upstreamPath": "skills/productivity/to-questionnaire/SKILL.md" },
+    "wait-what": { "upstreamName": "wait-what", "upstreamPath": "skills/productivity/wait-what/SKILL.md" },
+    "wizard": { "upstreamName": "wizard", "upstreamPath": "skills/engineering/wizard/SKILL.md" },
+    "writing-beats": { "upstreamName": "writing-beats", "upstreamPath": "skills/in-progress/writing-beats/SKILL.md" },
+    "writing-fragments": { "upstreamName": "writing-fragments", "upstreamPath": "skills/in-progress/writing-fragments/SKILL.md" },
+    "writing-shape": { "upstreamName": "writing-shape", "upstreamPath": "skills/in-progress/writing-shape/SKILL.md" }
+  },
+  "declinedUpstreamSkills": [
+    "claude-handoff",
+    "git-guardrails-claude-code",
+    "scaffold-exercises",
+    "setup-pre-commit",
+    "setup-ts-deep-modules"
+  ]
+}
